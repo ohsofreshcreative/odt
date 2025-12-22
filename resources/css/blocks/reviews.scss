@@ -1,0 +1,17 @@
+.b-reviews {
+  .swiper {
+    .__img img {
+      width: 56px;
+      height: 56px;
+      max-width: 56px;
+      max-height: 56px;
+      border-radius: 100%;
+	  object-fit: cover;
+    }
+  }
+  .__arrows {
+    width: max-content;
+    right: 0;
+    top: -80px;
+  }
+}

@@ -1,0 +1,8 @@
+.b-offer {
+	.__card:hover {
+		.__arrow {
+			background-color: var(--color-primary-lighter) !important;
+			transition: all 0.3s ease;
+		}
+	}
+}

@@ -1,0 +1,75 @@
+.b-calc {
+
+	/*--- !INPUT CONTACT ---*/
+
+		input[type='text'],
+		input[type='tel'],
+		input[type='email'],
+		input[type='number'],
+		select,
+		textarea {
+			width: 100%;
+			background-color: #FFF;
+			border: none;
+			color: var(--color-primary-dark);
+			border: 1px solid var(--color-primary);
+			padding: 12px 16px;
+			transition: all 0.2s ease-out;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		input::placeholder,
+		textarea::placeholder {
+			color: #706e68;
+			opacity: 1;
+		}
+
+		input[type='text']:focus,
+		input[type='tel']:focus,
+		input[type='email']:focus,
+		input[type='number']:focus,
+		textarea:focus {
+			width: 100%;
+			background-color: var(--color-primary-100);
+			border: 1px dashed var(--color-primary-600);
+			outline: none;
+			transition: all 0.2s ease-out;
+		}
+
+		textarea {
+			height: 120px;
+		}
+
+		input[type='submit'] {
+			font-size: 16px;
+			background: var(--color-primary);
+			color: #fff;
+			padding: 15px 45px;
+			display: inline-block;
+			transition: all 0.2s ease-out;
+			border-radius: 8px;
+			font-weight: 600;
+			border: 1px solid transparent;
+			text-decoration: none;
+			white-space: nowrap;
+			width: unset !important;
+			margin-top: 8px;
+			cursor: pointer;
+		}
+
+		input[type='submit']:hover {
+			color: #fff;
+			background: var(--color-secondary-hover);
+			transition: all 0.2s ease-out;
+			border: 1px solid transparent;
+		}
+		.wpcf7-list-item {
+			margin-left: 0 !important;
+		}
+		.wpcf7 form .wpcf7-response-output {
+			color:red;
+			font-weight: bold;
+			width: max-content;
+		}
+}

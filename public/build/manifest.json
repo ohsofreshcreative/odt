@@ -1,0 +1,67 @@
+{
+  "editor.deps.json": {
+    "file": "assets/editor.deps-DxpY22xl.json",
+    "src": "editor.deps.json"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-W8jQM1P7.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/editor.css": {
+    "file": "assets/editor-CoS4cfcs.css",
+    "src": "resources/css/editor.css",
+    "isEntry": true,
+    "name": "editor",
+    "names": [
+      "editor.css"
+    ]
+  },
+  "resources/fonts/CabinetGrotesk-Variable.eot": {
+    "file": "assets/CabinetGrotesk-Variable-BQ8MQmR9.eot",
+    "src": "resources/fonts/CabinetGrotesk-Variable.eot"
+  },
+  "resources/fonts/CabinetGrotesk-Variable.ttf": {
+    "file": "assets/CabinetGrotesk-Variable-DZ-mBhZu.ttf",
+    "src": "resources/fonts/CabinetGrotesk-Variable.ttf"
+  },
+  "resources/fonts/CabinetGrotesk-Variable.woff": {
+    "file": "assets/CabinetGrotesk-Variable-DRyS-JTJ.woff",
+    "src": "resources/fonts/CabinetGrotesk-Variable.woff"
+  },
+  "resources/fonts/CabinetGrotesk-Variable.woff2": {
+    "file": "assets/CabinetGrotesk-Variable-DI2t1LFl.woff2",
+    "src": "resources/fonts/CabinetGrotesk-Variable.woff2"
+  },
+  "resources/images/mapa-polski.svg": {
+    "file": "assets/mapa-polski-CaNIMG4v.svg",
+    "src": "resources/images/mapa-polski.svg"
+  },
+  "resources/images/ohsofresh.svg": {
+    "file": "assets/ohsofresh-DBDLJZzV.svg",
+    "src": "resources/images/ohsofresh.svg"
+  },
+  "resources/images/ring-mask.svg": {
+    "file": "assets/ring-mask-B_SY1GJM.svg",
+    "src": "resources/images/ring-mask.svg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-P2c5_wHg.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-DHBATib1.css"
+    ]
+  },
+  "resources/js/editor.js": {
+    "file": "assets/editor-CfU4GbSP.js",
+    "name": "editor",
+    "src": "resources/js/editor.js",
+    "isEntry": true
+  }
+}
