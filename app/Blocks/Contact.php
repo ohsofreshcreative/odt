@@ -8,7 +8,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 class Contact extends Block
 
 {
-	public $name = 'Kontakt - Footer';
+	public $name = 'Kontakt';
 	public $description = 'Contact';
 	public $slug = 'contact';
 	public $category = 'formatting';
@@ -35,7 +35,7 @@ class Contact extends Block
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kontakt - Footer',
+				'label' => 'Kontakt',
 				'open' => false,
 				'multi_expand' => true,
 			])

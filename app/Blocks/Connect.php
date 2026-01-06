@@ -6,73 +6,45 @@ use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Connect extends Block
-
 {
-	public $name = 'Kontakt - Podstrona';
+	public $name = 'Kontakt - Stopka';
 	public $description = 'connect';
-	public $slug = 'connect';
+	public $slug = 'connect'; 
 	public $category = 'formatting';
 	public $icon = 'email';
-	public $keywords = ['formularz', 'kontakt'];
+	public $keywords = ['offer', 'cards', 'oferta', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'multiple' => true,
 		'anchor' => true,
 		'customClassName' => true,
 	];
 
+	/**
+	 * The block field group.
+	 *
+	 * @return array
+	 */
 	public function fields()
 	{
-		$connect = new FieldsBuilder('connect');
+		$bottomBlock = new FieldsBuilder('connect');
 
-		$connect
-			->setLocation('block', '==', 'acf/connect') // ważne!
-			/*--- FIELDS ---*/
+		$bottomBlock
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kontakt - Podstrona',
+				'label' => 'Kontakt - Stopka',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- TAB #1 ---*/
-			->addTab('Dane', ['placement' => 'top'])
-			->addGroup('g_connect_1', ['label' => ''])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addTextarea('txt', [
-				'label' => 'Opis',
-				'rows' => 1,
-				'new_lines' => 'br',
-			])
-			->addText('phone', ['label' => 'Telefon'])
-			->addText('email', ['label' => 'Email'])
-			->addText('name', ['label' => 'Nazwa firmy'])
-			->addTextarea('address', [
-				'label' => 'Adres',
-				'rows' => 2,
-				'new_lines' => 'br',
-			])
-			->addImage('image', [
-				'label' => 'Obraz w tle',
-				'return_format' => 'array',
-				'preview_size' => 'medium',
-			])
-			->endGroup()
-			/*--- TAB #2 ---*/
-			->addTab('Formularz', ['placement' => 'top'])
-			->addGroup('g_connect_2', ['label' => ''])
-			->addText('title', ['label' => 'Tytuł'])
-			->addText('shortcode', [
-				'label' => 'Kod formularza',
-				'instructions' => 'Wklej kod formularza:  [connect-form-7 id="f12c470" title="connect form 1"]',
-				'default_value' => '[connect-form-7 id="f12c470" title="connect form 1"]',
-			])
-			->endGroup()
-
+			->addTab('Elementy', ['placement' => 'top'])
+			->addMessage('Edycja', 'Pole edytujemy klikajac w menu panelu administratora "Kontakt - Stopka".')
+			
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -89,15 +61,18 @@ class Connect extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-
-		return $connect;
+		return $bottomBlock->build();
 	}
 
+	/**
+	 * Data to be passed to the block before rendering.
+	 *
+	 * @return array
+	 */
 	public function with()
 	{
 		return [
-			'g_connect_1' => get_field('g_connect_1'),
-			'g_connect_2' => get_field('g_connect_2'),
+			'bottom' => get_field('bottom', 'option'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'nomt' => get_field('nomt'),

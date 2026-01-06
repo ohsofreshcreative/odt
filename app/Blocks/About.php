@@ -11,8 +11,8 @@ class About extends Block
 	public $description = 'about';
 	public $slug = 'about';
 	public $category = 'formatting';
-	public $icon = 'align-pull-left';
-	public $keywords = ['tresc', 'zdjecie'];
+	public $icon = 'admin-users';
+	public $keywords = ['tresc', 'o-nas'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -45,7 +45,6 @@ class About extends Block
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'thumbnail',
 			])
-			->addText('title', ['label' => 'Tytuł'])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
@@ -66,6 +65,12 @@ class About extends Block
 			])
 			->addText('section_class', [
 				'label' => 'Dodatkowe klasy CSS',
+			])
+			->addTrueFalse('nolist', [
+				'label' => 'Brak punktatorów',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
 			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
@@ -116,6 +121,7 @@ class About extends Block
 			'g_about' => get_field('g_about'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
+			'nolist' => get_field('nolist'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),

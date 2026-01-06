@@ -1284,6 +1284,11 @@
           "color": "rgb(var(--p-600))"
         },
         {
+          "name": "Primary (700)",
+          "slug": "primary-700",
+          "color": "rgb(var(--p-700))"
+        },
+        {
           "name": "Primary (Dark)",
           "slug": "primary-dark",
           "color": "rgb(var(--p-dark))"
@@ -1309,6 +1314,11 @@
           "color": "rgb(var(--s-300))"
         },
         {
+          "name": "Secondary (400)",
+          "slug": "secondary-400",
+          "color": "rgb(var(--s-400))"
+        },
+        {
           "name": "Secondary (500)",
           "slug": "secondary-500",
           "color": "rgb(var(--s-500))"
@@ -1319,6 +1329,11 @@
           "color": "var(--gray)"
         },
         {
+          "name": "Action",
+          "slug": "action",
+          "color": "var(--action)"
+        },
+        {
           "name": "Background (Brand)",
           "slug": "background-brand",
           "color": "var(--bg-brand)"
@@ -1326,12 +1341,22 @@
         {
           "name": "Primary (Light)",
           "slug": "primary-light",
-          "color": "var(--color-primary-200)"
+          "color": "var(--bg-light)"
         },
         {
           "name": "Primary (Lighter)",
           "slug": "primary-lighter",
-          "color": "var(--color-primary-100)"
+          "color": "var(--bg-lighter)"
+        },
+        {
+          "name": "Secondary (Light)",
+          "slug": "secondary-light",
+          "color": "var(--color-secondary-300)"
+        },
+        {
+          "name": "Secondary (Lighter)",
+          "slug": "secondary-lighter",
+          "color": "var(--color-secondary-100)"
         }
       ]
     },

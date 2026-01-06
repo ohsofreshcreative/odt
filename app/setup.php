@@ -352,3 +352,48 @@ function custom_subsidy_checkboxes_handler($tag)
  * Disable Contact Form 7 auto <p> tags.
  */
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+/*--- WYSIWYG HEIGHT FIX ---*/
+
+add_action('admin_footer', function () {
+  $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+  if (!$screen || $screen->base !== 'post') return;
+  ?>
+  <script>
+    (function () {
+      const TARGET_HEIGHT = 140; // startowa wysokość
+
+      function applyInitialHeight() {
+        document.querySelectorAll('.acf-editor-wrap iframe[id^="acf-editor-"]').forEach((iframe) => {
+          // Jeśli już ustawiliśmy startową wysokość, nie ruszaj więcej (żeby ręczny resize działał)
+          if (iframe.dataset.acfInitialHeightApplied === '1') return;
+
+          const current = parseInt(iframe.style.height || 0, 10);
+
+          // Ustaw tylko jeśli jest puste albo większe od targetu (czyli "za wysokie")
+          if (!current || current > TARGET_HEIGHT) {
+            iframe.style.height = TARGET_HEIGHT + 'px';
+          }
+
+          iframe.dataset.acfInitialHeightApplied = '1';
+        });
+      }
+
+      // Spróbuj kilka razy po załadowaniu (ACF/TinyMCE potrafią wstać później)
+      let tries = 0;
+      const timer = setInterval(() => {
+        applyInitialHeight();
+        tries++;
+        if (tries >= 40) clearInterval(timer); // ~10s
+      }, 250);
+
+      // Obserwuj DOM tylko po to, żeby łapać NOWE edytory (np. po dodaniu bloku),
+      // ale nie resetować tych, które użytkownik już rozciągnął.
+      const obs = new MutationObserver(() => applyInitialHeight());
+      obs.observe(document.body, { childList: true, subtree: true });
+
+      window.addEventListener('load', () => setTimeout(applyInitialHeight, 500));
+    })();
+  </script>
+  <?php
+});

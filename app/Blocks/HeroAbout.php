@@ -35,41 +35,44 @@ class HeroAbout extends Block
 				'open' => false,
 				'multi_expand' => true,
 			])
+			/*--- TAB #1 ---*/
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_heroabout', ['label' => 'Hero - Pojedyncza oferta'])
 			->addImage('image', [
 				'label' => 'Obraz #1',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'thumbnail',
-			])
-			->addImage('image2', [
-				'label' => 'Obraz #2',
-				'return_format' => 'array', // lub 'url', lub 'id'
+				'return_format' => 'array', 
 				'preview_size' => 'thumbnail',
 			])
 			->addImage('bg', [
 				'label' => 'Obraz w tle',
-				'return_format' => 'array', // lub 'url', lub 'id'
+				'return_format' => 'array', 
 				'preview_size' => 'thumbnail',
 			])
-			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', 
+				'toolbar' => 'full', 
+				'media_upload' => true,
+			])
 			->endGroup()
 
 			/*--- TAB #2 ---*/
 			->addTab('Liczby', ['placement' => 'top'])
-			->addRepeater('r_heroabout', [
-				'label' => 'Liczby',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'button_label' => 'Dodaj kafelek'
+			->addGroup('g_heroabout_2', ['label' => 'Hero - Pojedyncza oferta'])
+			->addWysiwyg('txt1', [
+				'label' => 'Liczba #1',
+				'tabs' => 'all', 
+				'toolbar' => 'full', 
+				'media_upload' => true,
 			])
-			->addText('title', [
-				'label' => 'Liczba',
+			->addWysiwyg('txt2', [
+				'label' => 'Liczba #2',
+				'tabs' => 'all', 
+				'toolbar' => 'full', 
+				'media_upload' => true,
 			])
-			->addTextarea('text', [
-				'label' => 'Opis',
-			])
-			->endRepeater()
+			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -94,7 +97,7 @@ class HeroAbout extends Block
 	{
 		return [
 			'g_heroabout' => get_field('g_heroabout'),
-			'r_heroabout' => get_field('r_heroabout'),
+			'g_heroabout_2' => get_field('g_heroabout_2'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'nomt' => get_field('nomt'),

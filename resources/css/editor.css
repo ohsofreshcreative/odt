@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-#tinymce > div > h6 {
-		font-size:40px;
-}
 
 .editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
     list-style-type: disc !important;
@@ -24,4 +21,8 @@
     margin-right: 0.75em; /* Odstęp między punktorem a tekstem */
     font-weight: bold;
     display: inline; /* Upewniamy się, że jest to element liniowy */
+}
+
+.acf-editor-wrap iframe {
+	min-height: unset !important;
 }

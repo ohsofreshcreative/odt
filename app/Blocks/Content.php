@@ -5,11 +5,11 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class TextImage extends Block
+class Content extends Block
 {
 	public $name = 'Tekst oraz zdjęcie';
-	public $description = 'text-img';
-	public $slug = 'text-img';
+	public $description = 'content';
+	public $slug = 'content';
 	public $category = 'formatting';
 	public $icon = 'align-pull-left';
 	public $keywords = ['tresc', 'zdjecie'];
@@ -24,10 +24,10 @@ class TextImage extends Block
 
 	public function fields()
 	{
-		$text_img = new FieldsBuilder('text-img');
+		$content = new FieldsBuilder('content');
 
-		$text_img
-			->setLocation('block', '==', 'acf/text-img') // ważne!
+		$content
+			->setLocation('block', '==', 'acf/content') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
@@ -39,17 +39,17 @@ class TextImage extends Block
 			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_textimg', ['label' => ''])
+			->addGroup('g_content', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
+				'return_format' => 'array', 
 				'preview_size' => 'thumbnail',
 			])
 			->addText('title', ['label' => 'Tytuł'])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
+				'tabs' => 'all', 
+				'toolbar' => 'full', 
 				'media_upload' => true,
 			])
 			->addLink('button', [
@@ -113,13 +113,13 @@ class TextImage extends Block
                 'allow_null' => 0,
             ]);
 
-		return $text_img;
+		return $content;
 	}
 
 	public function with()
 	{
 		return [
-			'g_textimg' => get_field('g_textimg'),
+			'g_content' => get_field('g_content'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'nolist' => get_field('nolist'),

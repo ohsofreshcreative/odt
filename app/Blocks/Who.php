@@ -42,16 +42,16 @@ class Who extends Block
 			->addGroup('g_who', ['label' => ''])
 			->addImage('image1', [
 				'label' => 'Obraz #1',
-				'return_format' => 'array', 
-				'preview_size' => 'medium',
-			])
-			->addImage('image2', [
-				'label' => 'Obraz #2',
 				'return_format' => 'array',
 				'preview_size' => 'medium',
 			])
 			->addText('title', ['label' => 'Tytuł'])
-			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('header', [
+				'label' => 'Nagłówek',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
@@ -71,11 +71,13 @@ class Who extends Block
 				'label' => 'Liczby',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
-				'max' => 3,
+				'max' => 4,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addText('liczba', [
-				'label' => 'Liczba',
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
 			])
 			->addText('header', [
 				'label' => 'Nagłówek',

@@ -60,21 +60,6 @@ class Hero extends Block
 			])
 			->endGroup()
 
-			/*--- TAB #1 ---*/
-			->addTab('CTA', ['placement' => 'top'])
-			->addGroup('g_hero_cta', ['label' => 'Hero'])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array',
-				'preview_size' => 'medium',
-			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addLink('button1', [
-				'label' => 'Przycisk #1',
-				'return_format' => 'array',
-			])
-			->endGroup()
-
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -98,7 +83,6 @@ class Hero extends Block
 	{
 		return [
 			'g_hero' => get_field('g_hero'),
-			'g_hero_cta' => get_field('g_hero_cta'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'nomt' => get_field('nomt'),

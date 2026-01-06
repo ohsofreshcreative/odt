@@ -32,18 +32,17 @@ class Bottom extends Field
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+				'preview_size' => 'thumbnail',
 			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-			])
+			->addText('txt', ['label' => 'Tekst'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addText('phone', ['label' => 'Telefon'])
 			->addLink('button', [
-				'label' => 'Przycisk',
+				'label' => 'Przycisk #1',
+				'return_format' => 'array',
+			])
+			->addLink('button2', [
+				'label' => 'Przycisk #2',
 				'return_format' => 'array',
 			])
 			->addText('shortcode', [

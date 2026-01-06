@@ -7,7 +7,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Tiles extends Block
 {
-	public $name = 'Tekst oraz lista kafelków';
+	public $name = 'Tekst oraz lista';
 	public $description = 'tiles';
 	public $slug = 'tiles';
 	public $category = 'formatting';
@@ -33,7 +33,7 @@ class Tiles extends Block
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Tekst oraz lista kafelków',
+				'label' => 'Tekst oraz lista',
 				'open' => false,
 				'multi_expand' => true,
 			])
@@ -46,10 +46,6 @@ class Tiles extends Block
 				'preview_size' => 'thumbnail',
 			])
 			->addText('header', ['label' => 'Nagłówek'])
-			->addText('title', [
-				'label' => 'Tytuł',
-				'instructions' => 'Nagłówek nad listą kafelków',
-			])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
@@ -57,10 +53,43 @@ class Tiles extends Block
 				'media_upload' => true,
 			])
 			->addLink('button', [
-				'label' => 'Przycisk',
+				'label' => 'Przycisk #1',
 				'return_format' => 'array',
 			])
+			->addLink('button2', [
+				'label' => 'Przycisk #2',
+				'return_format' => 'array',
+			])
+			->addImage('bg1', [
+				'label' => 'Obraz w tle #1',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
+			])
+			->addImage('bg2', [
+				'label' => 'Obraz w tle #2',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
+			])
 			->endGroup()
+
+			/*--- TAB #2 ---*/
+			->addTab('Kafelki', ['placement' => 'top'])
+			->addRepeater('r_tiles', ['label' => ''])
+
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
+			])
+			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+
+			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -124,6 +153,7 @@ class Tiles extends Block
 	{
 		return [
 			'g_tiles' => get_field('g_tiles'),
+			'r_tiles' => get_field('r_tiles'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'nolist' => get_field('nolist'),

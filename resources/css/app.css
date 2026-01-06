@@ -1,4 +1,4 @@
-@import "tailwindcss" theme(static);
+@import 'tailwindcss' theme(static);
 
 /* bardzo ważne dla Sage/Blade: skanowanie klas */
 @source "../views/**/*.blade.php";
@@ -7,43 +7,44 @@
 
 /* Twoje “źródłowe” zmienne RGB */
 :root {
-	/* base */
-	--body: 42 63 80; /* #2A3F50 */
+  /* base */
+  --body: 42 63 80; /* #2A3F50 */
 
-	/* primary scale */
-	--primary: 43 178 9; /* #2BB209 */
-	--p-hover: 36 148 8; /* #249408 */
-	--p-50: 242 251 246; /* #F2FBF6 */
-	--p-100: 213 240 206; /* #D5F0CE */
-	--p-200: 184 229 173; /* #B8E5AD */
-	--p-300: 149 216 132; /* #95D884 */
-	--p-400: 114 204 91; /* #72CC5B */
-	--p-500: 78 191 50; /* #4EBF32 */
-	--p-600: 36 148 8; /* #249408 */
-	--p-700: 29 119 6; /* #1D7706 */
-	--p-800: 22 89 5; /* #165905 */
-	--p-900: 14 59 3; /* #0E3B03 */
-	--p-dark: 9 36 2 ; /* #092402 */
+  /* primary scale (zielony ze screena) */
+  --primary: 29 63 52; /* #1D3F34 */
+  --p-hover: 24 53 43; /* #18352B */
+  --p-50: 210 217 214; /* #D2D9D6 */
+  --p-100: 211 245 234; /* #D3F5EA */
+  --p-200: 142 159 154; /* #C6E8DD */
+  --p-300: 179 224 209; /* #B3E0D1 */
+  --p-400: 133 200 178; /* #85C8B2 */
+  --p-500: 68 147 122; /* #44937A */
+  --p-600: 24 53 43; /* #18352B */
+  --p-700: 19 42 35; /* #132A23 */
+  --p-800: 15 32 26; /* #0F201A */
+  --p-900: 10 21 17; /* #0A1511 */
+  --p-dark: 6 13 10; /* #060D0A */
+  --action: rgb(17, 125, 90); /* #117D5A */
 
-	/* secondary scale */
-	--secondary: 7 22 34; /* #071622 */
-	--s-hover: 6 18 28; /* #06121C */
-	--s-100: 204 215 223; /* #CCD7DF */
-	--s-200: 165 180 192; /* #A5B4C0 */
-	--s-300: 122 139 153; /* #7A8B99 */
-	--s-400: 82 101 117; /* #526575 */
-	--s-500: 42 63 80; /* #2A3F50 */
-	--s-600: 6 18 28; /* #06121C */
-	--s-700: 5 15 23; /* #050F17 */
-	--s-800: 4 11 17; /* #040B11 */
-	--s-900: 2 7 11; /* #02070B */
-	--s-dark: 1 4 7; /* #010407 */
-
+  /* secondary scale (pomarańcz/brąz ze screena) */
+  --secondary: 222 133 93; /* #DE855D */
+  --s-hover: 185 111 78; /* #B96F4E */
+  --s-100: 248 231 223; /* #F8E7DF */
+  --s-200: 244 214 201; /* #F4D6C9 */
+  --s-300: 239 194 174; /* #EFC2AE */
+  --s-400: 233 174 147; /* #E9AE93 */
+  --s-500: 228 153 120; /* #E49978 */
+  --s-600: 185 111 78; /* #B96F4E */
+  --s-700: 148 89 62; /* #94593E */
+  --s-800: 111 67 47; /* #6F432F */
+  --s-900: 74 44 31; /* #4A2C1F */
+  --s-dark: 44 27 19; /* #2C1B13 */
 
   /* neutrals / fixed backgrounds */
-  --gray: #2A3F50;
-  --bg: #E7F4FF;
-  --bg-light: #F1F9FF;
+  --gray: #2a3f50;
+  --bg: #FFF9F2;
+  --bg-light: #F7EEE5;
+  --bg-lighter: #E9F8F3;
   --bg-brand: #002704;
   --bg-dark: #071622;
 }
@@ -83,25 +84,27 @@
   --color-secondary-dark: rgb(var(--s-dark));
 
   --color-gray: var(--gray);
+  --color-action: var(--action);
 
   --color-page: var(--bg);
   --color-background-light: var(--bg-light);
   --color-background-brand: var(--bg-brand);
   --color-background-dark: var(--bg-dark);
 
-  --color-primary-light: var(--color-primary-200);
-  --color-primary-lighter: var(--color-primary-100);
+  --color-primary-light: var(--bg-light);
+  --color-primary-lighter: var(--bg-lighter);
 
   --color-secondary-light: var(--color-secondary-300);
   --color-secondary-lighter: var(--color-secondary-100);
 
-  --color-muted: var(--color-secondary-500); 
-  --gradient: linear-gradient(90deg, #0E3B03 0%, #249408 100%);
-  --gradient-light: linear-gradient(-90deg, #005303 0%, #00890E 100%);
+  --color-muted: var(--color-secondary-500);
+  --gradient: linear-gradient(90deg, #132A23 0%, #0D3F2F 100%);
+  --gradient-light: linear-gradient(-90deg, #0E3A2D 0%, #0A533D 100%);
+  --gradient-s: linear-gradient(-90deg, #DE855D 0%, #D37A51 100%);
+
 }
 
-
-@import "../css/variables.scss";
+@import '../css/variables.scss';
 
 @import 'swiper/css';
 @import 'swiper/css/navigation';
@@ -110,26 +113,36 @@
 
 /*-- USED ---*/
 @import '../css/blocks/hero.scss';
+@import '../css/blocks/help.scss';
+@import '../css/blocks/cta-bg.scss';
+@import '../css/blocks/tiles.scss';
+@import '../css/blocks/content.scss';
+@import '../css/blocks/about.scss';
+@import '../css/blocks/team.scss';
 @import '../css/blocks/offer.scss';
+@import '../css/blocks/reviews.scss';
+@import '../css/blocks/connect.scss';
+@import '../css/blocks/hero-about.scss';
+@import '../css/blocks/who.scss';
+@import '../css/blocks/numbers.scss';
+@import '../css/blocks/places.scss';
+@import '../css/blocks/member.scss';
+
+/*-- NOT USED --*/
 @import '../css/blocks/complex.scss';
 @import '../css/blocks/proces.scss';
 @import '../css/blocks/works.scss';
-@import '../css/blocks/reviews.scss';
-@import '../css/blocks/about.scss';
 @import '../css/blocks/category-posts.scss';
 @import '../css/blocks/hero-sub.scss';
 @import '../css/blocks/hero-brand.scss';
-@import '../css/blocks/text-img.scss';
 @import '../css/blocks/how.scss';
 @import '../css/blocks/quote.scss';
 @import '../css/blocks/services.scss';
-@import '../css/blocks/cta-bg.scss';
 @import '../css/blocks/twin.scss';
 @import '../css/blocks/hero-offer.scss';
 @import '../css/blocks/order.scss';
 @import '../css/blocks/cards.scss';
 @import '../css/blocks/gains.scss';
-@import '../css/blocks/tiles.scss';
 @import '../css/blocks/overlap.scss';
 @import '../css/blocks/what.scss';
 @import '../css/blocks/image.scss';
@@ -137,14 +150,11 @@
 @import '../css/blocks/connect.scss';
 @import '../css/blocks/gallery.scss';
 @import '../css/blocks/calc.scss';
-
-/*-- NOT USED --*/
 @import '../css/blocks/tlc.scss';
 @import '../css/blocks/categories.scss';
 @import '../css/blocks/bottom-block.scss';
 @import '../css/blocks/hero-cat.scss';
 @import '../css/blocks/hero-job.scss';
-@import '../css/blocks/hero-about.scss';
 @import '../css/blocks/selection.scss';
 @import '../css/blocks/product-hero.scss';
 @import '../css/blocks/sectors.scss';
@@ -160,8 +170,6 @@
 @import '../css/blocks/map.scss';
 @import '../css/blocks/logos.scss';
 @import '../css/blocks/locations.scss';
-
-
 @import '../css/blocks/categories.scss';
 @import '../css/blocks/area-block.scss';
 @import '../css/blocks/cases.scss';

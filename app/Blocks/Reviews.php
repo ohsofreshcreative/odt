@@ -52,11 +52,6 @@ class Reviews extends Block
 				'max' => 15,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('img', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
 			->addTextarea('txt', [
 				'label' => 'Opis',
 				'rows' => 4,

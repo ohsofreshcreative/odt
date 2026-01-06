@@ -1,8 +1,15 @@
 .b-offer {
-	.__card:hover {
-		.__arrow {
-			background-color: var(--color-primary-lighter) !important;
-			transition: all 0.3s ease;
-		}
-	}
+  .underline-btn {
+    color: var(--color-action) !important;
+  }
+  .__card:hover {
+    .underline-btn {
+      transition: all 0.2s ease-out;
+      border-bottom: 1px solid var(--color-secondary);
+    }
+    .underline-btn::after {
+      transition: all 0.2s ease-out;
+      margin-left: 12px;
+    }
+  }
 }

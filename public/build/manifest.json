@@ -1,10 +1,24 @@
 {
+  "_pagination-CHnJsdj7.css": {
+    "file": "assets/pagination-CHnJsdj7.css",
+    "src": "_pagination-CHnJsdj7.css"
+  },
+  "_pagination-Dy82_vlN.js": {
+    "file": "assets/pagination-Dy82_vlN.js",
+    "name": "pagination",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/pagination-CHnJsdj7.css"
+    ]
+  },
   "editor.deps.json": {
     "file": "assets/editor.deps-DxpY22xl.json",
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-D5_WdGwR.css",
+    "file": "assets/app-BkiQAhF_.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -13,7 +27,7 @@
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-CoS4cfcs.css",
+    "file": "assets/editor-DLdiW7MV.css",
     "src": "resources/css/editor.css",
     "isEntry": true,
     "name": "editor",
@@ -21,21 +35,29 @@
       "editor.css"
     ]
   },
-  "resources/fonts/CabinetGrotesk-Variable.eot": {
-    "file": "assets/CabinetGrotesk-Variable-BQ8MQmR9.eot",
-    "src": "resources/fonts/CabinetGrotesk-Variable.eot"
+  "resources/fonts/Now-Black.otf": {
+    "file": "assets/Now-Black-DTDM_WDI.otf",
+    "src": "resources/fonts/Now-Black.otf"
   },
-  "resources/fonts/CabinetGrotesk-Variable.ttf": {
-    "file": "assets/CabinetGrotesk-Variable-DZ-mBhZu.ttf",
-    "src": "resources/fonts/CabinetGrotesk-Variable.ttf"
+  "resources/fonts/Now-Bold.otf": {
+    "file": "assets/Now-Bold-kpnGyuzC.otf",
+    "src": "resources/fonts/Now-Bold.otf"
   },
-  "resources/fonts/CabinetGrotesk-Variable.woff": {
-    "file": "assets/CabinetGrotesk-Variable-DRyS-JTJ.woff",
-    "src": "resources/fonts/CabinetGrotesk-Variable.woff"
+  "resources/fonts/Now-Light.otf": {
+    "file": "assets/Now-Light-D_BQiK0w.otf",
+    "src": "resources/fonts/Now-Light.otf"
   },
-  "resources/fonts/CabinetGrotesk-Variable.woff2": {
-    "file": "assets/CabinetGrotesk-Variable-DI2t1LFl.woff2",
-    "src": "resources/fonts/CabinetGrotesk-Variable.woff2"
+  "resources/fonts/Now-Medium.otf": {
+    "file": "assets/Now-Medium-BahrfMlU.otf",
+    "src": "resources/fonts/Now-Medium.otf"
+  },
+  "resources/fonts/Now-Regular.otf": {
+    "file": "assets/Now-Regular-CdXwq_-5.otf",
+    "src": "resources/fonts/Now-Regular.otf"
+  },
+  "resources/fonts/Now-Thin.otf": {
+    "file": "assets/Now-Thin-BQiLRTqq.otf",
+    "src": "resources/fonts/Now-Thin.otf"
   },
   "resources/images/mapa-polski.svg": {
     "file": "assets/mapa-polski-CaNIMG4v.svg",
@@ -50,12 +72,57 @@
     "src": "resources/images/ring-mask.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-P2c5_wHg.js",
+    "file": "assets/app-CqazBhpR.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
+    "dynamicImports": [
+      "resources/js/blocks/help.js",
+      "resources/js/blocks/team.js",
+      "resources/js/blocks/reviews.js",
+      "resources/js/blocks/places.js"
+    ]
+  },
+  "resources/js/blocks/help.js": {
+    "file": "assets/help-fyRafEzK.js",
+    "name": "help",
+    "src": "resources/js/blocks/help.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_pagination-Dy82_vlN.js"
+    ],
     "css": [
-      "assets/app-DHBATib1.css"
+      "assets/help-BoYVoAWi.css"
+    ]
+  },
+  "resources/js/blocks/places.js": {
+    "file": "assets/places-9I5yGojV.js",
+    "name": "places",
+    "src": "resources/js/blocks/places.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/blocks/reviews.js": {
+    "file": "assets/reviews-DkuDfMsG.js",
+    "name": "reviews",
+    "src": "resources/js/blocks/reviews.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_pagination-Dy82_vlN.js"
+    ]
+  },
+  "resources/js/blocks/team.js": {
+    "file": "assets/team-UzaPxdy4.js",
+    "name": "team",
+    "src": "resources/js/blocks/team.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_pagination-Dy82_vlN.js"
     ]
   },
   "resources/js/editor.js": {

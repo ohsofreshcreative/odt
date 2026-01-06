@@ -12,7 +12,7 @@ class Team extends Block
 	public $slug = 'team';
 	public $category = 'formatting';
 	public $icon = 'admin-users';
-	public $keywords = ['team', 'nasz', 'zespol', 'kafelki'];
+	public $keywords = ['team', 'nasz', 'zespol', 'kafelki', 'slider', 'eksperci'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -27,7 +27,7 @@ class Team extends Block
 		$team = new FieldsBuilder('team');
 
 		$team
-			->setLocation('block', '==', 'acf/team') // ważne!
+			->setLocation('block', '==', 'acf/team')
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
@@ -40,48 +40,47 @@ class Team extends Block
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_team', ['label' => ''])
-
-			->addText('subtitle', ['label' => 'Śródtytuł'])
-			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
+				'tabs' => 'all',
+				'toolbar' => 'full',
 				'media_upload' => true,
 			])
-
+			->addImage('image', [
+				'label' => 'Obraz w tle',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
+			])
 			->endGroup()
 
-			/*--- TAB #2 ---*/
-			->addTab('Kafelki', ['placement' => 'top'])
-
-			->addRepeater('repeater', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
+			->addTaxonomy('team_categories', [
+				'label'        => 'Filtruj zespół po kategoriach',
+				'taxonomy'     => 'category',
+				'field_type'   => 'checkbox',
+				'return_format' => 'id',
+				'multiple'     => 1,
+				'add_term'     => 0,
+				'load_terms'   => 0, // wyłączamy na początek
+				'save_terms'   => 0, // jawnie wyłączone
+				'allow_null'   => 1,
 			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('card_title', [
-				'label' => 'Imię i nazwisko',
-			])
-			->addText('card_function', [
-				'label' => 'Stanowisko',
-			])
-			->addText('card_mail', [
-				'label' => 'Adres e-mail',
-			])
-			
-			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
+			->addTrueFalse('nolist', [
+				'label' => 'Brak punktatorów',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -106,29 +105,20 @@ class Team extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('graybg', [
-				'label' => 'Szare tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('whitebg', [
-				'label' => 'Białe tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('brandbg', [
-				'label' => 'Tło marki',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
+			->addSelect('background', [
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0, // Ulepszony interfejs
+				'allow_null' => 0,
 			]);
 
 		return $team;
@@ -137,16 +127,45 @@ class Team extends Block
 	public function with()
 	{
 		return [
+			'team_posts' => $this->team_posts(),
+
 			'g_team' => get_field('g_team'),
-			'repeater' => get_field('repeater'),
+			'team_categories'   => get_field('team_categories'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
+			'nolist' => get_field('nolist'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
 			'gap' => get_field('gap'),
-			'lightbg' => get_field('lightbg'),
-			'graybg' => get_field('graybg'),
-			'whitebg' => get_field('whitebg'),
-			'brandbg' => get_field('brandbg'),
+			'background' => get_field('background'),
 		];
+	}
+
+	public function team_posts()
+	{
+		$selected_categories = get_field('team_categories');
+
+		error_log('TEAM BLOCK selected_categories: ' . print_r($selected_categories, true));
+
+		$args = [
+			'post_type'      => 'team',
+			'posts_per_page' => -1,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'post_status'    => 'publish',
+		];
+
+		if (!empty($selected_categories)) {
+			$args['tax_query'] = [
+				[
+					'taxonomy' => 'category',
+					'field'    => 'term_id',
+					'terms'    => $selected_categories,
+				],
+			];
+		}
+
+		return get_posts($args);
 	}
 }

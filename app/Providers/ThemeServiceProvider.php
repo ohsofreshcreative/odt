@@ -40,17 +40,31 @@ class ThemeServiceProvider extends SageServiceProvider
 			]);
 		});
 
-		// CUSTOM POST TYPE REALIZACJE
+		// CUSTOM POST TYPE POMAGAMY W 
 		add_action('init', function () {
-			register_post_type('works', [
-				'label' => 'Realizacje',
+			register_post_type('help', [
+				'label' => 'Pomagamy w',
 				'public' => true,
 				'has_archive' => false,
-				'rewrite' => ['slug' => 'works'],
+				'rewrite' => ['slug' => 'help'],
 				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 				'show_in_rest' => true,
 				'taxonomies' => ['category'],
 				'menu_icon' => 'dashicons-open-folder',
+			]);
+		});
+
+		// CUSTOM POST TYPE ZESPÓŁ 
+		add_action('init', function () {
+			register_post_type('team', [
+				'label' => 'Zespół',
+				'public' => true,
+				'has_archive' => false,
+				'rewrite' => ['slug' => 'team'],
+				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+				'show_in_rest' => true,
+				'taxonomies' => ['category'],
+				'menu_icon' => 'dashicons-admin-users',
 			]);
 		});
 
@@ -74,9 +88,9 @@ class ThemeServiceProvider extends SageServiceProvider
 				]);
 
 				acf_add_options_page([
-					'page_title' => 'Obszar działania',
-					'menu_title' => 'Obszar działania',
-					'menu_slug'  => 'o-area',
+					'page_title' => 'Gabinety - Stopka',
+					'menu_title' => 'Gabinety - Stopka',
+					'menu_slug'  => 'places-footer',
 					'capability' => 'edit_posts',
 					'redirect'   => false,
 				]);

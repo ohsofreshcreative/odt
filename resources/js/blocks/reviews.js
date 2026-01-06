@@ -1,56 +1,64 @@
 import Swiper from 'swiper';
-// Zaimportuj potrzebne moduły JS
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const swipers = document.querySelectorAll('.reviews-swiper');
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-  if (swipers.length > 0) {
-    swipers.forEach((container) => {
-      const swiper = new Swiper(container, {
-        modules: [Navigation],
-        loop: false,
+const initReviewsSwiper = (scope = document) => {
+  const swiperElements = scope.querySelectorAll(
+    '.reviews-swiper:not(.swiper-initialized)'
+  );
 
-        slidesPerView: 'auto', 
-        spaceBetween: 0,
-        freeMode: {
-          enabled: true,
-          sticky: false, 
-          momentum: false,
+  if (!swiperElements.length) return;
+
+  swiperElements.forEach((swiperEl) => {
+    const nextEl = swiperEl.querySelector('.__next');
+    const prevEl = swiperEl.querySelector('.__prev');
+    const paginationEl = swiperEl.querySelector('.swiper-pagination');
+
+    new Swiper(swiperEl, {
+      modules: [Navigation, Pagination],
+
+      slidesPerView: 1.2,
+      spaceBetween: 24,
+      loop: true,
+
+      pagination: {
+        el: paginationEl,
+        clickable: true,
+      },
+
+      navigation: {
+        nextEl,
+        prevEl,
+      },
+
+      breakpoints: {
+        768: {
+          slidesPerView: 2.5,
+          spaceBetween: 24,
         },
-
-        navigation: {
-          nextEl: ".__next",
-          prevEl: ".__prev",
+        1024: {
+          slidesPerView: 3.8,
+          spaceBetween: 24,
         },
-        breakpoints: {
-          0: { slidesPerView: 1.2, spaceBetween: 20 },
-          768: { slidesPerView: 2.5, spaceBetween: 30 },
-          1024: { slidesPerView: 3.2, spaceBetween: 32 },
-        },
-        on: {
-          init: function () {
-            updateFirstVisibleSlide(this, container);
-          },
-          slideChange: function () {
-            updateFirstVisibleSlide(this, container);
-          },
-        },
-      });
-
-      // Helper function to update first visible slide
-      function updateFirstVisibleSlide(swiperInstance, swiperContainer) {
-        const allSlides = swiperContainer.querySelectorAll('.swiper-slide');
-        allSlides.forEach((slide) => {
-          slide.classList.remove('first-visible-slide');
-        });
-
-        if (swiperInstance.slides[swiperInstance.activeIndex]) {
-          swiperInstance.slides[swiperInstance.activeIndex].classList.add(
-            'first-visible-slide'
-          );
-        }
-      }
+      },
     });
-  }
-});
+  });
+};
+
+// ✅ Jeśli ten plik jest ładowany lazy z app.js po DOMContentLoaded,
+// to możemy zainicjalizować od razu.
+initReviewsSwiper();
+
+// ✅ Wsparcie dla podglądu / renderowania bloku w edytorze ACF
+if (window.acf) {
+  window.acf.addAction('render_block', (el) => {
+    // el bywa jQuery-like; bezpiecznie bierzemy pierwszy element DOM
+    const node = el?.[0] ?? el;
+    if (node) initReviewsSwiper(node);
+  });
+}
+
+export default initReviewsSwiper;

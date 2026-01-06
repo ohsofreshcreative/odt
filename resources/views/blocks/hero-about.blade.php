@@ -5,43 +5,27 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 
 <!--- hero-about -->
 
-<section data-gsap-anim="section" class="b-hero-about bg-dark relative z-10 -spt {{ $sectionClass }} {{ $section_class }}">
-	<div class="__wrapper c-main relative">
-		<div class="__content">
-			@php
-			if (function_exists('woocommerce_breadcrumb')) {
-			woocommerce_breadcrumb([
-			'wrap_before' => '<nav class="woocommerce-breadcrumb text-white">',
-				]);
-				}
-				@endphp
-
-				<h1 data-gsap-element="header" class="text-h2 text-white w-full lg:w-1/2 mt-16 lg:mt-30">{{ $g_heroabout['title'] }}</h1>
-
+<section data-gsap-anim="section" class="b-hero-about relative z-10 -spt {{ $sectionClass }} {{ $section_class }}">
+	<div class="__wrapper c-main relative z-20">
+		<div class="__content text-center w-full md:w-3/5 mx-auto mt-18">
+			<h1 data-gsap-element="header" class="text-white m-header">{{ $g_heroabout['header'] }}</h1>
+			<div data-gsap-element="txt" class="text-white">{!! $g_heroabout['txt'] !!}</div>
 		</div>
 
-		<div class="grid grid-cols-1 lg:grid-cols-[1.5fr_2fr] gap-10 mt-18">
-			@if ($g_heroabout['image'])
-			<img data-gsap-element="image" class="__img radius img-3xl object-cover" src="{{ $g_heroabout['image']['url'] }}" alt="{{ $g_heroabout['image']['alt'] ?? '' }}">
-			@endif
-			<div class="__second">
-				<div class="__img2">
-					@if ($g_heroabout['image2'])
-					<img data-gsap-element="image" class="__img radius img-2xl w-full object-cover" src="{{ $g_heroabout['image2']['url'] }}" alt="{{ $g_heroabout['image2']['alt'] ?? '' }}">
-					@endif
-				</div>
-
-				<div data-gsap-element="numbers" class="border-top-p flex w-unset md:w-max gap-4 pt-10 mt-10 mt-10 ml-auto">
-					@foreach ($r_heroabout as $item)
-					<div class="border-right-p pr-4">
-						<p class="text-h3">{{ $item['title'] }}</p>
-						<p class="text-lg">{{ $item['text'] }}</p>
-					</div>
-					@endforeach
-				</div>
+		<div class="relative">
+			<div class="__nr1 absolute right-0 top-0 z-20  -translate-y-1/2 translate-x-20 radius border-5 border-solid border-primary bg-primary-lighter px-6 py-4 lg:translate-x-1/2">
+			{!! $g_heroabout_2['txt1'] !!}
 			</div>
+			<div class="__nr2 absolute left-0 top-full z-20 -translate-x-20 -translate-y-1/2 radius border-5 border-solid border-white bg-secondary text-white px-6 py-4 lg:-translate-x-1/2">
+			{!! $g_heroabout_2['txt2'] !!}
+			</div>
+			@if ($g_heroabout['image'])
+			<img data-gsap-element="image" class="__img radius w-full img-l object-cover mt-10" src="{{ $g_heroabout['image']['url'] }}" alt="{{ $g_heroabout['image']['alt'] ?? '' }}">
+			@endif
 		</div>
-
 	</div>
-	<div class="__bg"></div>
+
+	<img data-gsap-element="image" class="__bg absolute w-full -top-10 max-w-[400px] -right-10 opacity-20 pointer-events-none z-10" src="/wp-content/uploads/2026/01/top-shape.svg" />
+
+	<img data-gsap-element="image" class="__bg absolute bottom-20 left-0 max-w-[400px] pointer-events-none z-30" src="{{ $g_heroabout['bg']['url'] }}" alt="{{ $g_heroabout['bg']['alt'] ?? '' }}" />
 </section>

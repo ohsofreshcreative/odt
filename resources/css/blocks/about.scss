@@ -1,3 +1,77 @@
 .b-about {
- 
+  .__txt {
+    p {
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    h5 {
+      margin-bottom: 24px;
+      strong {
+        color: var(--color-secondary);
+        font-weight: 400;
+      }
+    }
+
+    ul {
+      margin-top: 8px;
+      margin-bottom: 24px;
+      list-style: none;
+      padding-left: 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      li {
+        position: relative;
+        margin-bottom: 0.5em;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        &::before {
+          content: url('/wp-content/uploads/2025/12/check.svg');
+          left: 0;
+          top: 4px;
+          width: 32px;
+          height: 32px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spinning-logo {
+    animation: spin 7s linear infinite;
+  }
+}
+
+@media (min-width: 1024px) {
+  .__img.order1 {
+    position: relative;
+  }
+
+  .__img.order1 > .__photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    right: calc(50% - 50vw);
+    max-width: none;
+  }
 }

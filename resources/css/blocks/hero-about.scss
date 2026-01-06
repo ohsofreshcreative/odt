@@ -1,33 +1,26 @@
 .b-hero-about {
-  .woocommerce-breadcrumb {
-    color: var(--p-100);
-    a {
-      color: #fff;
+  position: relative;
+  .__nr1 {
+    b,
+    strong {
+      color: var(--color-action);
+	  font-size:20px
     }
   }
-  .__img2 {
-    margin-right: calc(90% - 50vw);
-    padding-right: calc(90% - 50vw);
-    box-sizing: border-box;
-  }
-  .__bg {
-    z-index: -1;
-    background-color: #fafafa;
-    height: 36%;
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
+  .__nr2 {
+    b,
+    strong {
+      color: var(--color-secondary-light);
+	  font-size:20px
+    }
   }
 }
 
-/*---- !LG --*/
-
-@media only screen and (max-width: 1024px) {
-  .__img2 {
-	width: 100% !important;;
-	margin-right: 0 !important;
-	padding-right: 0 !important;
-  }
+.b-hero-about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #1d3f34;
+  z-index: 1;
+  margin-bottom: 200px;
 }
-
