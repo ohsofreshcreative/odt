@@ -108,7 +108,7 @@ body {
   --img-l: 424px; /*-- used --*/
   --img-xl: 496px; /*-- used --*/
   --img-2xl: 560px;
-  --img-3xl: 608px;
+  --img-3xl: 664px; /*-- used --*/
 
   --section-gap: 40px;
   --m-title: 16px;
@@ -1594,7 +1594,7 @@ footer {
   display: none !important;
 }
 
-/*--- !MOBILE ---*/
+/*--- !RWD & !RESPONSIVE ---*/
 
 /*---- !2XL --*/
 @media only screen and (max-width: 1536px) {
@@ -1611,10 +1611,15 @@ footer {
 /*---- !LG --*/
 @media only screen and (max-width: 1024px) {
   :root {
-    --img-3xl: 420px;
+    --img-3xl: unset !important;
     --img-2xl: 420px;
     --img-xxl: 520px;
     --img-l: 320px;
+  }
+
+  .img-3xl {
+	object-position: top;
+	max-height: 520px;
   }
 
   :root {

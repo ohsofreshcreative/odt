@@ -127,6 +127,7 @@
 @import '../css/blocks/numbers.scss';
 @import '../css/blocks/places.scss';
 @import '../css/blocks/member.scss';
+@import '../css/blocks/hero-offer.scss';
 
 /*-- NOT USED --*/
 @import '../css/blocks/complex.scss';
@@ -139,7 +140,6 @@
 @import '../css/blocks/quote.scss';
 @import '../css/blocks/services.scss';
 @import '../css/blocks/twin.scss';
-@import '../css/blocks/hero-offer.scss';
 @import '../css/blocks/order.scss';
 @import '../css/blocks/cards.scss';
 @import '../css/blocks/gains.scss';

@@ -397,3 +397,97 @@ add_action('admin_footer', function () {
   </script>
   <?php
 });
+
+
+
+
+add_action('template_redirect', function () {
+    // Sprawdź, czy jesteśmy na stronie archiwum JAKIEJKOLWIEK taksonomii
+    if (!is_tax() && !is_category() && !is_tag()) {
+        return; // Jeśli nie, zakończ działanie
+    }
+
+    // Pobierz obiekt aktualnej taksonomii (kategorii, tagu itp.)
+    $term = get_queried_object();
+
+    // Upewnij się, że obiekt istnieje i jest terminem taksonomii
+    if ($term instanceof \WP_Term) {
+        // Pobierz wartość pola 'linked_page' dla tego konkretnego terminu
+        $redirect_url = get_field('linked_page', $term);
+
+        // Jeśli wybrano stronę, przekieruj
+        if ($redirect_url) {
+            wp_safe_redirect($redirect_url, 301);
+            exit;
+        }
+    }
+});
+
+// CUSTOM POST TYPE BRANŻE
+		add_action('init', function () {
+			register_post_type('offer', [
+				'label' => 'Oferta',
+				'public' => true,
+				'has_archive' => false,
+				'rewrite' => ['slug' => 'offer'],
+				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+				'show_in_rest' => true,
+				'taxonomies' => ['category'],
+				'menu_icon' => 'dashicons-list-view',
+			]);
+		});
+
+		// CUSTOM POST TYPE POMAGAMY W 
+		add_action('init', function () {
+			register_post_type('help', [
+				'label' => 'Pomagamy w',
+				'public' => true,
+				'has_archive' => false,
+				'rewrite' => ['slug' => 'help'],
+				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+				'show_in_rest' => true,
+				'taxonomies' => ['category'],
+				'menu_icon' => 'dashicons-open-folder',
+			]);
+		});
+
+		add_action('init', function () {
+			// 1. NAJPIERW REJESTRUJEMY NOWĄ, NIESTANDARDOWĄ TAKSONOMIĘ
+			register_taxonomy('team_category', ['team'], [
+				'label' => 'Kategorie Zespołu', // Nazwa ogólna
+				'labels' => [
+					'name'              => 'Kategorie Zespołu',
+					'singular_name'     => 'Kategoria Zespołu',
+					'search_items'      => 'Szukaj w kategoriach',
+					'all_items'         => 'Wszystkie kategorie',
+					'parent_item'       => 'Kategoria nadrzędna',
+					'parent_item_colon' => 'Kategoria nadrzędna:',
+					'edit_item'         => 'Edytuj kategorię',
+					'update_item'       => 'Aktualizuj kategorię',
+					'add_new_item'      => 'Dodaj nową kategorię',
+					'new_item_name'     => 'Nazwa nowej kategorii',
+					'menu_name'         => 'Kategorie',
+				],
+				'public'            => true,
+				'hierarchical'      => true, // Ustawiamy na true, aby działały jak kategorie (drzewko), a nie tagi
+				'show_ui'           => true,
+				'show_in_menu'      => true, // Pokaże się jako podmenu pod "Zespół"
+				'show_admin_column' => true,
+				'query_var'         => true,
+				'show_in_rest'      => true, // Ważne dla edytora blokowego
+				'rewrite'           => ['slug' => 'zespol-kategoria'], // Slug dla archiwów tej taksonomii
+			]);
+
+			// 2. REJESTRUJEMY CUSTOM POST TYPE I PRZYPISUJEMY DO NIEGO NOWĄ TAKSONOMIĘ
+			register_post_type('team', [
+				'label' => 'Zespół',
+				'public' => true,
+				'has_archive' => false,
+				'rewrite' => ['slug' => 'team'],
+				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+				'show_in_rest' => true,
+				// Tutaj jest kluczowa zmiana: używamy naszej nowej taksonomii 'team_category'
+				'taxonomies' => ['team_category'],
+				'menu_icon' => 'dashicons-admin-users',
+			]);
+		});

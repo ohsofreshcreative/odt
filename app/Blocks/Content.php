@@ -42,20 +42,34 @@ class Content extends Block
 			->addGroup('g_content', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
-				'return_format' => 'array', 
+				'return_format' => 'array',
 				'preview_size' => 'thumbnail',
 			])
-			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
-				'tabs' => 'all', 
-				'toolbar' => 'full', 
+				'tabs' => 'all',
+				'toolbar' => 'full',
 				'media_upload' => true,
 			])
 			->addLink('button', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',
 			])
+			->addTrueFalse('hint', [
+				'label' => 'Dodaj dymek',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addImage('image_hint', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
+			])
+			->conditional('hint', '==', '1')
+			->addText('header_hint', ['label' => 'Nagłówek'])
+			->conditional('hint', '==', '1')
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -98,20 +112,20 @@ class Content extends Block
 				'ui_off_text' => 'Nie',
 			])
 			->addSelect('background', [
-                'label' => 'Kolor tła',
-                'choices' => [
-                    'none' => 'Brak (domyślne)',
-                    'section-white' => 'Białe',
-                    'section-light' => 'Jasne',
-                    'section-gray' => 'Szare',
-                    'section-brand' => 'Marki',
-                    'section-gradient' => 'Gradient',
-                    'section-dark' => 'Ciemne',
-                ],
-                'default_value' => 'none',
-                'ui' => 0, // Ulepszony interfejs
-                'allow_null' => 0,
-            ]);
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0, // Ulepszony interfejs
+				'allow_null' => 0,
+			]);
 
 		return $content;
 	}

@@ -1259,11 +1259,6 @@
           "color": "rgb(var(--p-100))"
         },
         {
-          "name": "Primary (200)",
-          "slug": "primary-200",
-          "color": "rgb(var(--p-200))"
-        },
-        {
           "name": "Primary (300)",
           "slug": "primary-300",
           "color": "rgb(var(--p-300))"

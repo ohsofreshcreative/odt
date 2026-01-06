@@ -26,48 +26,7 @@ class ThemeServiceProvider extends SageServiceProvider
 	{
 		parent::boot();
 
-		// CUSTOM POST TYPE BRANŻE
-		add_action('init', function () {
-			register_post_type('offer', [
-				'label' => 'Oferta',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'offer'],
-				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-				'show_in_rest' => true,
-				'taxonomies' => ['category'],
-				'menu_icon' => 'dashicons-list-view',
-			]);
-		});
-
-		// CUSTOM POST TYPE POMAGAMY W 
-		add_action('init', function () {
-			register_post_type('help', [
-				'label' => 'Pomagamy w',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'help'],
-				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-				'show_in_rest' => true,
-				'taxonomies' => ['category'],
-				'menu_icon' => 'dashicons-open-folder',
-			]);
-		});
-
-		// CUSTOM POST TYPE ZESPÓŁ 
-		add_action('init', function () {
-			register_post_type('team', [
-				'label' => 'Zespół',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'team'],
-				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-				'show_in_rest' => true,
-				'taxonomies' => ['category'],
-				'menu_icon' => 'dashicons-admin-users',
-			]);
-		});
-
+		
 		// USATAWIENIA MOTYWU
 		add_action('acf/init', function () {
 			if (function_exists('acf_add_options_page')) {
