@@ -2,25 +2,23 @@
 
 namespace App\Blocks;
 
+use App\Support\SectionClasses;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Proces extends Block
-
 {
 	public $name = 'Proces';
 	public $description = 'proces';
 	public $slug = 'proces';
 	public $category = 'formatting';
-	public $icon = 'feedback';
+	public $icon = 'randomize';
 	public $keywords = ['proces'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
 	];
 
 	public function fields()
@@ -33,53 +31,50 @@ class Proces extends Block
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-
-			->addAccordion('proces1', [
-				'label' => 'Proces',
+			->addAccordion('accordion1', [
+				'label' => 'Proces - Kafelki na dole',
 				'open' => false,
 				'multi_expand' => true,
 			])
-
-			/*--- TAB #1 ---*/
+			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_proces', ['label' => ''])
-			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('txt', [
+				'label' => 'Opis',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->addImage('image', [
+				'label' => 'Obraz w tle',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
+			])
+			->endGroup()
 
+			->addTab('Kafelki', ['placement' => 'top'])
+			->addRepeater('r_proces', [
+				'label' => 'proces',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 4,
+				'max' => 4,
+				'button_label' => 'Dodaj element oferty'
+			])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-			])
-			->endGroup()
-
-			/*--- TAB #2 ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addRepeater('repeater', [
-				'label' => 'proces',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'button_label' => 'Dodaj pytanie'
-			])
 			->addText('title', [
-				'label' => 'Pytanie',
+				'label' => 'Krok',
 			])
-			->addWysiwyg('txt', [
-				'label' => 'Odpowiedź',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
+			->addTextarea('txt', [
+				'label' => 'Opis',
 			])
 			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
-
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
 			->addText('section_id', [
 				'label' => 'ID',
@@ -112,38 +107,49 @@ class Proces extends Block
 				'ui_off_text' => 'Nie',
 			])
 			->addSelect('background', [
-                'label' => 'Kolor tła',
-                'choices' => [
-                    'none' => 'Brak (domyślne)',
-                    'section-white' => 'Białe',
-                    'section-light' => 'Jasne',
-                    'section-gray' => 'Szare',
-                    'section-brand' => 'Marki',
-                    'section-gradient' => 'Gradient',
-                    'section-dark' => 'Ciemne',
-                ],
-                'default_value' => 'none',
-                'ui' => 0, // Ulepszony interfejs
-                'allow_null' => 0,
-            ]);
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0,
+				'allow_null' => 0,
+			]);
+
 
 		return $proces;
 	}
 
-	public function with()
+	public function with(): array
 	{
-		return [
+		$fields = [
 			'g_proces' => get_field('g_proces'),
-			'repeater' => get_field('repeater'),
+			'r_proces' => get_field('r_proces'),
+
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-			'section_id' => get_field('section_id'),
-			'section_class' => get_field('section_class'),
-			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'background' => get_field('background'),
+
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+
+			'background' => get_field('background') ?: 'none',
 		];
+
+		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
+		]);
+
+		return $fields;
 	}
 }

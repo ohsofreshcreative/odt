@@ -19,7 +19,7 @@ $sectionClass .= ' ' . $background;
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-20">
 			@if (!empty($g_content['image']))
 			<div data-gsap-element="img" class="__img h-full order1">
-				<img class="object-cover w-full h-full __img radius-img" src="{{ $g_content['image']['url'] }}" alt="{{ $g_content['image']['alt'] ?? '' }}">
+				<img class="object-cover w-full h-full aspect-square __img radius-img" src="{{ $g_content['image']['url'] }}" alt="{{ $g_content['image']['alt'] ?? '' }}">
 			</div>
 			@endif
 

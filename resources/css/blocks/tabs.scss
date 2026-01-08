@@ -1,2 +1,14 @@
 .b-tabs {
+  .__tabs {
+    .tabs-swiper {
+      .swiper-slide:first-child [role='button'] {
+        border-top-left-radius: 16px;
+      }
+
+      .swiper-slide:last-child [role='button'] {
+        border-top-right-radius: 16px;
+        border-right: 0 !important;
+      }
+    }
+  }
 }

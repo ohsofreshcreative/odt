@@ -1,68 +1,40 @@
 @php
 $sectionClass = '';
-$sectionClass .= $flip ? ' order-flip' : '';
-$sectionClass .= $wide ? ' wide' : '';
 $sectionClass .= $nomt ? ' !mt-0' : '';
-$sectionClass .= $gap ? ' wider-gap' : '';
-
-if (!empty($background) && $background !== 'none') {
-$sectionClass .= ' ' . $background;
-}
 @endphp
 
-<!--- what --->
+<!--- what -->
 
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-what -smt {{ $sectionClass }} {{ $section_class }}">
-    <div class="__wrapper c-main">
+<section data-gsap-anim="section" class="b-what -smt relative overflow-hidden {{ $sectionClass }} {{ $section_class }}">
 
-        <div class="__top w-full md:w-1/2 mx-auto">
-            <h3 data-gsap-element="header" class="text-center">{{ strip_tags($g_what['header']) }}</h3>
-            <p data-gsap-element="txt" class="text-center mt-3">{{ $g_what['text'] }}</p>
-        </div>
+	<div class="bg-gradient-light rounded-4xl overflow-hidden mx-6 sm:mx-6 md:mx-10 lg:mx-20">
 
-        @if (!empty($r_what))
-            @php
-                $itemCount = count($r_what);
-                $half = ceil($itemCount / 2);
-                $leftItems = array_slice($r_what, 0, $half);
-                $rightItems = array_slice($r_what, $half);
-            @endphp
+		<div class="__wrapper c-main text-center relative z-20 py-40">
+			<img src="{{ $what['image']['url'] }}" alt="{{ $what['image']['alt'] }}" class="__img1 absolute bottom-6 md:bottom-20 left-2/12 w-30 pointer-events-none z-10" />
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10 items-center">
-           
-               <div class="flex flex-col gap-8 order-2 lg:order-1">
-                    @foreach ($leftItems as $item)
-                        <div data-gsap-element="stagger" class="__card relative bg-primary radius p-8">
-                            @if (!empty($item['points']))
-                                <div class="flex gap-1 text-white font-medium">
-                                    <span class="">{{ $loop->iteration }}.</span>
-                                    <p class="">{{ $item['points'] }}</p>
-                                </div>
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
+			<img src="{{ $what['image2']['url'] }}" alt="{{ $what['image2']['alt'] }}" class="__img1 absolute top-6 md:top-20 right-2/12 w-30 pointer-events-none z-10" />
 
-                @if (!empty($g_what['image']))
-                    <div data-gsap-element="img" class="__img h-full order-1 lg:order-2">
-                        <img class="object-cover w-full h-full __img radius-img" src="{{ $g_what['image']['url'] }}" alt="{{ $g_what['image']['alt'] ?? '' }}">
-                    </div>
-                @endif
+			<div class="relative w-full z-10 md:w-1/2 mx-auto">
+				@if ($what['header'])
+				<h4 data-gsap-element="header" class="text-white m-header">{{ $what['header'] }}</h4>
+				@endif
+				@if ($what['txt'])
+				<div data-gsap-element="txt" class="text-white">{!! $what['txt'] !!}</div>
+				@endif
+				@if (!empty($what['button']))
+				<x-button
+					:href="$what['button']['url']"
+					variant="secondary"
+					class="mt-6"
+					data-gsap-element="btn">
+					{{ $what['button']['title'] }}
+				</x-button>
+				@endif
+			</div>
 
-                <div class="flex flex-col gap-8 order-2 lg:order-3">
-                    @foreach ($rightItems as $item)
-                        <div data-gsap-element="stagger" class="__card relative bg-primary radius p-8">
-                            @if (!empty($item['points']))
-                                <div class="flex gap-1 text-white font-medium">
-                                    <span class="">{{ $loop->iteration + $half }}.</span>
-                                    <p class="">{{ $item['points'] }}</p>
-                                </div>
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
+		<img class="__bg absolute top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" src="/wp-content/uploads/2026/01/leaf-big2.svg" />
 
-    </div>
+		<img class="__bg absolute top-1/2 -translate-y-1/2 -right-90 opacity-20 pointer-events-none" src="/wp-content/uploads/2026/01/leaf-big.svg" />
+		</div>
+	</div>
 </section>

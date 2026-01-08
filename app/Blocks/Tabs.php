@@ -2,6 +2,7 @@
 
 namespace App\Blocks;
 
+use App\Support\SectionClasses;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
@@ -35,6 +36,7 @@ class Tabs extends Block
 				'open' => false,
 				'multi_expand' => true,
 			])
+
 			/*--- TAB #1 ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_tabs', ['label' => ''])
@@ -54,22 +56,18 @@ class Tabs extends Block
 			->addTab('Kafelki', ['placement' => 'top'])
 			->addRepeater('r_tabs', [
 				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
+				'layout' => 'table',
 				'min' => 1,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addText('tab', [
-				'label' => 'Nazwa zakładki',
-				'instructions' => 'Wpisz nazwę zakładki, do której ma trafić ten element (np. "Budownictwo"). Elementy o tej samej nazwie zostaną zgrupowane.',
-				'required' => 1,
+				'button_label' => 'Dodaj kafelek',
 			])
 			->addImage('image', [
 				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
+				'return_format' => 'array',
 				'preview_size' => 'medium',
 			])
-			->addText('title', [
+			->addText('header', [
 				'label' => 'Nagłówek',
+				'required' => 1,
 			])
 			->addTextarea('text', [
 				'label' => 'Opis',
@@ -77,7 +75,6 @@ class Tabs extends Block
 			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
-
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
 			->addText('section_id', [
 				'label' => 'ID',
@@ -121,7 +118,7 @@ class Tabs extends Block
 					'section-dark' => 'Ciemne',
 				],
 				'default_value' => 'none',
-				'ui' => 0, // Ulepszony interfejs
+				'ui' => 0,
 				'allow_null' => 0,
 			]);
 
@@ -130,16 +127,49 @@ class Tabs extends Block
 
 	public function with()
 	{
+		$r_tabs = get_field('r_tabs');
+
+		$grouped_tabs = [];
+		foreach (($r_tabs ?? []) as $item) {
+			$tabName = trim((string) ($item['header'] ?? ''));
+			if ($tabName === '') {
+				continue;
+			}
+			$grouped_tabs[$tabName][] = $item;
+		}
+
+		$fields = [
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+			'background' => get_field('background'),
+
+		];
+
+		$sectionClass = SectionClasses::fromMap($fields, [
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
+
+		]);
+
 		return [
 			'g_tabs' => get_field('g_tabs'),
-			'r_tabs' => get_field('r_tabs'),
+			'r_tabs' => $r_tabs,
+			'grouped_tabs' => $grouped_tabs,
+
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'background' => get_field('background'),
+
+			'flip' => $fields['flip'],
+			'wide' => $fields['wide'],
+			'nomt' => $fields['nomt'],
+			'gap' => $fields['gap'],
+			'background' => $fields['background'],
+
+			'sectionClass' => $sectionClass,
 		];
 	}
 }

@@ -598,58 +598,6 @@ h6,
   border-radius: var(--radius) !important;
 }
 
-.dashed-p-3 {
-  border: 3px solid var(--border-p) !important;
-}
-
-.border-p {
-  border: 1px solid var(--border-p) !important;
-}
-
-.border-p-light {
-  border: 1px solid var(--border-p-light) !important;
-}
-
-.border-p-dark {
-  border: 1px solid var(--border-p-dark) !important;
-}
-
-.border-s {
-  border: 1px solid var(--border-s) !important;
-}
-
-.border-s-light {
-  border: 1px solid var(--border-s-light) !important;
-}
-
-.border-top-p {
-  border-top: 1px solid var(--border-p) !important;
-}
-
-.border-right-p {
-  border-right: 1px solid var(--border-p) !important;
-}
-
-.border-bottom-p {
-  border-bottom: 1px solid var(--border-p) !important;
-}
-
-.b-bottom-p-light {
-  border-bottom: 1px solid var(--border-p-light) !important;
-}
-
-.b-bottom-s-lighter {
-  border-bottom: 1px solid var(--border-s-lighter) !important;
-}
-
-.border-left-p {
-  border-left: 1px solid var(--border-p) !important;
-}
-
-.border-right-p:last-child {
-  border-right: 0px !important;
-}
-
 .b-shadow {
   box-shadow: 0px 16px 24px 0px rgb(20, 45, 74, 0.15);
 }
@@ -659,6 +607,58 @@ h6,
 }
 
 /*--- !BUTTONS ---*/
+
+.btn {
+  font-family: var(--btns-font);
+  font-size: var(--btns-fontsize);
+  font-weight: 400;
+  color: #fff;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--btns-radius);
+
+  display: inline-block;
+  padding: var(--btns-padding);
+  width: max-content;
+  height: max-content;
+
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+.btn-secondary:hover {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  color: #fff;
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
 
 .pointer {
   cursor: pointer;
@@ -1618,8 +1618,8 @@ footer {
   }
 
   .img-3xl {
-	object-position: top;
-	max-height: 520px;
+    object-position: top;
+    max-height: 520px;
   }
 
   :root {

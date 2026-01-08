@@ -15,7 +15,7 @@
   --p-hover: 24 53 43; /* #18352B */
   --p-50: 210 217 214; /* #D2D9D6 */
   --p-100: 211 245 234; /* #D3F5EA */
-  --p-200: 142 159 154; /* #C6E8DD */
+  --p-200: 198, 232, 221; /* #C6E8DD */
   --p-300: 179 224 209; /* #B3E0D1 */
   --p-400: 133 200 178; /* #85C8B2 */
   --p-500: 68 147 122; /* #44937A */
@@ -25,6 +25,7 @@
   --p-900: 10 21 17; /* #0A1511 */
   --p-dark: 6 13 10; /* #060D0A */
   --action: rgb(17, 125, 90); /* #117D5A */
+
 
   /* secondary scale (pomarańcz/brąz ze screena) */
   --secondary: 222 133 93; /* #DE855D */
@@ -91,8 +92,8 @@
   --color-background-brand: var(--bg-brand);
   --color-background-dark: var(--bg-dark);
 
-  --color-primary-light: var(--bg-light);
-  --color-primary-lighter: var(--bg-lighter);
+  --color-primary-light: var(--color-primary-300);
+  --color-primary-lighter: var(--color-primary-100);
 
   --color-secondary-light: var(--color-secondary-300);
   --color-secondary-lighter: var(--color-secondary-100);
@@ -128,10 +129,11 @@
 @import '../css/blocks/places.scss';
 @import '../css/blocks/member.scss';
 @import '../css/blocks/hero-offer.scss';
+@import '../css/blocks/tabs.scss';
+@import '../css/blocks/proces.scss';
 
 /*-- NOT USED --*/
 @import '../css/blocks/complex.scss';
-@import '../css/blocks/proces.scss';
 @import '../css/blocks/works.scss';
 @import '../css/blocks/category-posts.scss';
 @import '../css/blocks/hero-sub.scss';
@@ -161,7 +163,6 @@
 @import '../css/blocks/steps.scss';
 @import '../css/blocks/faq.scss';
 @import '../css/blocks/values.scss';
-@import '../css/blocks/tabs.scss';
 @import '../css/blocks/cert.scss';
 @import '../css/blocks/contact.scss';
 @import '../css/blocks/catalogues.scss';

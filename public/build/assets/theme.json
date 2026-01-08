@@ -1336,12 +1336,12 @@
         {
           "name": "Primary (Light)",
           "slug": "primary-light",
-          "color": "var(--bg-light)"
+          "color": "var(--color-primary-300)"
         },
         {
           "name": "Primary (Lighter)",
           "slug": "primary-lighter",
-          "color": "var(--bg-lighter)"
+          "color": "var(--color-primary-100)"
         },
         {
           "name": "Secondary (Light)",
