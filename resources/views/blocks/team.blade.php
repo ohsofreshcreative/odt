@@ -1,18 +1,14 @@
-@php
-$sectionClass = '';
-$sectionClass .= $flip ? ' order-flip' : '';
-$sectionClass .= $nolist ? ' no-list' : '';
-$sectionClass .= $wide ? ' wide' : '';
-$sectionClass .= $nomt ? ' !mt-0' : '';
-$sectionClass .= $gap ? ' wider-gap' : '';
+<!--- team --->
 
-if (!empty($background) && $background !== 'none') {
-$sectionClass .= ' ' . $background;
-}
-@endphp
-
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-team relative overflow-visible -smt {{ $sectionClass }} {{ $section_class }}">
-
+<section
+	data-gsap-anim="section"
+	@if(!empty($section_id)) id="{{ $section_id }}" @endif
+	@class([ 'b-team relative overflow-visible -smt' ,
+	$sectionClass=> filled($sectionClass),
+	$section_class => filled($section_class),
+	$background => filled($background) && $background !== 'none',
+	])>
+	
 	<div class="__wrapper c-main grid grid-cols-1 md:grid-cols-2 gap-10">
 		<h2 data-gsap-element="header" class="m-header">{{ strip_tags($g_team['header']) }}</h2>
 		<div data-gsap-element="txt" class="">
@@ -28,10 +24,10 @@ $sectionClass .= ' ' . $background;
 				@php
 				setup_postdata($GLOBALS['post'] =& $post);
 
-				$terms = get_the_terms(get_the_ID(), 'category') ?: [];
-				$display_terms = array_values(array_filter($terms, function ($term) {
-				return $term->slug !== 'specjalisci';
-				}));
+				$terms = get_the_terms(get_the_ID(), 'team_category') ?: [];
+$display_terms = array_values(array_filter($terms, function ($term) {
+    return $term->slug !== 'specjalisci';
+}));
 				@endphp
 
 				<div class="swiper-slide h-auto">

@@ -2,9 +2,9 @@
 
 namespace App\Blocks;
 
-use App\Support\SectionClasses;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Tabs extends Block
 {

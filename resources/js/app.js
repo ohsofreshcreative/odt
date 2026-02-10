@@ -9,6 +9,7 @@ import.meta.glob(['../images/**', '../fonts/**']);
 // Twoje niestandardowe moduły JS
 import './menubar.js';
 import './footer-accordion.js';
+import './megamenu.js';
 
 /*--- USED ---*/
 
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.b-reviews')) import('./blocks/reviews');
   if (document.querySelector('.b-places')) import('./blocks/places');
   if (document.querySelector('.b-tabs')) import('./blocks/tabs');
+  if (document.querySelector('.b-slides')) import('./blocks/slides');
+  if (document.querySelector('.b-slider')) import('./blocks/slider');
 });
 
 /*--- NOT USED ---*/
@@ -151,5 +154,64 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleActions: 'play none none none',
       // markers: true,
     },
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Znajdź wszystkie kontenery megamenu
+  const megamenuContents = document.querySelectorAll('.megamenu-content');
+
+  megamenuContents.forEach(megamenu => {
+    const level2Items = megamenu.querySelectorAll('.level-2-item');
+    const level3Lists = megamenu.querySelectorAll('.level-3-list');
+    const imageContainer = megamenu.querySelector('.active-level-2-image');
+
+    level2Items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        // Usuń klasę 'active' ze wszystkich elementów i list w obrębie TEGO megamenu
+        level2Items.forEach(i => i.classList.remove('active'));
+        level3Lists.forEach(l => l.classList.remove('active'));
+
+        // Dodaj 'active' do najechanego elementu
+        item.classList.add('active');
+
+        // Znajdź i pokaż odpowiednią listę poziomu 3
+        const parentId = item.id;
+        const targetList = megamenu.querySelector(`.level-3-list[data-parent-id="${parentId}"]`);
+        if (targetList) {
+          targetList.classList.add('active');
+        }
+
+        // Zaktualizuj obrazek
+        const imageUrl = item.dataset.imageSrc;
+        if (imageUrl && imageContainer) {
+          // Sprawdź, czy obrazek już istnieje, aby uniknąć przeładowywania
+          let img = imageContainer.querySelector('img');
+          if (!img) {
+            img = document.createElement('img');
+            imageContainer.appendChild(img);
+          }
+          img.src = imageUrl;
+          img.alt = ''; // Dodaj pusty alt dla dostępności
+          img.className = 'menu-image'; // Upewnij się, że obrazek ma odpowiednie style
+        } else if (imageContainer) {
+          imageContainer.innerHTML = ''; // Wyczyść, jeśli nie ma obrazka
+        }
+      });
+    });
+
+    // Ustaw domyślny stan przy pierwszym załadowaniu
+    const firstItem = megamenu.querySelector('.level-2-item:first-child');
+    if (firstItem) {
+      // Używamy setTimeout, aby upewnić się, że wszystko jest gotowe
+      setTimeout(() => {
+        firstItem.dispatchEvent(new MouseEvent('mouseenter', {
+          'view': window,
+          'bubbles': true,
+          'cancelable': true
+        }));
+      }, 100);
+    }
   });
 });

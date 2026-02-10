@@ -71,7 +71,7 @@ add_action('after_setup_theme', function () {
 	add_theme_support('wc-product-gallery-lightbox');
 	add_theme_support('wc-product-gallery-slider');
 
-	
+
 	/**
 	 * Disable full-site editing support.
 	 *
@@ -142,24 +142,24 @@ add_action('after_setup_theme', function () {
 /*--- WOOCOMMERCE PHP FILES ---*/
 
 array_map(function ($file) {
-  require_once $file;
+	require_once $file;
 }, array_merge(
-  glob(get_theme_file_path('app/Woo/*.php')) ?: [],
-  glob(get_theme_file_path('app/Woo/*/*.php')) ?: []
+	glob(get_theme_file_path('app/Woo/*.php')) ?: [],
+	glob(get_theme_file_path('app/Woo/*/*.php')) ?: []
 ));
 
 
 /*--- WOOCOMMERCE SIDEBAR ---*/
 
 add_action('widgets_init', function () {
-    register_sidebar([
-        'name'          => __('Sklep - Filtry', 'sage'),
-        'id'            => 'sidebar-shop',
-        'before_widget' => '<section class="widget %1$s %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h5 class="widget-title font-bold mb-4">',
-        'after_title'   => '</h5>',
-    ]);
+	register_sidebar([
+		'name'          => __('Sklep - Filtry', 'sage'),
+		'id'            => 'sidebar-shop',
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h5 class="widget-title font-bold mb-4">',
+		'after_title'   => '</h5>',
+	]);
 });
 
 /**
@@ -201,6 +201,30 @@ add_action('widgets_init', function () {
 	] + $defaultConfig);
 });
 
+/*--- DISABLE COMMENTS ---*/
+
+add_action('init', function () {
+	remove_post_type_support('post', 'comments');
+	remove_post_type_support('page', 'comments');
+
+	add_filter('comments_open', '__return_false', 20, 2);
+	add_filter('pings_open', '__return_false', 20, 2);
+
+	add_filter('comments_array', '__return_empty_array', 10, 2);
+});
+
+add_action('admin_init', function () {
+	remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
+});
+
+add_action('admin_menu', function () {
+	remove_menu_page('edit-comments.php');
+});
+
+add_action('wp_before_admin_bar_render', function () {
+	global $wp_admin_bar;
+	$wp_admin_bar->remove_menu('comments');
+});
 
 /*--- CATEGORY IMAGE ---*/
 
@@ -214,29 +238,29 @@ add_action('acf/init', function () {
 			'title' => 'Ustawienia Kategorii',
 			'fields' => [
 				[
-                    'key' => 'field_category_header',
-                    'label' => 'Nagłówek',
-                    'name' => 'category_header',
-                    'type' => 'text',
-                    'instructions' => 'Opcjonalny nagłówek, który może zastąpić domyślną nazwę kategorii.',
-                ],
-                [
-                    'key' => 'field_category_description',
-                    'label' => 'Opis',
-                    'name' => 'category_description',
-                    'type' => 'textarea',
-                    'instructions' => 'Krótki opis wyświetlany na stronie kategorii.',
-                ],
-                [
-                    'key' => 'field_category_image',
-                    'label' => 'Zdjęcie Kategorii',
-                    'name' => 'category_image',
-                    'type' => 'image',
-                    'instructions' => 'Dodaj obrazek, który będzie wyświetlany jako tło lub nagłówek dla tej kategorii.',
-                    'return_format' => 'array', // Zwraca tablicę z danymi obrazka (url, alt, etc.)
-                    'preview_size' => 'medium',
-                    'library' => 'all',
-                ],
+					'key' => 'field_category_header',
+					'label' => 'Nagłówek',
+					'name' => 'category_header',
+					'type' => 'text',
+					'instructions' => 'Opcjonalny nagłówek, który może zastąpić domyślną nazwę kategorii.',
+				],
+				[
+					'key' => 'field_category_description',
+					'label' => 'Opis',
+					'name' => 'category_description',
+					'type' => 'textarea',
+					'instructions' => 'Krótki opis wyświetlany na stronie kategorii.',
+				],
+				[
+					'key' => 'field_category_image',
+					'label' => 'Zdjęcie Kategorii',
+					'name' => 'category_image',
+					'type' => 'image',
+					'instructions' => 'Dodaj obrazek, który będzie wyświetlany jako tło lub nagłówek dla tej kategorii.',
+					'return_format' => 'array', // Zwraca tablicę z danymi obrazka (url, alt, etc.)
+					'preview_size' => 'medium',
+					'library' => 'all',
+				],
 			],
 			'location' => [
 				[
@@ -261,19 +285,19 @@ add_action('acf/init', function () {
  * Remove archive title prefix (e.g., "Category:", "Tag:").
  */
 add_filter('get_the_archive_title', function ($title) {
-    if (is_category()) {
-        $title = single_cat_title('', false);
-    } elseif (is_tag()) {
-        $title = single_tag_title('', false);
-    } elseif (is_author()) {
-        $title = '<span class="vcard">' . get_the_author() . '</span>';
-    } elseif (is_post_type_archive()) {
-        $title = post_type_archive_title('', false);
-    } elseif (is_tax()) {
-        $title = single_term_title('', false);
-    }
+	if (is_category()) {
+		$title = single_cat_title('', false);
+	} elseif (is_tag()) {
+		$title = single_tag_title('', false);
+	} elseif (is_author()) {
+		$title = '<span class="vcard">' . get_the_author() . '</span>';
+	} elseif (is_post_type_archive()) {
+		$title = post_type_archive_title('', false);
+	} elseif (is_tax()) {
+		$title = single_term_title('', false);
+	}
 
-    return $title;
+	return $title;
 });
 
 /*--- GSAP ---*/
@@ -294,8 +318,8 @@ add_action('wp_enqueue_scripts', function () {
 
 
 add_action('after_setup_theme', function () {
-    remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
-    remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+	remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+	remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 });
 
 
@@ -305,8 +329,8 @@ add_action('after_setup_theme', function () {
  * Dynamically generate checkboxes for subsidies in Contact Form 7.
  */
 add_action('after_setup_theme', function () {
-    remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
-    remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+	remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+	remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 });
 
 
@@ -314,7 +338,7 @@ add_action('after_setup_theme', function () {
  * Register custom form tag for CF7 to display subsidies.
  */
 add_action('wpcf7_init', function () {
-    wpcf7_add_form_tag('subsidy_checkboxes', 'App\\custom_subsidy_checkboxes_handler');
+	wpcf7_add_form_tag('subsidy_checkboxes', 'App\\custom_subsidy_checkboxes_handler');
 });
 
 /**
@@ -325,26 +349,26 @@ add_action('wpcf7_init', function () {
  */
 function custom_subsidy_checkboxes_handler($tag)
 {
-    $subsidies = get_field('subsidies', 'option');
-    $output = '';
+	$subsidies = get_field('subsidies', 'option');
+	$output = '';
 
-    if ($subsidies) {
-        $output .= '<h2 class="text-2xl font-bold mb-4">Dofinansowania</h2>';
-        $output .= '<div class="flex flex-col gap-2">';
-        foreach ($subsidies as $subsidy) {
-            if (!empty($subsidy['subsidy_name'])) {
-                $name = esc_attr($subsidy['subsidy_name']);
-                $output .= sprintf(
-                    '<label class="flex items-center gap-2"><input type="checkbox" name="subsidies[]" value="%s" /> <span>%s</span></label>',
-                    $name,
-                    esc_html($name)
-                );
-            }
-        }
-        $output .= '</div>';
-    }
+	if ($subsidies) {
+		$output .= '<h2 class="text-2xl font-bold mb-4">Dofinansowania</h2>';
+		$output .= '<div class="flex flex-col gap-2">';
+		foreach ($subsidies as $subsidy) {
+			if (!empty($subsidy['subsidy_name'])) {
+				$name = esc_attr($subsidy['subsidy_name']);
+				$output .= sprintf(
+					'<label class="flex items-center gap-2"><input type="checkbox" name="subsidies[]" value="%s" /> <span>%s</span></label>',
+					$name,
+					esc_html($name)
+				);
+			}
+		}
+		$output .= '</div>';
+	}
 
-    return $output;
+	return $output;
 }
 
 
@@ -356,138 +380,289 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 /*--- WYSIWYG HEIGHT FIX ---*/
 
 add_action('admin_footer', function () {
-  $screen = function_exists('get_current_screen') ? get_current_screen() : null;
-  if (!$screen || $screen->base !== 'post') return;
-  ?>
-  <script>
-    (function () {
-      const TARGET_HEIGHT = 140; // startowa wysokość
+	$screen = function_exists('get_current_screen') ? get_current_screen() : null;
+	if (!$screen || $screen->base !== 'post') return;
+?>
+	<script>
+		(function() {
+			const TARGET_HEIGHT = 140; // startowa wysokość
 
-      function applyInitialHeight() {
-        document.querySelectorAll('.acf-editor-wrap iframe[id^="acf-editor-"]').forEach((iframe) => {
-          // Jeśli już ustawiliśmy startową wysokość, nie ruszaj więcej (żeby ręczny resize działał)
-          if (iframe.dataset.acfInitialHeightApplied === '1') return;
+			function applyInitialHeight() {
+				document.querySelectorAll('.acf-editor-wrap iframe[id^="acf-editor-"]').forEach((iframe) => {
+					// Jeśli już ustawiliśmy startową wysokość, nie ruszaj więcej (żeby ręczny resize działał)
+					if (iframe.dataset.acfInitialHeightApplied === '1') return;
 
-          const current = parseInt(iframe.style.height || 0, 10);
+					const current = parseInt(iframe.style.height || 0, 10);
 
-          // Ustaw tylko jeśli jest puste albo większe od targetu (czyli "za wysokie")
-          if (!current || current > TARGET_HEIGHT) {
-            iframe.style.height = TARGET_HEIGHT + 'px';
-          }
+					// Ustaw tylko jeśli jest puste albo większe od targetu (czyli "za wysokie")
+					if (!current || current > TARGET_HEIGHT) {
+						iframe.style.height = TARGET_HEIGHT + 'px';
+					}
 
-          iframe.dataset.acfInitialHeightApplied = '1';
-        });
-      }
+					iframe.dataset.acfInitialHeightApplied = '1';
+				});
+			}
 
-      // Spróbuj kilka razy po załadowaniu (ACF/TinyMCE potrafią wstać później)
-      let tries = 0;
-      const timer = setInterval(() => {
-        applyInitialHeight();
-        tries++;
-        if (tries >= 40) clearInterval(timer); // ~10s
-      }, 250);
+			// Spróbuj kilka razy po załadowaniu (ACF/TinyMCE potrafią wstać później)
+			let tries = 0;
+			const timer = setInterval(() => {
+				applyInitialHeight();
+				tries++;
+				if (tries >= 40) clearInterval(timer); // ~10s
+			}, 250);
 
-      // Obserwuj DOM tylko po to, żeby łapać NOWE edytory (np. po dodaniu bloku),
-      // ale nie resetować tych, które użytkownik już rozciągnął.
-      const obs = new MutationObserver(() => applyInitialHeight());
-      obs.observe(document.body, { childList: true, subtree: true });
+			// Obserwuj DOM tylko po to, żeby łapać NOWE edytory (np. po dodaniu bloku),
+			// ale nie resetować tych, które użytkownik już rozciągnął.
+			const obs = new MutationObserver(() => applyInitialHeight());
+			obs.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
 
-      window.addEventListener('load', () => setTimeout(applyInitialHeight, 500));
-    })();
-  </script>
-  <?php
+			window.addEventListener('load', () => setTimeout(applyInitialHeight, 500));
+		})();
+	</script>
+<?php
 });
 
 
 
 
 add_action('template_redirect', function () {
-    // Sprawdź, czy jesteśmy na stronie archiwum JAKIEJKOLWIEK taksonomii
-    if (!is_tax() && !is_category() && !is_tag()) {
-        return; // Jeśli nie, zakończ działanie
-    }
+	// Sprawdź, czy jesteśmy na stronie archiwum JAKIEJKOLWIEK taksonomii
+	if (!is_tax() && !is_category() && !is_tag()) {
+		return; // Jeśli nie, zakończ działanie
+	}
 
-    // Pobierz obiekt aktualnej taksonomii (kategorii, tagu itp.)
-    $term = get_queried_object();
+	// Pobierz obiekt aktualnej taksonomii (kategorii, tagu itp.)
+	$term = get_queried_object();
 
-    // Upewnij się, że obiekt istnieje i jest terminem taksonomii
-    if ($term instanceof \WP_Term) {
-        // Pobierz wartość pola 'linked_page' dla tego konkretnego terminu
-        $redirect_url = get_field('linked_page', $term);
+	// Upewnij się, że obiekt istnieje i jest terminem taksonomii
+	if ($term instanceof \WP_Term) {
+		// Pobierz wartość pola 'linked_page' dla tego konkretnego terminu
+		$redirect_url = get_field('linked_page', $term);
 
-        // Jeśli wybrano stronę, przekieruj
-        if ($redirect_url) {
-            wp_safe_redirect($redirect_url, 301);
-            exit;
-        }
-    }
+		// Jeśli wybrano stronę, przekieruj
+		if ($redirect_url) {
+			wp_safe_redirect($redirect_url, 301);
+			exit;
+		}
+	}
 });
 
 // CUSTOM POST TYPE BRANŻE
-		add_action('init', function () {
-			register_post_type('offer', [
-				'label' => 'Oferta',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'offer'],
-				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-				'show_in_rest' => true,
-				'taxonomies' => ['category'],
-				'menu_icon' => 'dashicons-list-view',
-			]);
-		});
+add_action('init', function () {
+	// 1. Rejestracja taksonomii dla Oferty
+	register_taxonomy('offer_category', ['offer'], [
+		'label' => 'Kategorie Oferty',
+		'public' => true,
+		'hierarchical' => true,
+		'show_in_rest' => true,
+		'rewrite' => ['slug' => 'oferta-kategoria'],
+	]);
 
-		// CUSTOM POST TYPE POMAGAMY W 
-		add_action('init', function () {
-			register_post_type('help', [
-				'label' => 'Pomagamy w',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'help'],
-				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-				'show_in_rest' => true,
-				'taxonomies' => ['category'],
-				'menu_icon' => 'dashicons-open-folder',
-			]);
-		});
+	// 2. Rejestracja CPT i przypisanie nowej taksonomii
+	register_post_type('offer', [
+		'label' => 'Oferta',
+		'public' => true,
+		'has_archive' => false,
+		'rewrite' => ['slug' => 'offer'],
+		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+		'show_in_rest' => true,
+		'taxonomies' => ['offer_category'], // Używamy nowej taksonomii
+		'menu_icon' => 'dashicons-list-view',
+	]);
+});
 
-		add_action('init', function () {
-			// 1. NAJPIERW REJESTRUJEMY NOWĄ, NIESTANDARDOWĄ TAKSONOMIĘ
-			register_taxonomy('team_category', ['team'], [
-				'label' => 'Kategorie Zespołu', // Nazwa ogólna
-				'labels' => [
-					'name'              => 'Kategorie Zespołu',
-					'singular_name'     => 'Kategoria Zespołu',
-					'search_items'      => 'Szukaj w kategoriach',
-					'all_items'         => 'Wszystkie kategorie',
-					'parent_item'       => 'Kategoria nadrzędna',
-					'parent_item_colon' => 'Kategoria nadrzędna:',
-					'edit_item'         => 'Edytuj kategorię',
-					'update_item'       => 'Aktualizuj kategorię',
-					'add_new_item'      => 'Dodaj nową kategorię',
-					'new_item_name'     => 'Nazwa nowej kategorii',
-					'menu_name'         => 'Kategorie',
+// CUSTOM POST TYPE POMAGAMY W z własną taksonomią
+add_action('init', function () {
+	// 1. Rejestracja taksonomii dla "Pomagamy w"
+	register_taxonomy('help_category', ['help'], [
+		'label' => 'Kategorie Pomocy',
+		'public' => true,
+		'hierarchical' => true,
+		'show_in_rest' => true,
+		'rewrite' => ['slug' => 'pomoc-kategoria'],
+	]);
+
+	// 2. Rejestracja CPT i przypisanie nowej taksonomii
+	register_post_type('help', [
+		'label' => 'Pomagamy w',
+		'public' => true,
+		'has_archive' => false,
+		'rewrite' => ['slug' => 'help'],
+		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+		'show_in_rest' => true,
+		'taxonomies' => ['help_category'], // Używamy nowej taksonomii
+		'menu_icon' => 'dashicons-open-folder',
+	]);
+});
+
+// CUSTOM POST TYPE Oferty pracy z własną taksonomią
+add_action('init', function () {
+	// 1. Rejestracja taksonomii dla Ofert Pracy
+	register_taxonomy('job_category', ['jobs'], [
+		'label' => 'Kategorie Ofert Pracy',
+		'public' => true,
+		'hierarchical' => true,
+		'show_in_rest' => true,
+		'rewrite' => ['slug' => 'praca-kategoria'],
+	]);
+
+	// 2. Rejestracja CPT i przypisanie nowej taksonomii
+	register_post_type('jobs', [
+		'label' => 'Oferty pracy',
+		'public' => true,
+		'has_archive' => false,
+		'rewrite' => ['slug' => 'jobs'],
+		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+		'show_in_rest' => true,
+		'taxonomies' => ['job_category'], // Używamy nowej taksonomii
+		'menu_icon' => 'dashicons-open-folder',
+	]);
+});
+
+add_action('init', function () {
+	// 1. NAJPIERW REJESTRUJEMY NOWĄ, NIESTANDARDOWĄ TAKSONOMIĘ
+	register_taxonomy('team_category', ['team'], [
+		'label' => 'Kategorie Zespołu', // Nazwa ogólna
+		'labels' => [
+			'name'              => 'Kategorie Zespołu',
+			'singular_name'     => 'Kategoria Zespołu',
+			'search_items'      => 'Szukaj w kategoriach',
+			'all_items'         => 'Wszystkie kategorie',
+			'parent_item'       => 'Kategoria nadrzędna',
+			'parent_item_colon' => 'Kategoria nadrzędna:',
+			'edit_item'         => 'Edytuj kategorię',
+			'update_item'       => 'Aktualizuj kategorię',
+			'add_new_item'      => 'Dodaj nową kategorię',
+			'new_item_name'     => 'Nazwa nowej kategorii',
+			'menu_name'         => 'Kategorie',
+		],
+		'public'            => true,
+		'hierarchical'      => true, // Ustawiamy na true, aby działały jak kategorie (drzewko), a nie tagi
+		'show_ui'           => true,
+		'show_in_menu'      => true, // Pokaże się jako podmenu pod "Zespół"
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'show_in_rest'      => true, // Ważne dla edytora blokowego
+		'rewrite'           => ['slug' => 'zespol-kategoria'], // Slug dla archiwów tej taksonomii
+	]);
+
+	// 2. REJESTRUJEMY CUSTOM POST TYPE I PRZYPISUJEMY DO NIEGO NOWĄ TAKSONOMIĘ
+	register_post_type('team', [
+		'label' => 'Zespół',
+		'public' => true,
+		'has_archive' => false,
+		'rewrite' => ['slug' => 'team'],
+		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+		'show_in_rest' => true,
+		// Tutaj jest kluczowa zmiana: używamy naszej nowej taksonomii 'team_category'
+		'taxonomies' => ['team_category'],
+		'menu_icon' => 'dashicons-admin-users',
+	]);
+});
+
+
+/**
+ * Dodaje pola ACF 'Miejsce' i 'Wymiar czasowy' dla CPT 'jobs'.
+ * Pola pojawią się w prawej kolumnie edytora Gutenberg.
+ */
+add_action('acf/init', function () {
+	if (function_exists('acf_add_local_field_group')) {
+		acf_add_local_field_group([
+			'key' => 'group_job_details_sidebar',
+			'title' => 'Szczegóły Oferty',
+			'fields' => [
+				[
+					'key' => 'field_job_location',
+					'label' => 'Miejsce pracy',
+					'name' => 'job_location',
+					'type' => 'text',
 				],
-				'public'            => true,
-				'hierarchical'      => true, // Ustawiamy na true, aby działały jak kategorie (drzewko), a nie tagi
-				'show_ui'           => true,
-				'show_in_menu'      => true, // Pokaże się jako podmenu pod "Zespół"
-				'show_admin_column' => true,
-				'query_var'         => true,
-				'show_in_rest'      => true, // Ważne dla edytora blokowego
-				'rewrite'           => ['slug' => 'zespol-kategoria'], // Slug dla archiwów tej taksonomii
-			]);
+				[
+					'key' => 'field_job_time_dimension',
+					'label' => 'Wymiar czasowy',
+					'name' => 'job_time_dimension',
+					'type' => 'text',
+				],
+			],
+			'location' => [
+				[
+					[
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'jobs',
+					],
+				],
+			],
+			'position' => 'side',
+			'style' => 'default',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'active' => true,
+		]);
+	}
+});
 
-			// 2. REJESTRUJEMY CUSTOM POST TYPE I PRZYPISUJEMY DO NIEGO NOWĄ TAKSONOMIĘ
-			register_post_type('team', [
-				'label' => 'Zespół',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'team'],
-				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-				'show_in_rest' => true,
-				// Tutaj jest kluczowa zmiana: używamy naszej nowej taksonomii 'team_category'
-				'taxonomies' => ['team_category'],
-				'menu_icon' => 'dashicons-admin-users',
-			]);
-		});
+/**
+ * Dodaje nowe kolumny do listy ofert pracy w panelu admina.
+ */
+add_filter('manage_jobs_posts_columns', function ($columns) {
+	$columns['job_location'] = 'Miejsce pracy';
+	$columns['job_time_dimension'] = 'Wymiar czasowy';
+	return $columns;
+});
+
+/**
+ * Wypełnia nowe kolumny danymi z pól ACF.
+ */
+add_action('manage_jobs_posts_custom_column', function ($column, $post_id) {
+	switch ($column) {
+		case 'job_location':
+			echo esc_html(get_field('job_location', $post_id));
+			break;
+		case 'job_time_dimension':
+			// ZMIANA: Teraz po prostu wyświetlamy wartość pola tekstowego
+			echo esc_html(get_field('job_time_dimension', $post_id));
+			break;
+	}
+}, 10, 2);
+
+/*--- EBOOK POST ---*/
+
+add_filter('theme_offer_templates', function ($post_templates) {
+	$post_templates['ebook-post'] = __('Ebook', 'sage');
+
+	return $post_templates;
+});
+
+add_action('init', function () {
+	add_post_type_support('offer', 'page-attributes');
+});
+
+/*--- MEGA MENU FIELDS ---*/
+
+add_action('wp_nav_menu_item_custom_fields', function ($item_id, $item) {
+	$image_src = get_post_meta($item_id, '_menu_item_image_src', true);
+?>
+	<p class="field-image-src description description-wide">
+		<label for="edit-menu-item-image-src-<?php echo $item_id; ?>">
+			<?php _e('Image URL', 'sage'); ?><br />
+			<input type="text" id="edit-menu-item-image-src-<?php echo $item_id; ?>" class="widefat edit-menu-item-image-src" name="menu-item-image-src[<?php echo $item_id; ?>]" value="<?php echo esc_attr($image_src); ?>" />
+		</label>
+	</p>
+<?php
+}, 10, 2);
+
+/**
+ * Save custom fields for menu items.
+ */
+add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id) {
+	if (isset($_REQUEST['menu-item-image-src'][$menu_item_db_id])) {
+		$image_src = $_REQUEST['menu-item-image-src'][$menu_item_db_id];
+		update_post_meta($menu_item_db_id, '_menu_item_image_src', $image_src);
+	}
+}, 10, 2);
+
+/*--- MEGA MENU TXT ---*/

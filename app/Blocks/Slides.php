@@ -41,29 +41,37 @@ class Slides extends Block
 
 			->addText('title', ['label' => 'Tytuł'])
 
-			->addRepeater('repeater', [
-				'label' => 'Slider - Kafelki',
+			->addRepeater('r_slides', [
+				'label' => 'Slider',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
 				'max' => 10,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
+			->addImage('photo', [
+				'label' => 'Zdjęcie - miniaturka',
 				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+				'preview_size' => 'thumbnail',
 			])
-			->addText('card_title', [
-				'label' => 'Nagłówek',
+			->addImage('image', [
+				'label' => 'Zdjęcie - duże',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
 			])
-			->addTextarea('card_txt', [
+            ->addFile('video', [
+                'label' => 'Wideo',
+                'instructions' => 'Dodaj plik wideo, który będzie odtwarzany po kliknięciu. Obrazek powyżej będzie miniaturą.',
+                'return_format' => 'url',
+                'library' => 'all',
+                'mime_types' => 'mp4,mov,avi,mpg',
+            ])
+			->addText('person', [
+				'label' => 'Imię i nazwisko',
+			])
+			->addTextarea('txt', [
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',
-			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
 			])
 			->endRepeater()
 
@@ -72,14 +80,26 @@ class Slides extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
+			->addTrueFalse('nolist', [
+				'label' => 'Brak punktatorów',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -89,6 +109,27 @@ class Slides extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addSelect('background', [
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0, // Ulepszony interfejs
+				'allow_null' => 0,
 			]);
 
 		return $slides;
@@ -98,10 +139,15 @@ class Slides extends Block
 	{
 		return [
 			'g_slides' => get_field('g_slides'),
-			'slides' => get_field('g_slides')['repeater'] ?? [],
+			'slides' => get_field('g_slides')['r_slides'] ?? [],
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
+			'nolist' => get_field('nolist'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
+			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
+			'background' => get_field('background'),
 		];
 	}
 }

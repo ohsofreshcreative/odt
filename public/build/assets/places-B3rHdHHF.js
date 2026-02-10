@@ -1,1 +1,0 @@
-import{S as l,N as n}from"./app-PxtnkID5.js";const t=document.querySelectorAll(".swiper-gallery-places");t.length&&t.forEach(e=>{const o=e.querySelector(".__next"),r=e.querySelector(".__prev");new l(e,{modules:[n],loop:!0,slidesPerView:1,spaceBetween:10,navigation:{nextEl:o,prevEl:r}})});

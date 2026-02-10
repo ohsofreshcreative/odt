@@ -1,24 +1,32 @@
 @props([
-    'href' => null,         // Jeśli podamy 'href', komponent stanie się linkiem <a>
-    'variant' => 'primary', // Domyślny wygląd to 'primary'
-    'tag' => null           // Opcjonalnie możemy wymusić bycie linkiem lub przyciskiem
+'href' => null,
+'variant' => 'primary',
+'tag' => null
 ])
 
 @php
-    // Logika wyboru tagu: jeśli jest 'href', to na 99% chcemy link <a>.
-    // W przeciwnym wypadku to będzie przycisk <button>.
-    $tag = $tag ?? ($href ? 'a' : 'button');
-
-    // Dynamiczne budowanie listy klas CSS
-    $classes = 'btn btn-' . $variant;
+$tag = $tag ?? ($href ? 'a' : 'button');
+$classes = 'btn btn-' . $variant;
 @endphp
 
 @if ($tag === 'a')
-    <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
-        {{ $slot }} {{-- Tutaj trafi tekst przycisku --}}
-    </a>
+<a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
+	{{ $slot }}
+</a>
 @else
-    <button {{ $attributes->merge(['class' => $classes]) }}>
-        {{ $slot }} {{-- Tutaj trafi tekst przycisku --}}
-    </button>
+<button {{ $attributes->merge(['class' => $classes]) }}>
+	{{ $slot }}
+</button>
 @endif
+
+<!---
+@if (!empty($what['button']))
+				<x-button
+					:href="$what['button']['url']"
+					variant="secondary"
+					class="mt-6"
+					data-gsap-element="btn">
+					{{ $what['button']['title'] }}
+				</x-button>
+				@endif
+				--->

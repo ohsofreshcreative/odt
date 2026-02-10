@@ -4,6 +4,7 @@ namespace App\Blocks;
 
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Contact extends Block
 
@@ -43,16 +44,31 @@ class Contact extends Block
 			->addTab('Dane', ['placement' => 'top'])
 			->addGroup('g_contact_1', ['label' => ''])
 			->addText('header', ['label' => 'Tytuł'])
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => true,
+			->addText('phone', [
+				'label' => 'Numer telefonu',
+			])
+			->addText('mail', [
+				'label' => 'Adres e-mail',
+			])
+			->addTextarea('address1', [
+				'label' => 'Adres #1',
+				'rows' => 3,
+				'new_lines' => 'br',
+			])
+			->addTextarea('address2', [
+				'label' => 'Adres #2',
+				'rows' => 3,
+				'new_lines' => 'br',
+			])
+			->addTextarea('hours', [
+				'label' => 'Godziny pracy recepcji',
+				'rows' => 2,
+				'new_lines' => 'br',
 			])
 			->addImage('image', [
-				'label' => 'Obraz',
+				'label' => 'Obraz w tle',
 				'return_format' => 'array',
-				'preview_size' => 'medium',
+				'preview_size' => 'thumbnail',
 			])
 			->endGroup()
 			/*--- TAB #2 ---*/
@@ -67,27 +83,81 @@ class Contact extends Block
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
-
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addSelect('background', [
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0,
+				'allow_null' => 0,
 			]);
 
 
 		return $contact;
 	}
 
-	public function with()
+	public function with(): array
 	{
-		return [
+		$fields = [
 			'g_contact_1' => get_field('g_contact_1'),
 			'g_contact_2' => get_field('g_contact_2'),
-			'tiles' => get_field('tiles'),
-			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
+
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
+
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+
+			'background' => get_field('background') ?: 'none',
 		];
+
+		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
+		]);
+
+		return $fields;
 	}
 }

@@ -52,31 +52,10 @@ class Job extends Block
 				'return_format' => 'array',
 			])
 			->endGroup()
-			
-			/*--- TAB #2 ---*/
-			->addTab('CTA', ['placement' => 'top'])
-			->addGroup('g_job_2', ['label' => ''])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'thumbnail',
-			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
-			])
-			->endGroup()
 
 			/*--- TAB #3 ---*/
 			->addTab('Formularz', ['placement' => 'top'])
-			->addGroup('g_job_3', ['label' => ''])
+			->addGroup('g_job_2', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
 			->addText('shortcode', [
 				'label' => 'Kod formularza',
@@ -142,7 +121,7 @@ class Job extends Block
 		return [
 			'g_job' => get_field('g_job'),
 			'g_job_2' => get_field('g_job_2'),
-			'g_job_3' => get_field('g_job_3'),
+            'current_post_id' => get_the_ID(),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),

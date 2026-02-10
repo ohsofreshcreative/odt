@@ -26,7 +26,7 @@ class ThemeServiceProvider extends SageServiceProvider
 	{
 		parent::boot();
 
-		
+
 		// USATAWIENIA MOTYWU
 		add_action('acf/init', function () {
 			if (function_exists('acf_add_options_page')) {
@@ -51,6 +51,17 @@ class ThemeServiceProvider extends SageServiceProvider
 					'menu_title' => 'Gabinety - Stopka',
 					'menu_slug'  => 'places-footer',
 					'capability' => 'edit_posts',
+					'redirect'   => false,
+				]);
+
+				acf_add_options_page([
+					'page_title' => 'Ustawienia Megamenu',
+					'menu_title' => 'Megamenu',
+					'menu_slug'  => 'megamenu-settings',
+					'capability' => 'edit_posts',
+					'parent_slug' => 'themes.php', // Umieści stronę opcji pod "Wygląd"
+					'position'   => 2,
+					'icon_url'   => 'dashicons-menu-alt3',
 					'redirect'   => false,
 				]);
 

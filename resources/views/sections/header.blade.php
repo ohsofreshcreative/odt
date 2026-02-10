@@ -1,6 +1,7 @@
 @php
 use App\Walkers\DropdownWalker;
 use App\Walkers\MobileDropdownWalker;
+use App\Walkers\MegaMenuWalker;
 @endphp
 
 <header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white masthead fixed-top mt-4 rounded-full">
@@ -9,23 +10,23 @@ use App\Walkers\MobileDropdownWalker;
 	<div class="items-center justify-between hidden h-full py-4 md:px-4 lg:px-12 mx-auto md:flex">
 		<a class="brand w-1/6 min-w-25" href="{{ home_url('/') }}">
 			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="relative w-auto h-12 -top-0.5">
+			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="relative w-auto h-14">
 			@else
 			<span class="text-xl font-bold">{{ $siteName }}</span>
 			@endif
 		</a>
 		@if (has_nav_menu('primary_navigation'))
-		<nav class="ml-4  nav-primary w-max" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
-			{!! wp_nav_menu([
-			'theme_location' => 'primary_navigation',
-			'menu_class' => 'nav flex gap-x-2 md:gap-x-3 lg:gap-x-6 text-sm font-medium items-center',
-			'container' => false,
-			'echo' => false,
-			'walker' => new DropdownWalker(),
-			]) !!}
-		</nav>
+<nav class="ml-4 nav-primary" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+    {!! wp_nav_menu([
+        'theme_location' => 'primary_navigation',
+        'menu_class' => 'nav flex gap-x-2 md:gap-x-3 lg:gap-x-6 text-sm font-medium items-center',
+        'container' => false,
+        'echo' => false,
+    'walker' => new \App\Walkers\MegaMenuWalker(),
+    ]) !!}
+</nav>
 		@endif
-		<a class="__menu-btn bg-primary !text-white font-semibold rounded-full whitespace-nowrap py-2 px-2 lg:px-3 ml-2" href="/kontakt">Skontaktuj się z nami</a>
+		<a class="__menu-btn bg-primary !text-white font-normal text-sm rounded-full whitespace-nowrap py-2 px-2 lg:px-4 ml-2" href="/kontakt">Skontaktuj się z nami</a>
 	</div>
 
 	<!-- Mobile Header Bar -->

@@ -4,6 +4,7 @@ namespace App\Blocks;
 
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Places extends Block
 {
@@ -41,6 +42,15 @@ class Places extends Block
 			/*--- GROUP #1 ---*/
 			->addTab('Elementy #1', ['placement' => 'top'])
 			->addGroup('g_places1', ['label' => ''])
+			->addRadio('media_type', [
+				'label' => 'Wybierz medium',
+				'choices' => [
+					'gallery' => 'Galeria',
+					'map' => 'Mapa (iframe)',
+				],
+				'default_value' => 'gallery',
+				'layout' => 'horizontal',
+			])
 			// GALLERY
 			->addGallery('gallery', [
 				'label' => 'Galeria obrazów',
@@ -49,6 +59,14 @@ class Places extends Block
 				'min' => 1,
 				'max' => 10,
 			])
+				->conditional('media_type', '==', 'gallery')
+			// MAP (IFRAME)
+			->addTextarea('map_iframe', [
+				'label' => 'Kod iframe mapy',
+				'instructions' => 'Wklej tutaj kod iframe, np. z Google Maps.',
+				'new_lines' => '',
+			])
+				->conditional('media_type', '==', 'map')
 			->addText('title', ['label' => 'Tytuł'])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
@@ -65,6 +83,15 @@ class Places extends Block
 			/*--- GROUP #2 ---*/
 			->addTab('Elementy #2', ['placement' => 'top'])
 			->addGroup('g_places2', ['label' => ''])
+			->addRadio('media_type', [
+				'label' => 'Wybierz medium',
+				'choices' => [
+					'gallery' => 'Galeria',
+					'map' => 'Mapa (iframe)',
+				],
+				'default_value' => 'gallery',
+				'layout' => 'horizontal',
+			])
 			// GALLERY
 			->addGallery('gallery', [
 				'label' => 'Galeria obrazów',
@@ -73,6 +100,14 @@ class Places extends Block
 				'min' => 1,
 				'max' => 10,
 			])
+				->conditional('media_type', '==', 'gallery')
+			// MAP (IFRAME)
+			->addTextarea('map_iframe', [
+				'label' => 'Kod iframe mapy',
+				'instructions' => 'Wklej tutaj kod iframe, np. z Google Maps.',
+				'new_lines' => '',
+			])
+				->conditional('media_type', '==', 'map')
 			->addText('title', ['label' => 'Tytuł'])
 			->addWysiwyg('txt', [
 				'label' => 'Treść',
@@ -149,20 +184,31 @@ class Places extends Block
 		return $places;
 	}
 
-	public function with()
+	public function with(): array
 	{
-		return [
+		$fields = [
 			'g_places1' => get_field('g_places1'),
 			'g_places2' => get_field('g_places2'),
 			'imagebg' => get_field('imagebg'),
+
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-			'nolist' => get_field('nolist'),
-			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'background' => get_field('background'),
+
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+
+			'background' => get_field('background') ?: 'none',
 		];
+
+		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
+		]);
+
+		return $fields;
 	}
 }

@@ -1,4 +1,4 @@
-.contact {
+.b-contact {
   .__data {
     font-size: 16px;
   }
@@ -16,7 +16,7 @@
   }
 
   .__phone::before {
-    content: url('http://windes.local/wp-content/uploads/2025/08/phone-1.svg');
+    content: url('http://odt.local/wp-content/uploads/2026/01/phone-1.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -28,23 +28,26 @@
   }
 
   .__mail::before {
-    content: url('http://windes.local/wp-content/uploads/2025/08/mail-1.svg');
+    content: url('http://odt.local/wp-content/uploads/2026/01/mail-1.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
     max-width: 40px;
   }
 
-  .__glow {
-    top: -10%;
-    left: -10%;
-    width: 489px;
-    height: 489px;
-    flex-shrink: 0;
-    position: absolute;
-    border-radius: 489px;
-    background: linear-gradient(315deg, rgba(240, 246, 255, 0.00) 32.21%, #CDDEF4 84.97%);
+  .__address::before {
+    content: url('http://odt.local/wp-content/uploads/2026/01/place.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+    max-width: 40px;
+  }
 
-    filter: blur(15px);
+  .__hours::before {
+    content: url('http://odt.local/wp-content/uploads/2026/01/time.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+    max-width: 40px;
   }
 }

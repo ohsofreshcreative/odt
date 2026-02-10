@@ -4,6 +4,7 @@ namespace App\Blocks;
 
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Overlap extends Block
 {
@@ -70,6 +71,10 @@ class Overlap extends Block
 				'rows' => 5,
 				'new_lines' => 'br',
 			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
 			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -130,19 +135,30 @@ class Overlap extends Block
 		return $overlap;
 	}
 
-	public function with()
+	public function with(): array
 	{
-		return [
+		$fields = [
 			'g_overlap' => get_field('g_overlap'),
 			'r_overlap' => get_field('r_overlap'),
+
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-			'nolist' => get_field('nolist'),
-			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'background' => get_field('background'),
+
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+
+			'background' => get_field('background') ?: 'none',
 		];
+
+		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
+		]);
+
+		return $fields;
 	}
 }

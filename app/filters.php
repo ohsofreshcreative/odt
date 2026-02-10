@@ -21,13 +21,16 @@ add_action('pre_get_posts', function ($q) {
     return;
   }
   if ($q->is_search()) {
-    // Jeżeli przyszło z naszego paska: post_type=produkty
     if (!empty($_GET['post_type']) && $_GET['post_type'] === 'produkty') {
       $q->set('post_type', 'produkty');
-      // (opcjonalnie) sortowanie / ilość:
-      // $q->set('posts_per_page', 12);
-      // $q->set('orderby', 'date');
-      // $q->set('order', 'DESC');
     }
   }
 });
+
+
+/*--- BREACRUMB SEPARATOR ---*/
+add_filter( 'woocommerce_breadcrumb_defaults', function ( $defaults ) {
+    // Opakowujemy separator w element <span> z własną klasą CSS.
+    $defaults['delimiter'] = '<span class="__separator">•</span>';
+    return $defaults;
+} );

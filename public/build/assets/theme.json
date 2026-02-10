@@ -1259,6 +1259,11 @@
           "color": "rgb(var(--p-100))"
         },
         {
+          "name": "Primary (200)",
+          "slug": "primary-200",
+          "color": "rgb(var(--p-200))"
+        },
+        {
           "name": "Primary (300)",
           "slug": "primary-300",
           "color": "rgb(var(--p-300))"
@@ -1282,6 +1287,11 @@
           "name": "Primary (700)",
           "slug": "primary-700",
           "color": "rgb(var(--p-700))"
+        },
+        {
+          "name": "Primary (800)",
+          "slug": "primary-800",
+          "color": "rgb(var(--p-800))"
         },
         {
           "name": "Primary (Dark)",
@@ -1317,6 +1327,21 @@
           "name": "Secondary (500)",
           "slug": "secondary-500",
           "color": "rgb(var(--s-500))"
+        },
+        {
+          "name": "Secondary (600)",
+          "slug": "secondary-600",
+          "color": "rgb(var(--s-600))"
+        },
+        {
+          "name": "Secondary (700)",
+          "slug": "secondary-700",
+          "color": "rgb(var(--s-700))"
+        },
+        {
+          "name": "Secondary (Dark)",
+          "slug": "secondary-dark",
+          "color": "rgb(var(--s-dark))"
         },
         {
           "name": "Gray",

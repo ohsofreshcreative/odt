@@ -1,22 +1,17 @@
-@php
-$sectionClass = '';
-$sectionClass .= !empty($flip) ? ' order-flip' : '';
-$sectionClass .= !empty($nolist) ? ' no-list' : '';
-$sectionClass .= !empty($wide) ? ' wide' : '';
-$sectionClass .= !empty($nomt) ? ' !mt-0' : '';
-$sectionClass .= !empty($gap) ? ' wider-gap' : '';
-
-if (!empty($background) && $background !== 'none') {
-$sectionClass .= ' ' . $background;
-}
-@endphp
-
 <!--- places -->
 
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-places relative -smt {{ $sectionClass }} {{ $section_class }}">
+<section
+	data-gsap-anim="section"
+	@if(!empty($section_id)) id="{{ $section_id }}" @endif
+	@class([ 'b-places relative -smt' ,
+	$sectionClass=> filled($sectionClass),
+	$section_class => filled($section_class),
+	$background => filled($background) && $background !== 'none',
+	])>
 
 	<div class="__wrapper c-main relative grid grid-cols-1 lg:grid-cols-2 items-start gap-10 z-20">
 
+		{{-- Kolumna 1 --}}
 		<div data-gsap-element="card" class="__col relative z-20 bg-secondary-lighter radius p-10">
 
 			<h4 data-gsap-element="header" class="m-header">{{ $g_places1['title'] }}</h4>
@@ -26,8 +21,8 @@ $sectionClass .= ' ' . $background;
 			@endif
 
 			<div data-gsap-element="gallery" class="h-full order1 relative mt-14">
-				@if (!empty($g_places1['gallery']))
-
+				{{-- Jeśli wybrano galerię --}}
+				@if ($g_places1['media_type'] == 'gallery' && !empty($g_places1['gallery']))
 				<div class="swiper-gallery-places gallery-1 swiper">
 					<div class="swiper-wrapper">
 						@foreach ($g_places1['gallery'] as $image)
@@ -49,6 +44,11 @@ $sectionClass .= ' ' . $background;
 						</div>
 					</div>
 				</div>
+
+				@elseif ($g_places1['media_type'] == 'map' && !empty($g_places1['map_iframe']))
+				<div class="__map radius overflow-hidden">
+					{!! $g_places1['map_iframe'] !!}
+				</div>
 				@endif
 			</div>
 		</div>
@@ -61,8 +61,7 @@ $sectionClass .= ' ' . $background;
 			@endif
 
 			<div data-gsap-element="gallery" class="h-full order1 relative mt-14">
-				@if (!empty($g_places2['gallery']))
-
+				@if ($g_places2['media_type'] == 'gallery' && !empty($g_places2['gallery']))
 				<div class="swiper-gallery-places gallery-2 swiper">
 					<div class="swiper-wrapper">
 						@foreach ($g_places2['gallery'] as $image)
@@ -83,6 +82,10 @@ $sectionClass .= ' ' . $background;
 							</svg>
 						</div>
 					</div>
+				</div>
+				@elseif ($g_places2['media_type'] == 'map' && !empty($g_places2['map_iframe']))
+				<div class="__map radius overflow-hidden">
+					{!! $g_places2['map_iframe'] !!}
 				</div>
 				@endif
 			</div>

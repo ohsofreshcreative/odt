@@ -4,6 +4,7 @@ namespace App\Blocks;
 
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Team extends Block
 {
@@ -124,48 +125,59 @@ class Team extends Block
 		return $team;
 	}
 
-	public function with()
+	public function with(): array
 	{
-		return [
+		$fields = [
 			'team_posts' => $this->team_posts(),
 
 			'g_team' => get_field('g_team'),
 			'team_categories'   => get_field('team_categories'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-			'nolist' => get_field('nolist'),
-			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'background' => get_field('background'),
+			'nolist' => (bool) get_field('nolist'),
+			'flip' => (bool) get_field('flip'),
+			'wide' => (bool) get_field('wide'),
+			'nomt' => (bool) get_field('nomt'),
+			'gap' => (bool) get_field('gap'),
+			'background' => get_field('background') ?: 'none',
 		];
+
+		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
+			'nolist' => 'nolist',
+			'flip' => 'order-flip',
+			'wide' => 'wide',
+			'nomt' => '!mt-0',
+			'gap' => 'wider-gap',
+		]);
+
+		return $fields;
 	}
 
 	public function team_posts()
-	{
-		$selected_categories = get_field('team_categories');
+	{ {
+			$selected_categories = get_field('team_categories');
 
-		error_log('TEAM BLOCK selected_categories: ' . print_r($selected_categories, true));
+			error_log('TEAM BLOCK selected_categories: ' . print_r($selected_categories, true));
 
-		$args = [
-			'post_type'      => 'team',
-			'posts_per_page' => -1,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-			'post_status'    => 'publish',
-		];
-
-		if (!empty($selected_categories)) {
-			$args['tax_query'] = [
-				[
-					'taxonomy' => 'category',
-					'field'    => 'term_id',
-					'terms'    => $selected_categories,
-				],
+			$args = [
+				'post_type'      => 'team',
+				'posts_per_page' => -1,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'post_status'    => 'publish',
 			];
-		}
 
-		return get_posts($args);
+			if (!empty($selected_categories)) {
+				$args['tax_query'] = [
+					[
+						'taxonomy' => 'category',
+						'field'    => 'term_id',
+						'terms'    => $selected_categories,
+					],
+				];
+			}
+
+			return get_posts($args);
+		}
 	}
 }

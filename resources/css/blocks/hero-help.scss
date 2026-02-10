@@ -1,0 +1,20 @@
+.b-hero-offer {
+  .__mask {
+    -webkit-mask-image: url('http://odt.local/wp-content/uploads/2026/01/offer-mask.svg');
+    mask-image: url('http://odt.local/wp-content/uploads/2026/01/offer-mask.svg');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    
+    /* Zmienione style dla diva */
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

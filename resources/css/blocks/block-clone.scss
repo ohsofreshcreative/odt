@@ -1,0 +1,18 @@
+.b-block-clone {
+	.b-slider {
+		margin-top: 0 !important;
+
+
+		.slider-coverflow.swiper-3d .swiper-slide-shadow-left {
+			background-image: linear-gradient(to left, #FFF, #fff0);
+			border-right: 1px solid #FFF;
+			border-radius: 10px;
+		}
+
+		.slider-coverflow.swiper-3d .swiper-slide-shadow-right {
+			background-image: linear-gradient(to right, #FFF, #fff0);
+			box-shadow: 0 0 0 1px #FFF;
+			border-radius: 10px;
+		}
+	}
+}

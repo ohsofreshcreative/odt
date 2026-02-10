@@ -15,7 +15,7 @@
   --p-hover: 24 53 43; /* #18352B */
   --p-50: 210 217 214; /* #D2D9D6 */
   --p-100: 211 245 234; /* #D3F5EA */
-  --p-200: 198, 232, 221; /* #C6E8DD */
+  --p-200: 198 232 221; /* #C6E8DD */
   --p-300: 179 224 209; /* #B3E0D1 */
   --p-400: 133 200 178; /* #85C8B2 */
   --p-500: 68 147 122; /* #44937A */
@@ -50,7 +50,6 @@
   --bg-dark: #071622;
 }
 
-/* mapowanie na “theme variables” Tailw inda v4 (to tworzy klasy bg-*, text-*, border-*) */
 @theme {
   /* base */
   --color-body: rgb(var(--body));
@@ -131,6 +130,21 @@
 @import '../css/blocks/hero-offer.scss';
 @import '../css/blocks/tabs.scss';
 @import '../css/blocks/proces.scss';
+@import '../css/blocks/faq.scss';
+@import '../css/blocks/hero-help.scss';
+@import '../css/blocks/overlap.scss';
+@import '../css/blocks/contact.scss';
+@import '../css/blocks/wehelp.scss';
+@import '../css/blocks/prices.scss';
+@import '../css/blocks/image.scss';
+@import '../css/blocks/cta.scss';
+@import '../css/blocks/resources.scss';
+@import '../css/blocks/mats.scss';
+@import '../css/blocks/jobs.scss';
+@import '../css/blocks/hero-blog.scss';
+@import '../css/blocks/ebook.scss';
+@import '../css/blocks/slider.scss';
+@import '../css/blocks/block-clone.scss';
 
 /*-- NOT USED --*/
 @import '../css/blocks/complex.scss';
@@ -147,8 +161,6 @@
 @import '../css/blocks/gains.scss';
 @import '../css/blocks/overlap.scss';
 @import '../css/blocks/what.scss';
-@import '../css/blocks/image.scss';
-@import '../css/blocks/cta.scss';
 @import '../css/blocks/connect.scss';
 @import '../css/blocks/gallery.scss';
 @import '../css/blocks/calc.scss';
@@ -161,12 +173,9 @@
 @import '../css/blocks/product-hero.scss';
 @import '../css/blocks/sectors.scss';
 @import '../css/blocks/steps.scss';
-@import '../css/blocks/faq.scss';
 @import '../css/blocks/values.scss';
 @import '../css/blocks/cert.scss';
-@import '../css/blocks/contact.scss';
 @import '../css/blocks/catalogues.scss';
-@import '../css/blocks/jobs.scss';
 @import '../css/blocks/job.scss';
 @import '../css/blocks/map.scss';
 @import '../css/blocks/logos.scss';
@@ -181,3 +190,6 @@
 @import '../css/blocks/inspirations.scss';
 @import '../css/blocks/wysiwyg.scss';
 @import '../css/blocks/coop.scss';
+
+
+@import './megamenu.scss';

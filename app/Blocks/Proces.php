@@ -2,9 +2,9 @@
 
 namespace App\Blocks;
 
-use App\Support\SectionClasses;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Proces extends Block
 {
@@ -57,7 +57,7 @@ class Proces extends Block
 			->addRepeater('r_proces', [
 				'label' => 'proces',
 				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 4,
+				'min' => 3,
 				'max' => 4,
 				'button_label' => 'Dodaj element oferty'
 			])

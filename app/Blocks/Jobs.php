@@ -111,7 +111,7 @@ class Jobs extends Block
     public function getjobs()
     {
         $args = [
-            'post_type' => 'job_offers',
+            'post_type' => 'jobs',
             'posts_per_page' => -1,
             'orderby' => 'date',
             'order' => 'DESC',
