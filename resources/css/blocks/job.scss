@@ -42,7 +42,7 @@
 				align-items: top;
 
 				&::before {
-					content: url('http://odt.local/wp-content/uploads/2026/01/double-arrow.svg');
+					content: url('/wp-content/uploads/2026/01/double-arrow.svg');
 					position: relative;
 					left: 0;
 					top: 2px;
@@ -71,7 +71,7 @@
 			}
 
 			h6::before {
-				content: url('http://odt.local/wp-content/uploads/2026/02/upload.svg');
+				content: url('/wp-content/uploads/2026/02/upload.svg');
 				margin-bottom: 8px;
 			}
 		}

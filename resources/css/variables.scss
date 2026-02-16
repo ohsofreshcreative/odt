@@ -688,7 +688,7 @@ h6,
 }
 
 .btn-underline::after {
-	content: url('http://odt.local/wp-content/uploads/2026/01/arrow.svg');
+	content: url('/wp-content/uploads/2026/01/arrow.svg');
 	height: 12px;
 	width: 12px;
 	margin-left: 8px;
@@ -954,7 +954,7 @@ h6,
 }
 
 .underline-btn::after {
-	content: url('http://odt.local/wp-content/uploads/2026/01/arrow.svg');
+	content: url('/wp-content/uploads/2026/01/arrow.svg');
 	height: 12px;
 	width: 12px;
 	margin-left: 8px;
@@ -1179,7 +1179,7 @@ h6,
 .megamenu-content .level-3-list .level-3-item a::before {
     content: '';
     display: inline-block;
-    background-image: url('http://odt.local/wp-content/uploads/2026/01/double-arrow.svg');
+    background-image: url('/wp-content/uploads/2026/01/double-arrow.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1893,7 +1893,7 @@ article.post:hover {
 
 footer {
 	.__phone::before {
-		content: url('http://odt.local/wp-content/uploads/2026/01/phone.svg');
+		content: url('/wp-content/uploads/2026/01/phone.svg');
 		margin-right: 8px;
 		position: relative;
 		top: 8px;
@@ -1902,7 +1902,7 @@ footer {
 	}
 
 	.__mail::before {
-		content: url('http://odt.local/wp-content/uploads/2026/01/mail.svg');
+		content: url('/wp-content/uploads/2026/01/mail.svg');
 		margin-right: 8px;
 		position: relative;
 		top: 6px;
