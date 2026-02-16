@@ -156,7 +156,7 @@ class MegaMenuWalker extends \Walker_Nav_Menu
             // --- POCZĄTEK ZMIANY ---
             // Sprawdź, czy jest opis i dodaj go do linku
             if (!empty($item->description)) {
-                $item_output .= '<span class="menu-item-description">' . esc_html($item->description) . '</span>';
+                $item_output .= '<span class="menu-item-description w-3/4">' . esc_html($item->description) . '</span>';
             }
             // --- KONIEC ZMIANY ---
 
