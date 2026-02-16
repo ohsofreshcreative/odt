@@ -11,7 +11,7 @@
   --body: 42 63 80; /* #2A3F50 */
 
   /* primary scale (zielony ze screena) */
-  --primary: 29 63 52; /* #1D3F34 */
+  --primary: 0 0 0; /* #1D3F34 */
   --p-hover: 24 53 43; /* #18352B */
   --p-50: 210 217 214; /* #D2D9D6 */
   --p-100: 211 245 234; /* #D3F5EA */
