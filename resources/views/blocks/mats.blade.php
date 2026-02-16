@@ -14,6 +14,8 @@ $posts_query = new WP_Query($args);
 }
 @endphp
 
+<!--- mats --->
+
 <section
 	data-gsap-anim="section"
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
@@ -47,7 +49,7 @@ $posts_query = new WP_Query($args);
 					<a href="{{ get_permalink() }}">
 						@if (has_post_thumbnail())
 						<div class="aspect-w-16 aspect-h-9">
-							{!! get_the_post_thumbnail(get_the_ID(), 'medium_large', ['class' => 'w-full h-full object-cover radius-img group-hover:scale-105 transition-transform duration-300']) !!}
+							{!! get_the_post_thumbnail(get_the_ID(), 'medium_large', ['class' => 'w-full h-full object-cover radius-img aspect-square group-hover:scale-105 transition-transform duration-300']) !!}
 						</div>
 						@else
 

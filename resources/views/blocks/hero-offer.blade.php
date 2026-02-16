@@ -23,7 +23,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			<h1 data-gsap-element="header" class="text-white bg-bg-brand">
 				{{ $g_hero_offer['header'] }}
 			</h1>
-		<div data-gsap-element="txt" class="text-white mt-4 w-full md:w-2/3">
+		<div data-gsap-element="txt" class="text-white mt-2 w-full md:w-2/3">
 				{!! $g_hero_offer['txt'] !!}
 			</div> 
 			@if (!empty($g_hero_offer['button1']))

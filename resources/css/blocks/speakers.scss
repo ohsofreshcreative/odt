@@ -1,0 +1,17 @@
+.b-speakers {
+  .__txt {
+    p {
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.b-speakers.section-white {
+	.__card {
+		background-color: var(--bg-lighter);
+	}
+}

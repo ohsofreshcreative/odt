@@ -20,7 +20,7 @@
 			</div>
 			@endif
 		</div>
-		<div data-gsap-element="accordion" class="accordion-wrapper flex flex-col mt-10">
+		<div data-gsap-element="accordion" class="accordion-wrapper flex flex-col mt-4">
 			@foreach ($r_faq as $item)
 			<div class="accordion rounded-2xl bg-white border border-secondary h-max">
 				<input class="acc-check" type="checkbox" name="radio-a" id="check{{ $loop->index }}">

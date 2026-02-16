@@ -145,6 +145,7 @@
 @import '../css/blocks/ebook.scss';
 @import '../css/blocks/slider.scss';
 @import '../css/blocks/block-clone.scss';
+@import '../css/blocks/speakers.scss';
 
 /*-- NOT USED --*/
 @import '../css/blocks/complex.scss';

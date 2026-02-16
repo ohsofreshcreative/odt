@@ -3,7 +3,9 @@ $sectionClass = '';
 $sectionClass .= !empty($flip) ? ' order-flip' : '';
 @endphp
 
-<section data-gsap-anim="section" class="two-cols relative -mt-20 z-10 {{ $sectionClass }} {{ $section_class ?? '' }}">
+<!--- resources --->
+
+<section data-gsap-anim="section" class="resources relative -mt-20 z-10 {{ $sectionClass }} {{ $section_class ?? '' }}">
 	<div class="__wrapper c-main grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
 
 		{{-- Kolumna 1 --}}
