@@ -87,7 +87,7 @@ $unique_id = 'clip_'.uniqid();
 
 		<div class="__content w-11/12 md:w-3/4 lg:w-1/2 py-20 m-auto">
 			<div data-gsap-element="txt">
-				<h4 data-gsap-element="header" class="text-white">{{ $bottom['title'] }}</h4>
+				<!-- <h4 data-gsap-element="header" class="text-white">{{ $bottom['title'] }}</h4> -->
 				<div data-gsap-element="txt" class="mt-2 text-white">
 					{!! $bottom['txt'] !!}
 				</div>
