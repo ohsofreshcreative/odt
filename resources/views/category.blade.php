@@ -82,47 +82,42 @@ $unique_id = 'clip_'.uniqid();
 
 <!-- bottom-block -->
 
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="s-bottom-block relative overflow-hidden -smt bg-gradient {{ $sectionClass }} {{ !empty($section_class) ? $section_class : '' }}">
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-connect relative overflow-hidden -smt bg-primary-700 {{ $sectionClass }} {{ $section_class }}">
 	<div class="grid grid-cols-1 md:grid-cols-2 items-center">
 
-		<div class="__content w-11/12 md:w-3/4 lg:w-1/2 py-20 m-auto">
-			<div data-gsap-element="txt">
-				<div data-gsap-element="txt" class="mt-2 text-white">
-					{!! $bottom['txt'] !!}
-				</div>
-				<a data-gsap-element="phone" href="tel:{{ $bottom['phone'] }}" class="block text-h3 text-p-lighter w-max mt-6">{{ $bottom['phone'] }}</a>
-				@if (!empty($bottom['button']))
-				<a data-gsap-element="btn" class="main-btn m-btn align-self-bottom" href="{{ $bottom['button']['url'] }}">{{ $bottom['button']['title'] }}</a>
+		<div class="__content relative z-10 w-11/12 md:w-3/4 lg:w-2/3 py-20 m-auto">
+			<div data-gsap-element="txt" class="text-secondary">
+				{!! $bottom['txt'] !!}
+			</div>
+			<h4 data-gsap-element="header" class="text-white mt-2">{{ $bottom['header'] }}</h4>
+
+			@if (!empty($bottom['button']))
+			<div class="inline-buttons m-btn">
+				<a data-gsap-element="button" class="second-btn left-btn"
+					href="{{ $bottom['button']['url'] }}"
+					target="{{ $bottom['button']['target'] }}">
+					{{ $bottom['button']['title'] }}
+				</a>
+				@if (!empty($bottom['button2']))
+				<a data-gsap-element="button" class="white-btn"
+					href="{{ $bottom['button2']['url'] }}"
+					target="{{ $bottom['button2']['target'] }}">
+					{{ $bottom['button2']['title'] }}
+				</a>
 				@endif
 			</div>
+			@endif
 
-			<!-- <div data-gsap-element="form" data-gsap-element="form" class="mt-8">
-                {!! do_shortcode($bottom['shortcode']) !!}
-            </div> -->
 		</div>
 
 		<div data-gsap-element="img" class="__img inset-y-0 h-full">
 
-			<svg
-				viewBox="0 0 898 728"
-				class="block h-full w-auto"
-				preserveAspectRatio="xMidYMid slice"
-				role="img"
-				aria-label="{{ $bottom['image']['alt'] ?? '' }}">
-				<title>{{ $bottom['image']['alt'] ?? '' }}</title>
-				<defs>
-					<clipPath id="{{ $unique_id }}">
-						<path d="M0.152149 529.095L961 914L988 615.228L363.556 371.044L952.001 115.74L952.001 -43.1298L952 -202L0 211.009L0.00107968 528.75L0.152149 529.095Z" />
-					</clipPath>
-				</defs>
-				<image
-					clip-path="url(#{{ $unique_id }})"
-					href="{{ $bottom['image']['url'] }}"
-					x="0" y="0" width="100%" height="100%"
-					preserveAspectRatio="xMidYMid slice" />
-			</svg>
+			<img class="__bg absolute w-full lg:hidden top-0 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg-top.svg" />
+			<img class="__bg absolute max-lg:hidden top-1/2 -translate-y-1/2 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg.svg" />
+			<img src="{{ $bottom['image']['url'] }}" alt="{{ $bottom['image']['alt'] }}" class="w-full h-full object-cover object-center" />
 		</div>
 
+		<img class="__bg absolute left-1/2 -translate-x-1/2 -bottom-40 w-[400px] pointer-events-none" src="/wp-content/uploads/2026/01/leaf.svg" />
 
 	</div>
 </section>
