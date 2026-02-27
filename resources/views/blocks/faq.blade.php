@@ -15,7 +15,7 @@
 			<h3 data-gsap-element="header" class="">{{ $g_faq['header'] }}</h3>
 			@if (!empty($g_faq['image']))
 			<div data-gsap-element="img" class="__img order1 mt-10">
-				<img class="__img absolute bottom-10 left-1/2 -translate-x-1/2" src="http://odt.local/wp-content/uploads/2026/01/faq_blurb.svg">
+				<img class="__img absolute bottom-10 left-1/2 -translate-x-1/2" src="/wp-content/uploads/2026/01/faq_blurb.svg">
 				<img class="__img object-cover aspect-square rounded-full" src="{{ $g_faq['image']['url'] }}" alt="{{ $g_faq['image']['alt'] ?? '' }}">
 			</div>
 			@endif

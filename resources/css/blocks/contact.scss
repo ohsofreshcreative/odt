@@ -16,7 +16,7 @@
   }
 
   .__phone::before {
-    content: url('http://odt.local/wp-content/uploads/2026/01/phone-1.svg');
+    content: url('/wp-content/uploads/2026/01/phone-1.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -28,7 +28,7 @@
   }
 
   .__mail::before {
-    content: url('http://odt.local/wp-content/uploads/2026/01/mail-1.svg');
+    content: url('/wp-content/uploads/2026/01/mail-1.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -36,7 +36,7 @@
   }
 
   .__address::before {
-    content: url('http://odt.local/wp-content/uploads/2026/01/place.svg');
+    content: url('/wp-content/uploads/2026/01/place.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -44,7 +44,7 @@
   }
 
   .__hours::before {
-    content: url('http://odt.local/wp-content/uploads/2026/01/time.svg');
+    content: url('/wp-content/uploads/2026/01/time.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;

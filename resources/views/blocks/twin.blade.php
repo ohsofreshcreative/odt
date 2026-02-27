@@ -43,13 +43,13 @@ $sectionClass .= ' ' . $background;
 						<div class="relative z-10">
 							<h6 class="text-white mb-4">{{ $offer_post->post_title }}</h6>
 							<div class="__arrow bg-primary-light w-max rounded-full p-3 transition-all duration-500 mt-6">
-								<img class="" src="http://odt.local/wp-content/uploads/2025/12/arrow-right.svg" />
+								<img class="" src="/wp-content/uploads/2025/12/arrow-right.svg" />
 							</div>
 						</div>
 					</a>
 					@endforeach
 					@endif
-					<img data-gsap-element="img" class="__bg absolute top-1/2 left-1/2 -translate-1/2 max-w-14 pointer-events-none" src="http://odt.local/wp-content/uploads/2025/12/connection.svg" />
+					<img data-gsap-element="img" class="__bg absolute top-1/2 left-1/2 -translate-1/2 max-w-14 pointer-events-none" src="/wp-content/uploads/2025/12/connection.svg" />
 				</div>
 			</div>
 			@endforeach

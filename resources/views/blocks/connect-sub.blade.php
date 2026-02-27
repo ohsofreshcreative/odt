@@ -46,5 +46,5 @@ $imageUrl = !empty($g_connect_1['image']['url']) ? "url(" . $g_connect_1['image'
 		</div>
 	</div>
 
-	<img data-gsap-element="bg" class="__bg absolute top-1/2 -translate-y-1/2 left-1/12 pointer-events-none" src="http://odt.local/wp-content/uploads/2025/12/logo-stroke.svg" />
+	<img data-gsap-element="bg" class="__bg absolute top-1/2 -translate-y-1/2 left-1/12 pointer-events-none" src="/wp-content/uploads/2025/12/logo-stroke.svg" />
 </section>

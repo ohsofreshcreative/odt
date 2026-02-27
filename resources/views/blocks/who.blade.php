@@ -56,5 +56,5 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		</div>
 	</div>
 
-	<img data-gsap-element="bg" class="__bg absolute w-[600px] -bottom-20 -right-20 opacity-50 pointer-events-none" src="http://odt.local/wp-content/uploads/2026/01/shape-about.svg" />
+	<img data-gsap-element="bg" class="__bg absolute w-[600px] -bottom-20 -right-20 opacity-50 pointer-events-none" src="/wp-content/uploads/2026/01/shape-about.svg" />
 </section>

@@ -38,6 +38,6 @@ $sectionClass .= ' ' . $background;
 
 		</div>
 
-		<img class="__bg absolute max-w-[360px] -bottom-16 -right-16 pointer-events-none" src="http://odt.local/wp-content/uploads/2025/12/logo-stroke.svg" />
+		<img class="__bg absolute max-w-[360px] -bottom-16 -right-16 pointer-events-none" src="/wp-content/uploads/2025/12/logo-stroke.svg" />
 	</div>
 </section>

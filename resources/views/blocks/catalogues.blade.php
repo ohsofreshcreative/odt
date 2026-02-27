@@ -49,7 +49,7 @@ $sectionClass .= ' ' . $background;
 						@if (!empty($item['title']))
 						<h6 class="text-center mt-6">{{ $item['title'] }}</h6>
 						@endif
-						<img class="__btn m-auto mt-8" src="http://odt.local/wp-content/uploads/2025/11/download.svg" />
+						<img class="__btn m-auto mt-8" src="/wp-content/uploads/2025/11/download.svg" />
 					</div>
 				</a>
 				@endforeach
@@ -72,7 +72,7 @@ $sectionClass .= ' ' . $background;
 						@if (!empty($item['title']))
 						<h6 class="text-center mt-6">{{ $item['title'] }}</h6>
 						@endif
-						<img class="__btn m-auto mt-8" src="http://odt.local/wp-content/uploads/2025/11/download.svg" />
+						<img class="__btn m-auto mt-8" src="/wp-content/uploads/2025/11/download.svg" />
 					</div>
 				</a>
 				@endforeach

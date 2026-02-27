@@ -41,6 +41,6 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 
 	</div>
 
-	<img class="absolute right-0 bottom-0" src="http://odt.local/wp-content/uploads/2025/12/hero_bg.svg" />
+	<img class="absolute right-0 bottom-0" src="/wp-content/uploads/2025/12/hero_bg.svg" />
 
 </section>

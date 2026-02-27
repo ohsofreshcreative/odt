@@ -108,7 +108,7 @@
 							<img data-gsap-element="img" class="w-full object-cover aspect-square" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
 						</div>
 						@endif
-						<img data-gsap-element="img" class="absolute -bottom-20 -right-20" src="http://odt.local/wp-content/uploads/2026/01/prices-shape.svg" />
+						<img data-gsap-element="img" class="absolute -bottom-20 -right-20" src="/wp-content/uploads/2026/01/prices-shape.svg" />
 					</div>
 					@endforeach
 				</div>
@@ -133,7 +133,7 @@
 		@endif
 	</div>
 
-	<img data-gsap-element="image" class="__bg absolute w-full -top-10 max-w-[400px] -right-10 opacity-20 pointer-events-none z-10" src="http://odt.local/wp-content/uploads/2026/01/top-shape.svg" />
+	<img data-gsap-element="image" class="__bg absolute w-full -top-10 max-w-[400px] -right-10 opacity-20 pointer-events-none z-10" src="/wp-content/uploads/2026/01/top-shape.svg" />
 
-	<img data-gsap-element="image" class="__bg absolute top-30 left-0 max-w-[400px] pointer-events-none z-10" src="http://odt.local/wp-content/uploads/2026/01/plant-about.svg" />
+	<img data-gsap-element="image" class="__bg absolute top-30 left-0 max-w-[400px] pointer-events-none z-10" src="/wp-content/uploads/2026/01/plant-about.svg" />
 </section>

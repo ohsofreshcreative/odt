@@ -39,12 +39,12 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 
 		@if ($g_hero['image'])
 		<div class="__img absolute -right-38 h-full">
-			<img data-gsap-element="image" class="absolute left-1/3 bottom-12 z-10" src="http://odt.local/wp-content/uploads/2026/01/shape.svg" />
+			<img data-gsap-element="image" class="absolute left-1/3 bottom-12 z-10" src="/wp-content/uploads/2026/01/shape.svg" />
 			<img data-gsap-element="image" class="__mask object-cover" src="{{ $g_hero['image']['url'] }}" alt="{{ $g_hero['image']['alt'] ?? '' }}">
 		</div>
 		@endif
 	</div>
 
-	<img data-gsap-element="image" class="absolute -left-40 -bottom-20" src="http://odt.local/wp-content/uploads/2026/01/plant.svg" />
+	<img data-gsap-element="image" class="absolute -left-40 -bottom-20" src="/wp-content/uploads/2026/01/plant.svg" />
 
 </section>

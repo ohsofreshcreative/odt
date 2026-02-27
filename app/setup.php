@@ -666,13 +666,3 @@ add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id) {
 }, 10, 2);
 
 /*--- MEGA MENU TXT ---*/
-
-
-add_action('admin_enqueue_scripts', function () {
-    wp_enqueue_style(
-        'amelia-admin-css',
-        asset('css/admin.css')->uri(),
-        [],
-        null
-    );
-});

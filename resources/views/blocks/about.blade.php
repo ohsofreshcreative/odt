@@ -20,7 +20,7 @@ $sectionClass .= ' ' . $background;
 			@if (!empty($g_about['image']))
 
 			<div data-gsap-element="img" class="__img relative h-full order1 break-out mt-0 lg:mt-20">
-				<img class="__bg spinning-logo bg-white rounded-full overflow-visible absolute 0 pointer-events-none z-10 -top-14 left-14 p-3" src="http://odt.local/wp-content/uploads/2026/01/logo_circle.svg" />
+				<img class="__bg spinning-logo bg-white rounded-full overflow-visible absolute 0 pointer-events-none z-10 -top-14 left-14 p-3" src="/wp-content/uploads/2026/01/logo_circle.svg" />
 				<img class="__photo object-cover w-full img-xl __img radius-img" src="{{ $g_about['image']['url'] }}" alt="{{ $g_about['image']['alt'] ?? '' }}">
 			</div>
 			@endif
@@ -40,5 +40,5 @@ $sectionClass .= ' ' . $background;
 		</div>
 	</div>
 
-	<img data-gsap-element="bg" class="__bg absolute w-[500px] -left-20 -bottom-40 pointer-events-none" src="http://odt.local/wp-content/uploads/2026/01/shape_light.svg" />
+	<img data-gsap-element="bg" class="__bg absolute w-[500px] -left-20 -bottom-40 pointer-events-none" src="/wp-content/uploads/2026/01/shape_light.svg" />
 </section>

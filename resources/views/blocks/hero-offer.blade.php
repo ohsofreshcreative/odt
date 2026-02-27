@@ -46,7 +46,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
    @if ($g_hero_offer['image'])
          <div class="__img absolute top-0 bottom-0 right-0 w-1/2">
-            <img data-gsap-element="image" class="absolute left-0 bottom-12" src="http://odt.local/wp-content/uploads/2026/01/small-shape.svg" />
+            <img data-gsap-element="image" class="absolute left-0 bottom-12" src="/wp-content/uploads/2026/01/small-shape.svg" />
             <div data-gsap-element="image" class="__mask" style="background-image: url('{{ $g_hero_offer['image']['url'] }}')"></div>
         </div>
         @endif
