@@ -40,6 +40,6 @@ $sectionClass .= ' ' . $background;
 			@endforeach
 		</div>
 	</div>
-	<img data-gsap-element="bg" class="__bg absolute -top-80 -right-20 pointer-events-none" src="/wp-content/uploads/2025/12/v.svg" />
-	<img data-gsap-element="bg" class="__bg absolute top-1/2 -translate-y-1/2 -left-1/6 pointer-events-none" src="/wp-content/uploads/2025/12/logo-stroke.svg" />
+	<img data-gsap-element="bg" class="__bg absolute -top-80 -right-20 pointer-events-none" src="http://odt.local/wp-content/uploads/2025/12/v.svg" />
+	<img data-gsap-element="bg" class="__bg absolute top-1/2 -translate-y-1/2 -left-1/6 pointer-events-none" src="http://odt.local/wp-content/uploads/2025/12/logo-stroke.svg" />
 </section>

@@ -39,7 +39,7 @@
 		@endfor
 	</div>
 
-	<img class="__bg absolute -right-20 -bottom-60 opacity-50 scale-120 pointer-events-none" src="/wp-content/uploads/2026/01/plant-footer.svg" />
+	<img class="__bg absolute -right-20 -bottom-60 opacity-50 scale-120 pointer-events-none" src="http://odt.local/wp-content/uploads/2026/01/plant-footer.svg" />
 	</div>
 
 	<div class="c-main flex flex-col md:flex-row justify-between gap-6 py-10 footer-bottom border-t border-primary-lighter">
@@ -49,6 +49,6 @@
 		</p>
 	</div>
 
-	<img class="__bg absolute top-0 left-0 opacity-5 pointer-events-none" src="/wp-content/uploads/2026/01/shape-footer.svg" />
+	<img class="__bg absolute top-0 left-0 opacity-5 pointer-events-none" src="http://odt.local/wp-content/uploads/2026/01/shape-footer.svg" />
 	</div>
 </footer>

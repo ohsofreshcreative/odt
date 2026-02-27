@@ -25,7 +25,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 		</div>
 	</div>
 
-	<img data-gsap-element="image" class="__bg absolute w-full -top-10 max-w-[400px] -right-10 opacity-20 pointer-events-none z-10" src="/wp-content/uploads/2026/01/top-shape.svg" />
+	<img data-gsap-element="image" class="__bg absolute w-full -top-10 max-w-[400px] -right-10 opacity-20 pointer-events-none z-10" src="http://odt.local/wp-content/uploads/2026/01/top-shape.svg" />
 
 	<img data-gsap-element="image" class="__bg absolute bottom-20 left-0 max-w-[400px] pointer-events-none z-30" src="{{ $g_heroabout['bg']['url'] }}" alt="{{ $g_heroabout['bg']['alt'] ?? '' }}" />
 </section>

@@ -25,7 +25,7 @@ $sectionId = $block->data['id'] ?? null;
 				@endif
 
 				<a href="#more" class="block mt-10">
-					<img src="/wp-content/uploads/2025/05/arrow-down.svg" />
+					<img src="http://odt.local/wp-content/uploads/2025/05/arrow-down.svg" />
 				</a>
 			</div>
 		</div>

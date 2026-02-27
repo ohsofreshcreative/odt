@@ -26,3 +26,7 @@
 .acf-editor-wrap iframe {
 	min-height: unset !important;
 }
+
+#am-calendar .fc-nonbusiness {
+	background-color: red !important;
+}

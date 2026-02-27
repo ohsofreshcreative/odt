@@ -28,7 +28,7 @@ $sectionClass .= $bgClass[$bg ?? ''] ?? '';
 			<div data-gsap-element="txt" class="">
 				{!! $g_tlc['txt'] !!}
 			</div>
-			<img class="absolute -top-16 -left-10" src="/wp-content/uploads/2025/11/tlc.svg" />
+			<img class="absolute -top-16 -left-10" src="http://odt.local/wp-content/uploads/2025/11/tlc.svg" />
 		</div>
 
 		<div data-gsap-element="img" class="__content relative grid grid-cols-1 lg:grid-cols-2 gap-10 mt-18">
@@ -54,7 +54,7 @@ $sectionClass .= $bgClass[$bg ?? ''] ?? '';
 					<div class="mt-4">{{ $item['txt'] }}</div>
 				</div>
 				@endforeach
-				<img class="absolute mix-blend-multiply -top-34 -right-10" src="/wp-content/uploads/2025/11/bearings-1.png" />
+				<img class="absolute mix-blend-multiply -top-34 -right-10" src="http://odt.local/wp-content/uploads/2025/11/bearings-1.png" />
 			</div>
 			@endif
 		</div>

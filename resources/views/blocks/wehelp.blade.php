@@ -43,7 +43,7 @@
 		@endif
 	</div>
 
-	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full" src="/wp-content/uploads/2026/01/help-hero-bg.svg" />
+	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full" src="http://odt.local/wp-content/uploads/2026/01/help-hero-bg.svg" />
 </section>
 
 <section data-gsap-anim="section" class="mt-0 md:-mt-16">

@@ -29,10 +29,10 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 								@if(!empty($card['txt']))
 								<div class="__txt">{{ $card['txt'] }}</div>
 								@endif
-								<img class="max-w-1/2" src="/wp-content/uploads/2026/01/stars.svg" />
+								<img class="max-w-1/2" src="http://odt.local/wp-content/uploads/2026/01/stars.svg" />
 								<b class="font-header text-xl">{{ $card['name'] }}</b>
 								<div class="flex items-center gap-4">
-									<img src="/wp-content/uploads/2026/01/google.svg" />Opinia zweryfikowana<svg xmlns="http://www.w3.org/2000/svg" width="10" height="9" viewBox="0 0 10 9" fill="none">
+									<img src="http://odt.local/wp-content/uploads/2026/01/google.svg" />Opinia zweryfikowana<svg xmlns="http://www.w3.org/2000/svg" width="10" height="9" viewBox="0 0 10 9" fill="none">
 										<path d="M9.79198 3.98624C9.79176 3.98602 9.79159 3.98577 9.79134 3.98555L6.08553 0.211353C5.8079 -0.0713855 5.35886 -0.0703333 5.08251 0.21382C4.8062 0.497937 4.80727 0.957482 5.08489 1.24026L7.57297 3.77419L0.709219 3.77419C0.317517 3.77419 0 4.09914 0 4.5C0 4.90086 0.317517 5.22581 0.709219 5.22581H7.57294L5.08492 7.75974C4.8073 8.04252 4.80624 8.50206 5.08255 8.78618C5.3589 9.07037 5.80797 9.07135 6.08556 8.78865L9.79137 5.01445C9.79159 5.01423 9.79176 5.01398 9.79201 5.01376C10.0698 4.73004 10.0689 4.26901 9.79198 3.98624Z" fill="#249408" />
 									</svg>
 								</div>
@@ -59,7 +59,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			<!--- swiper end --->
 
 			<!-- <div class="mt-10">
-				<img src="/wp-content/uploads/2025/12/google-1.svg" />
+				<img src="http://odt.local/wp-content/uploads/2025/12/google-1.svg" />
 				<a class="!underline">Sprawdź wszystkie opinie</a>
 			</div> -->
 		</div>

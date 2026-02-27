@@ -25,7 +25,7 @@ $category = !empty($categories) ? $categories[0] : null;
 			</div>
 		</div>
 	</div>
-	<img src="/wp-content/uploads/2026/01/blog-leaf.svg" alt="" class="absolute -top-20 -right-20 pointer-events-none">
+	<img src="http://odt.local/wp-content/uploads/2026/01/blog-leaf.svg" alt="" class="absolute -top-20 -right-20 pointer-events-none">
 </section>
 
 <section data-gsap-anim="section">

@@ -32,9 +32,9 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 				@endif
 			</div>
 
-		<img class="__bg absolute top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" src="/wp-content/uploads/2026/01/leaf-big2.svg" />
+		<img class="__bg absolute top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" src="http://odt.local/wp-content/uploads/2026/01/leaf-big2.svg" />
 
-		<img class="__bg absolute top-1/2 -translate-y-1/2 -right-90 opacity-20 pointer-events-none" src="/wp-content/uploads/2026/01/leaf-big.svg" />
+		<img class="__bg absolute top-1/2 -translate-y-1/2 -right-90 opacity-20 pointer-events-none" src="http://odt.local/wp-content/uploads/2026/01/leaf-big.svg" />
 		</div>
 	</div>
 </section>

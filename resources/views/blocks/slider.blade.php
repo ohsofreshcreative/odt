@@ -43,5 +43,5 @@ $sectionClass .= ' ' . $background;
         </div>
         <div class="swiper-pagination"></div>
     </div>
-	<img class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 opacity-10 h-[110%] hue-rotate-220" src="/wp-content/uploads/2026/02/logo-bg.svg" />
+	<img class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 opacity-10 h-[110%] hue-rotate-220" src="http://odt.local/wp-content/uploads/2026/02/logo-bg.svg" />
 </section>
