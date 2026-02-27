@@ -195,3 +195,8 @@
 
 @import './megamenu.scss';
 @import './amelia.scss';
+
+
+#am-calendar .fc-nonbusiness {
+	background-color: red !important;
+}
