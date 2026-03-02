@@ -108,13 +108,6 @@ add_filter('sage/acf-composer/fields', fn () => [
 
 
 /**
- * ==================================================================
- * Funkcje pomocnicze dla bloku Nagłówek Rezerwacji Amelia
- * (Wersja stabilna, bez dynamicznego filtrowania JS)
- * ==================================================================
- */
-
-/**
  * Funkcja pomocnicza do znajdowania poprawnej nazwy tabeli Amelii.
  */
 function get_amelia_table_name($base_name) {
