@@ -94,23 +94,25 @@ class AmeliaBookingHeader extends Block
         ];
     }
 
-    public function getAmeliaData()
+   public function getAmeliaData()
     {
         global $wpdb;
-        $service_id = get_field('amelia_service');
+
         $employee_id = get_field('amelia_employee');
+        $service_id = get_field('amelia_service');
         $location_id = get_field('amelia_location');
-        
+
         $data = [
-            'service_name' => '',
             'employee_name' => '',
             'employee_photo' => '',
+            'service_name' => '',
             'location_name' => '',
         ];
 
         // Pracownik
         if ($employee_id) {
-            $users_table = get_amelia_table_name('users');
+            // ZMIANA TUTAJ: Dodajemy \ przed nazwą funkcji
+            $users_table = \get_amelia_table_name('users');
             if ($users_table) {
                 $employee = $wpdb->get_row($wpdb->prepare("SELECT firstName, lastName, pictureFullPath FROM {$users_table} WHERE id = %d", $employee_id));
                 if ($employee) {
@@ -122,20 +124,22 @@ class AmeliaBookingHeader extends Block
         
         // Usługa
         if ($service_id) {
-            $services_table = get_amelia_table_name('services');
+            // ZMIANA TUTAJ: Dodajemy \ przed nazwą funkcji
+            $services_table = \get_amelia_table_name('services');
             if ($services_table) {
                 $data['service_name'] = $wpdb->get_var($wpdb->prepare("SELECT name FROM {$services_table} WHERE id = %d", $service_id));
             }
         }
-        
+
         // Lokalizacja
         if ($location_id) {
-            $locations_table = get_amelia_table_name('locations');
+            // ZMIANA TUTAJ: Dodajemy \ przed nazwą funkcji
+            $locations_table = \get_amelia_table_name('locations');
             if ($locations_table) {
                 $data['location_name'] = $wpdb->get_var($wpdb->prepare("SELECT name FROM {$locations_table} WHERE id = %d", $location_id));
             }
         }
-        
+
         return $data;
     }
 }
