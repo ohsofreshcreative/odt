@@ -94,18 +94,17 @@ class AmeliaBookingHeader extends Block
         ];
     }
 
-   public function getAmeliaData()
+  public function getAmeliaData()
     {
         global $wpdb;
-
-        $employee_id = get_field('amelia_employee');
         $service_id = get_field('amelia_service');
+        $employee_id = get_field('amelia_employee');
         $location_id = get_field('amelia_location');
-
+        
         $data = [
+            'service_name' => '',
             'employee_name' => '',
             'employee_photo' => '',
-            'service_name' => '',
             'location_name' => '',
         ];
 
@@ -130,7 +129,7 @@ class AmeliaBookingHeader extends Block
                 $data['service_name'] = $wpdb->get_var($wpdb->prepare("SELECT name FROM {$services_table} WHERE id = %d", $service_id));
             }
         }
-
+        
         // Lokalizacja
         if ($location_id) {
             // ZMIANA TUTAJ: Dodajemy \ przed nazwą funkcji
@@ -139,7 +138,7 @@ class AmeliaBookingHeader extends Block
                 $data['location_name'] = $wpdb->get_var($wpdb->prepare("SELECT name FROM {$locations_table} WHERE id = %d", $location_id));
             }
         }
-
+        
         return $data;
     }
 }
