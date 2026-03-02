@@ -134,13 +134,13 @@ add_action('admin_enqueue_scripts', function ($hook) {
     }
 
     // Wczytaj nasz dedykowany skrypt dla bloku Amelia, używając manifestu Vite
-    wp_enqueue_script(
-        'sage/admin-amelia-block.js', 
-        \App\asset('scripts/admin-amelia-block.js')->uri(), 
-        ['acf-input'], // Zależność od ACF
-        null, 
-        true
-    );
+ wp_enqueue_script(
+    'sage/admin-amelia-block.js', 
+    asset('scripts/admin-amelia-block.js')->uri(), // POPRAWNIE
+    ['acf-input'],
+    null, 
+    true
+);
 
     // Przekaż adres URL i nonce do naszego skryptu
     wp_localize_script(
