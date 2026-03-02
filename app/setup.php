@@ -666,30 +666,3 @@ add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id) {
 }, 10, 2);
 
 /*--- MEGA MENU TXT ---*/
-
-/**
- * Wczytuje skrypty dla panelu admina.
- */
-add_action('admin_enqueue_scripts', function ($hook) {
-    if ('post.php' !== $hook && 'post-new.php' !== $hook) {
-        return;
-    }
-
-    // ZMIANA TUTAJ: Zmieniamy "handle" i ścieżkę w funkcji asset()
-    wp_enqueue_script(
-        'admin-amelia-block', // Uproszczony "handle"
-        asset('resources/js/admin-amelia-block.js')->uri(), // Pełna ścieżka, tak jak w Vite
-        ['acf-input'],
-        null, 
-        true
-    );
-
-    wp_localize_script(
-        'admin-amelia-block', // Dopasuj "handle" do tego powyżej
-        'ameliaBlockAjax',
-        [
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('amelia_filter_nonce')
-        ]
-    );
-});
