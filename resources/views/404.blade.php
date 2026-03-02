@@ -3,7 +3,7 @@
 @section('content')
   @include('partials.page-header')
 
-  <section data-gsap-anim="section" class="contact bg-secondary relative py-50 {{ $sectionClass }} {{ $section_class }}">
+  <section data-gsap-anim="section" class="contact bg-secondary relative py-50">
 		<div class="c-main relative z-10 text-center text-white">
 		<div class="w-full md:w-1/2 m-auto">
 			<h1 data-gsap-element="404" class=" !text-9xl text-s-lighter">404</h1>
