@@ -104,9 +104,6 @@ add_filter('sage/acf-composer/fields', fn () => [
 ]);
 
 
-<?php
-// ... (istniejący kod na początku pliku functions.php)
-
 /**
  * ==================================================================
  * Funkcje pomocnicze dla bloku Nagłówek Rezerwacji Amelia
