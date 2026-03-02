@@ -110,6 +110,7 @@ add_filter('sage/acf-composer/fields', fn () => [
 /**
  * ==================================================================
  * Funkcje pomocnicze dla bloku Nagłówek Rezerwacji Amelia
+ * (Wersja stabilna, bez dynamicznego filtrowania JS)
  * ==================================================================
  */
 
@@ -128,20 +129,21 @@ function get_amelia_table_name($base_name) {
 }
 
 /**
- * Ładuje dane pracowników Amelii do pola select w ACF.
+ * Ładuje dane pracowników (TYLKO SPECJALISTÓW) Amelii do pola select w ACF.
  */
 add_filter('acf/load_field/name=amelia_employee', function ($field) {
     global $wpdb;
     $users_table = get_amelia_table_name('users');
 
     if (!$users_table) {
+        $field['choices'] = ['' => 'Nie znaleziono tabeli Amelia Users'];
         return $field;
     }
     
-    // Pobieramy aktywnych pracowników
-    $employees = $wpdb->get_results("SELECT id, firstName, lastName FROM `{$users_table}` WHERE status = 'visible'", ARRAY_A);
+    // KLUCZOWA ZMIANA: Dodajemy warunek "WHERE type = 'provider'"
+    $employees = $wpdb->get_results("SELECT id, firstName, lastName FROM `{$users_table}` WHERE status = 'visible' AND type = 'provider' ORDER BY firstName ASC", ARRAY_A);
     
-    $field['choices'] = ['' => 'Dowolny pracownik']; // Opcja domyślna
+    $field['choices'] = ['' => 'Wybierz pracownika']; // Opcja domyślna
     if ($employees) {
         foreach ($employees as $employee) {
             $field['choices'][$employee['id']] = trim($employee['firstName'] . ' ' . $employee['lastName']);
@@ -158,12 +160,13 @@ add_filter('acf/load_field/name=amelia_service', function ($field) {
     $services_table = get_amelia_table_name('services');
     
     if (!$services_table) {
+        $field['choices'] = ['' => 'Nie znaleziono tabeli Amelia Services'];
         return $field;
     }
 
-    $services = $wpdb->get_results("SELECT id, name FROM `{$services_table}` WHERE status = 'visible'", ARRAY_A);
+    $services = $wpdb->get_results("SELECT id, name FROM `{$services_table}` WHERE status = 'visible' ORDER BY name ASC", ARRAY_A);
     
-    $field['choices'] = ['' => 'Dowolna usługa'];
+    $field['choices'] = ['' => 'Wybierz usługę'];
     if ($services) {
         foreach ($services as $service) {
             $field['choices'][$service['id']] = $service['name'];
@@ -180,12 +183,13 @@ add_filter('acf/load_field/name=amelia_location', function ($field) {
     $locations_table = get_amelia_table_name('locations');
 
     if (!$locations_table) {
+        $field['choices'] = ['' => 'Nie znaleziono tabeli Amelia Locations'];
         return $field;
     }
     
     $locations = $wpdb->get_results("SELECT id, name FROM `{$locations_table}`", ARRAY_A);
     
-    $field['choices'] = ['' => 'Dowolna lokalizacja'];
+    $field['choices'] = ['' => 'Wybierz lokalizację'];
     if ($locations) {
         foreach ($locations as $location) {
             $field['choices'][$location['id']] = $location['name'];
