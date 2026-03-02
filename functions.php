@@ -104,7 +104,14 @@ add_filter('sage/acf-composer/fields', fn () => [
 ]);
 
 
+<?php
+// ... (istniejący kod na początku pliku functions.php)
 
+/**
+ * ==================================================================
+ * Funkcje pomocnicze dla bloku Nagłówek Rezerwacji Amelia
+ * ==================================================================
+ */
 
 /**
  * Funkcja pomocnicza do znajdowania poprawnej nazwy tabeli Amelii.
@@ -121,28 +128,44 @@ function get_amelia_table_name($base_name) {
 }
 
 /**
- * Rejestruje skrypty JS dla dynamicznych bloków ACF.
+ * Wczytuje skrypty dla panelu admina.
  */
-add_action('acf/input/admin_enqueue_scripts', function () {
-    $theme_uri = get_template_directory_uri();
-    // Zakładamy, że skrypt będzie w `resources/scripts/admin-acf.js`
-    wp_enqueue_script('admin-acf-scripts', $theme_uri . '/resources/scripts/admin-acf.js', ['acf-input'], null, true);
-    wp_localize_script('admin-acf-scripts', 'acf_ajax', [
-        'url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('acf_amelia_filter_nonce')
-    ]);
+add_action('admin_enqueue_scripts', function ($hook) {
+    // Wczytaj skrypt tylko na ekranach edycji postów i stron
+    if ('post.php' !== $hook && 'post-new.php' !== $hook) {
+        return;
+    }
+
+    // Wczytaj nasz dedykowany skrypt dla bloku Amelia, używając manifestu Vite
+    wp_enqueue_script(
+        'sage/admin-amelia-block.js', 
+        \App\asset('scripts/admin-amelia-block.js')->uri(), 
+        ['acf-input'], // Zależność od ACF
+        null, 
+        true
+    );
+
+    // Przekaż adres URL i nonce do naszego skryptu
+    wp_localize_script(
+        'sage/admin-amelia-block.js',
+        'ameliaBlockAjax', // Nazwa obiektu JS
+        [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('amelia_filter_nonce') // Nonce dla bezpieczeństwa
+        ]
+    );
 });
 
 /**
  * Endpoint AJAX do dynamicznego filtrowania opcji Amelia.
  */
-add_action('wp_ajax_filter_amelia_fields', function () {
-    check_ajax_referer('acf_amelia_filter_nonce');
+add_action('wp_ajax_get_amelia_acf_options', function () {
+    check_ajax_referer('amelia_filter_nonce', 'nonce');
     global $wpdb;
 
-    $employee_id = isset($_POST['employee_id']) ? (int)$_POST['employee_id'] : 0;
-    $service_id = isset($_POST['service_id']) ? (int)$_POST['service_id'] : 0;
-    $location_id = isset($_POST['location_id']) ? (int)$_POST['location_id'] : 0;
+    $employee_id = isset($_POST['employee_id']) && $_POST['employee_id'] ? (int)$_POST['employee_id'] : 0;
+    $service_id = isset($_POST['service_id']) && $_POST['service_id'] ? (int)$_POST['service_id'] : 0;
+    $location_id = isset($_POST['location_id']) && $_POST['location_id'] ? (int)$_POST['location_id'] : 0;
 
     $tables = [
         'users' => get_amelia_table_name('users'),
@@ -158,49 +181,37 @@ add_action('wp_ajax_filter_amelia_fields', function () {
         'locations' => [],
     ];
 
-    // --- Logika filtrowania ---
+    // --- Dynamiczne budowanie zapytań SQL ---
+    $employee_query = "SELECT id, firstName, lastName FROM {$tables['users']} WHERE status = 'visible' AND type = 'provider'";
+    $service_query = "SELECT id, name FROM {$tables['services']} WHERE status = 'visible'";
+    $location_query = "SELECT id, name FROM {$tables['locations']}"; // Zakładamy, że lokalizacje są zawsze widoczne
 
-    $where_employees = "e.status = 'visible' AND e.type = 'provider'";
-    $where_services = "s.status = 'visible'";
-    $where_locations = "l.status = 'visible'";
-
-    // Jeśli wybrano pracownika, filtruj usługi i lokalizacje
-    if ($employee_id) {
-        $where_services .= $wpdb->prepare(" AND s.id IN (SELECT serviceId FROM {$tables['providers_to_services']} WHERE userId = %d)", $employee_id);
-        $where_locations .= $wpdb->prepare(" AND l.id IN (SELECT locationId FROM {$tables['providers_to_locations']} WHERE userId = %d)", $employee_id);
-    }
-    // Jeśli wybrano usługę, filtruj pracowników i lokalizacje
     if ($service_id) {
-        $where_employees .= $wpdb->prepare(" AND e.id IN (SELECT userId FROM {$tables['providers_to_services']} WHERE serviceId = %d)", $service_id);
-        // Usługa może ograniczać lokalizacje, jeśli jest do nich przypisana (zależy od konfiguracji Amelia)
+        $employee_query .= $wpdb->prepare(" AND id IN (SELECT userId FROM {$tables['providers_to_services']} WHERE serviceId = %d)", $service_id);
     }
-    // Jeśli wybrano lokalizację, filtruj pracowników
     if ($location_id) {
-         $where_employees .= $wpdb->prepare(" AND e.id IN (SELECT userId FROM {$tables['providers_to_locations']} WHERE locationId = %d)", $location_id);
+        $employee_query .= $wpdb->prepare(" AND id IN (SELECT userId FROM {$tables['providers_to_locations']} WHERE locationId = %d)", $location_id);
     }
 
-    // --- Pobieranie danych ---
-    $response['employees'] = $wpdb->get_results("SELECT e.id, e.firstName, e.lastName FROM {$tables['users']} e WHERE " . $where_employees, ARRAY_A);
-    $response['services'] = $wpdb->get_results("SELECT s.id, s.name FROM {$tables['services']} s WHERE " . $where_services, ARRAY_A);
-    $response['locations'] = $wpdb->get_results("SELECT l.id, l.name FROM {$tables['locations']} l WHERE " . $where_locations, ARRAY_A);
+    if ($employee_id) {
+        $service_query .= $wpdb->prepare(" AND id IN (SELECT serviceId FROM {$tables['providers_to_services']} WHERE userId = %d)", $employee_id);
+    }
+    
+    // --- Pobieranie danych i formatowanie dla ACF ---
+    $response['employees'][''] = 'Dowolny pracownik';
+    foreach($wpdb->get_results($employee_query) as $item) {
+        $response['employees'][$item->id] = trim($item->firstName . ' ' . $item->lastName);
+    }
+
+    $response['services'][''] = 'Dowolna usługa';
+    foreach($wpdb->get_results($service_query) as $item) {
+        $response['services'][$item->id] = $item->name;
+    }
+    
+    $response['locations'][''] = 'Dowolna lokalizacja';
+    foreach($wpdb->get_results($location_query) as $item) {
+        $response['locations'][$item->id] = $item->name;
+    }
 
     wp_send_json_success($response);
-});
-
-
-/**
- * Poniższe filtry `acf/load_field` teraz głównie inicjują puste pola,
- * które będą wypełniane przez JavaScript.
- */
-add_filter('acf/load_field/name=amelia_employee', function ($field) {
-    $field['choices'] = ['' => 'Najpierw wybierz usługę/lokalizację...'];
-    return $field;
-});
-add_filter('acf/load_field/name=amelia_service', function ($field) {
-    $field['choices'] = ['' => 'Najpierw wybierz pracownika/lokalizację...'];
-    return $field;
-});
-add_filter('acf/load_field/name=amelia_location', function ($field) {
-    $field['choices'] = ['' => 'Najpierw wybierz pracownika...'];
-    return $field;
 });
