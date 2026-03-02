@@ -179,7 +179,7 @@ add_filter('acf/load_field/name=amelia_location', function ($field) {
         $field['choices'] = ['' => 'Nie znaleziono tabeli Amelia Locations'];
         return $field;
     }
-    
+     
     $locations = $wpdb->get_results("SELECT id, name FROM `{$locations_table}`", ARRAY_A);
     
     $field['choices'] = ['' => 'Wybierz lokalizację'];
