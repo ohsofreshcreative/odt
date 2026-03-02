@@ -667,3 +667,28 @@ add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id) {
 
 /*--- MEGA MENU TXT ---*/
 
+/**
+ * Wczytuje skrypty dla panelu admina.
+ */
+add_action('admin_enqueue_scripts', function ($hook) {
+    // Wczytaj skrypt tylko na ekranach edycji postów i stron
+    if ('post.php' !== $hook && 'post-new.php' !== $hook) {
+        return;
+    }
+
+    // Wczytaj nasz dedykowany skrypt dla bloku Amelia, używając manifestu Vite
+    wp_enqueue_script(
+        'sage/admin-amelia-block.js', 
+        asset('scripts/admin-amelia-block.js')->uri(), 
+        ['acf-input'], // Zależność od ACF, zapewnia wczytanie w odpowiedniej kolejności
+        null, 
+        true
+    );
+
+    // Przekaż adres URL do endpointu AJAX do naszego skryptu
+    wp_localize_script(
+        'sage/admin-amelia-block.js',
+        'ameliaBlockAjax', // Nazwa obiektu JS
+        ['ajax_url' => admin_url('admin-ajax.php')]
+    );
+});

@@ -75,6 +75,12 @@
     "file": "assets/ring-mask-B_SY1GJM.svg",
     "src": "resources/images/ring-mask.svg"
   },
+  "resources/js/admin-amelia-block.js": {
+    "file": "assets/admin-amelia-block-CxEkyPsX.js",
+    "name": "admin-amelia-block",
+    "src": "resources/js/admin-amelia-block.js",
+    "isEntry": true
+  },
   "resources/js/app.js": {
     "file": "assets/app-CN3bGGd0.js",
     "name": "app",
