@@ -138,8 +138,8 @@ add_filter('acf/load_field/name=amelia_employee', function ($field) {
         return $field;
     }
     
-    // Pobieramy aktywnych pracowników
-    $employees = $wpdb->get_results("SELECT id, firstName, lastName FROM `{$users_table}` WHERE status = 'visible'", ARRAY_A);
+     // ZMIANA TUTAJ: Dodajemy warunek "WHERE type = 'provider'"
+    $employees = $wpdb->get_results("SELECT id, firstName, lastName FROM `{$users_table}` WHERE status = 'visible' AND type = 'provider' ORDER BY firstName ASC", ARRAY_A);
     
     $field['choices'] = ['' => 'Dowolny pracownik']; // Opcja domyślna
     if ($employees) {
