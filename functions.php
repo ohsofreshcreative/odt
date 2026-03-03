@@ -193,16 +193,16 @@ add_filter('acf/load_field/name=amelia_location', function ($field) {
 
 /**
  * Pozwala pracownikom na rezerwowanie terminów poza ich standardowymi godzinami pracy
- * podczas tworzenia wizyty z panelu administracyjnego WordPress.
+ * podczas tworzenia wizyty z panelu administracyjnego WordPress (z uwzględnieniem AJAX).
  */
 add_filter('amelia_is_time_slot_available', function($available, $service, $providerId, $start, $end, $persons, $locationId, $booking = null) {
-    // Sprawdź, czy funkcja jest wywoływana z panelu administracyjnego (backend)
-    if (is_admin()) {
-        // Jeśli tak, zawsze zwracaj true, co oznacza, że slot jest dostępny.
-        // To omija walidację godzin pracy dla pracownika w backendzie.
+    // Sprawdź, czy żądanie pochodzi z panelu administracyjnego lub jest to żądanie AJAX wywołane z panelu.
+    // Daje to większą pewność, że modyfikujemy tylko zachowanie w backendzie.
+    if (is_admin() || (defined('DOING_AJAX') && DOING_AJAX)) {
+        // Zawsze zwracaj true, aby pominąć walidację godzin pracy dla pracownika w backendzie.
         return true;
     }
 
     // Dla rezerwacji od strony klienta (frontend), zachowaj standardową logikę walidacji.
     return $available;
-}, 10, 8);
+}, 20, 8); // Zwiększyłem priorytet do 20, aby upewnić się, że nasza funkcja odpali się jako jedna z ostatnich.
