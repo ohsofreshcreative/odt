@@ -190,3 +190,19 @@ add_filter('acf/load_field/name=amelia_location', function ($field) {
     }
     return $field;
 });
+
+/**
+ * Pozwala pracownikom na rezerwowanie terminów poza ich standardowymi godzinami pracy
+ * podczas tworzenia wizyty z panelu administracyjnego WordPress.
+ */
+add_filter('amelia_is_time_slot_available', function($available, $service, $providerId, $start, $end, $persons, $locationId, $booking = null) {
+    // Sprawdź, czy funkcja jest wywoływana z panelu administracyjnego (backend)
+    if (is_admin()) {
+        // Jeśli tak, zawsze zwracaj true, co oznacza, że slot jest dostępny.
+        // To omija walidację godzin pracy dla pracownika w backendzie.
+        return true;
+    }
+
+    // Dla rezerwacji od strony klienta (frontend), zachowaj standardową logikę walidacji.
+    return $available;
+}, 10, 8);
