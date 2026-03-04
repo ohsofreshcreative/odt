@@ -22,7 +22,7 @@
 
 .amelia-app-booking #amelia-booking-wrap .el-button--primary.el-button {
 	font-family: var(--btns-font);
-	font-size: var(--btns-fontsize);
+	font-size: var(--btns-fontsize) !important;
 	font-weight: 400;
 	color: #fff;
 	background: transparent;
@@ -45,4 +45,16 @@
 
 .amelia-app-booking #amelia-booking-wrap .am-step-booking-catalog .am-select-date .am-button-wrapper .el-button {
 	padding: var(--btns-padding);
+	border-radius: var(--btns-radius);
+	font-size: var(--btns-fontsize) !important;
+}
+
+.amelia-app-booking #amelia-booking-wrap #am-step-booking .am-confirm-booking p, .amelia-app-booking #amelia-booking-wrap .am-step-booking-catalog .am-confirm-booking p {
+	font-size:16px;
+}
+
+.amelia-app-booking #amelia-booking-wrap .payment-dialog-footer .el-button, #am-modal.am-modal.am-in-body .payment-dialog-footer .el-button {
+	padding: var(--btns-padding);
+	border-radius: var(--btns-radius);
+	font-size: var(--btns-fontsize) !important;
 }
