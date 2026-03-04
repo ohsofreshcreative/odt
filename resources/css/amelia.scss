@@ -19,3 +19,26 @@
 	width: 80px;
 	height: 80px;
 }
+
+.amelia-app-booking #amelia-booking-wrap .el-button--primary.el-button span, #am-modal.am-modal.am-in-body .el-button--primary.el-button span {
+	font-family: var(--btns-font);
+	font-size: var(--btns-fontsize);
+	font-weight: 400;
+	color: #fff;
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: var(--btns-radius);
+
+	display: inline-block;
+	padding: var(--btns-padding);
+	width: max-content;
+	height: max-content;
+
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: all 0.2s ease-out;
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: #fff;
+}
