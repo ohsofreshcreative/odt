@@ -39,7 +39,7 @@
         <div class="flex items-center gap-4">
           @if ($show_photo && !empty($amelia_data['employee_photo']))
             <img 
-              class="amelia-booking-header__photo rounded-full object-cover" 
+              class="amelia-booking-header__photo rounded-full object-cover h-20" 
               src="{{ esc_url($amelia_data['employee_photo']) }}" 
               alt="{{ esc_attr($amelia_data['employee_name']) }}" 
               width="80" height="80"
