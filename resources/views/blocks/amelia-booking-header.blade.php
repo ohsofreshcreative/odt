@@ -42,7 +42,7 @@
               class="amelia-booking-header__photo rounded-full object-cover" 
               src="{{ esc_url($amelia_data['employee_photo']) }}" 
               alt="{{ esc_attr($amelia_data['employee_name']) }}" 
-              width="56" height="56"
+              width="80" height="80"
               loading="lazy"
             />
           @endif
