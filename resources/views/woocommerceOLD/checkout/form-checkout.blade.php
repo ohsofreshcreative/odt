@@ -11,7 +11,7 @@
 <form
   name="checkout"
   method="post"
-  class="checkout woocommerce-checkout c-main"
+  class="checkout woocommerce-checkout"
   action="{{ esc_url( wc_get_checkout_url() ) }}"
   enctype="multipart/form-data"
   aria-label="{{ esc_attr__( 'Checkout', 'woocommerce' ) }}"

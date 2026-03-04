@@ -5,7 +5,7 @@
   @php do_action('woocommerce_before_cart_totals'); @endphp
 
   <div class="bg-white b-border rounded-2xl p-6">
-    <p class="text-h6 font-header !mb-4">{{ esc_html__('Cart totals', 'woocommerce') }}</p>
+    <p class="text-xl font-medium !mb-4">{{ esc_html__('Cart totals', 'woocommerce') }}</p>
 
     <table cellspacing="0" class="shop_table shop_table_responsive">
       <tr class="cart-subtotal">
@@ -88,7 +88,7 @@
       @php do_action('woocommerce_cart_totals_after_order_total'); @endphp
     </table>
 
-  <div class="wc-proceed-to-checkout !pb-0 !mb-0">
+  <div class="wc-proceed-to-checkout">
     @php do_action('woocommerce_proceed_to_checkout'); @endphp
   </div>
 

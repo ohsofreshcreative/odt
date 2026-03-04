@@ -1254,6 +1254,11 @@
           "color": "rgb(var(--p-hover))"
         },
         {
+          "name": "Primary (50)",
+          "slug": "primary-50",
+          "color": "rgb(var(--p-50))"
+        },
+        {
           "name": "Primary (100)",
           "slug": "primary-100",
           "color": "rgb(var(--p-100))"
