@@ -208,8 +208,3 @@ add_filter('amelia_is_time_slot_available', function($available, $service, $prov
 }, 20, 8); // Zwiększyłem priorytet do 20, aby upewnić się, że nasza funkcja odpali się jako jedna z ostatnich.
 
 
-add_action('wp_enqueue_scripts', function () {
-  if (function_exists('acf_enqueue_scripts')) {
-    acf_enqueue_scripts();
-  }
-}, 20);
