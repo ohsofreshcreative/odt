@@ -15,3 +15,12 @@ add_action('wp', function () {
     remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
   }
 });
+
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+function custom_override_checkout_fields( $fields ) {
+    unset($fields['billing']['billing_country']);
+    unset($fields['shipping']['shipping_country']);
+    return $fields;
+}

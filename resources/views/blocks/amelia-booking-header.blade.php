@@ -33,7 +33,6 @@
 >
   <div class="__wrapper c-main relative">
     
-    {{-- Nagłówek rezerwacji --}}
     @if(!empty($title) || !empty($amelia_data['employee_name']))
       <div class="amelia-booking-header mb-8">
         <div class="flex items-center gap-4">
@@ -45,7 +44,6 @@
               width="80" height="80"
               loading="lazy"
             />
-          @endif
 
           <div class="amelia-booking-header__text">
             @if (!empty($title))
@@ -57,6 +55,7 @@
               </div>
             @endif
           </div>
+          @endif
         </div>
       </div>
     @endif
