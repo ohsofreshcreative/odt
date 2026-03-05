@@ -51,9 +51,9 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 		?>
 	</td>
 
-	<td class="woocommerce-table__product-total product-total">
+<!-- 	<td class="woocommerce-table__product-total product-total">
 		<?php echo $order->get_formatted_line_subtotal( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	</td>
+	</td> -->
 
 </tr>
 

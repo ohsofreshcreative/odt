@@ -30,7 +30,7 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
 
 	<h4 class="woocommerce-column__title"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></h4>
 
-	<address class="!border-0 !p-6 !bg-white !w-max mt-4">
+	<address class="!border-0 !p-6 !bg-white !w-max !rounded-3xl !mt-4">
 		<?php echo wp_kses_post( $order->get_formatted_billing_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
 
 		<?php if ( $order->get_billing_phone() ) : ?>

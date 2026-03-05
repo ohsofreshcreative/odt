@@ -16,11 +16,11 @@ add_action('wp', function () {
   }
 });
 
+/**
+ * Redirect to checkout after adding to cart.
+ */
+add_filter('woocommerce_add_to_cart_redirect', 'sage_redirect_to_checkout');
 
-add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
-
-function custom_override_checkout_fields( $fields ) {
-    unset($fields['billing']['billing_country']);
-    unset($fields['shipping']['shipping_country']);
-    return $fields;
+function sage_redirect_to_checkout() {
+    return wc_get_checkout_url();
 }

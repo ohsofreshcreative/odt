@@ -56,7 +56,7 @@ if ( $show_downloads ) {
 
 	<h4 class="woocommerce-order-details__title"><?php esc_html_e( 'Order details', 'woocommerce' ); ?></h4>
 
-	<table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+	<table class="woocommerce-table woocommerce-table--order-details shop_table order_details !border-0 !p-6 !bg-white !rounded-3xl !mt-4">
 
 		<thead>
 			<tr>

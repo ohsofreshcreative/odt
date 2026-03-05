@@ -637,7 +637,7 @@ h6,
 .btn,
 #add_payment_method .wc-proceed-to-checkout a.checkout-button,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
-.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button, .woocommerce .woocommerce-error .button, .woocommerce .woocommerce-info .button, .woocommerce .woocommerce-message .button, .woocommerce-page .woocommerce-error .button, .woocommerce-page .woocommerce-info .button, .woocommerce-page .woocommerce-message .button, .woocommerce #payment #place_order, .woocommerce-page #payment #place_order, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
+.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button, .woocommerce .woocommerce-error .button, .woocommerce .woocommerce-info .button, .woocommerce .woocommerce-message .button, .woocommerce-page .woocommerce-error .button, .woocommerce-page .woocommerce-info .button, .woocommerce-page .woocommerce-message .button, .woocommerce #payment #place_order, .woocommerce-page #payment #place_order:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
 	font-weight: 400;
@@ -655,6 +655,10 @@ h6,
 	white-space: nowrap;
 	cursor: pointer;
 	transition: all 0.2s ease-out;
+}
+
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button  {
+    padding: .618em 1em;
 }
 
 .btn-primary,

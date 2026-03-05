@@ -7,8 +7,8 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class AmeliaBookingHeader extends Block
 {
-    public $name = 'Nagłówek Rezerwacji Amelia';
-    public $description = 'Wyświetla nagłówek i formularz rezerwacji Amelia.';
+    public $name = 'Amelia - Kalendarz';
+    public $description = 'amelia-booking-header';
     public $slug = 'amelia-booking-header'; // Zmieniony slug
     public $category = 'formatting';
     public $icon = 'calendar-alt';
@@ -28,6 +28,15 @@ class AmeliaBookingHeader extends Block
         $ameliaHeader
             ->setLocation('block', '==', 'acf/amelia-booking-header') // Ważne - dopasowane do sluga
 
+			->addText('block-title', [
+				'label' => 'Tytuł',
+				'required' => 0,
+			])
+			->addAccordion('accordion1', [
+				'label' => 'Amelia - Kalendarz',
+				'open' => false,
+				'multi_expand' => true,
+			])
             ->addTab('Zawartość', ['placement' => 'top'])
             ->addSelect('amelia_service', [
                 'label' => 'Wybierz usługę',

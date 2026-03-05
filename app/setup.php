@@ -665,4 +665,36 @@ add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id) {
 	}
 }, 10, 2);
 
-/*--- MEGA MENU TXT ---*/
+/*--- WOOCOMMERCE HIDE COUNTRY ---*/
+
+add_filter('woocommerce_checkout_fields', function ($fields) {
+
+  // Usuń pole kraju z sekcji billing
+  if (isset($fields['billing']['billing_country'])) {
+    unset($fields['billing']['billing_country']);
+  }
+
+  // Jeśli masz osobne pola wysyłki i też chcesz ukryć:
+  if (isset($fields['shipping']['shipping_country'])) {
+    unset($fields['shipping']['shipping_country']);
+  }
+
+  return $fields;
+}, 20);
+
+// Ustaw domyślny kraj na PL (billing + shipping)
+add_filter('default_checkout_billing_country', fn() => 'PL');
+add_filter('default_checkout_shipping_country', fn() => 'PL');
+
+// Dla pewności – nawet jeśli ktoś spróbuje przesłać inne dane:
+add_action('woocommerce_checkout_process', function () {
+  $_POST['billing_country']  = 'PL';
+  $_POST['shipping_country'] = 'PL';
+});
+
+add_action('wp_footer', function () {
+  if (!is_cart()) return;
+  echo '<pre style="background:#fff;padding:10px;max-width:1200px;overflow:auto;">';
+  print_r(WC()->cart->get_cart());
+  echo '</pre>';
+});
