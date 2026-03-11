@@ -597,6 +597,10 @@ h6,
 
 /*--- !COLORS ---*/
 
+.text-action {
+	color:var(--color-action) !important;
+}
+
 .bg-background {
 	background: var(--bg) !important;
 }

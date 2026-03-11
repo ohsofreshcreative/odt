@@ -27,12 +27,12 @@
                 @if (!empty($g_boxes['boxes']))
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     @foreach ($g_boxes['boxes'] as $box)
-                    <div data-gsap-element="box" class="bg-primary-light radius p-6">
+                    <div data-gsap-element="box" class="bg-primary-lighter radius p-6">
                         @if (!empty($box['header']))
-                        <h4 class="text-primary">{{ $box['header'] }}</h4>
+                        <h4 class="text-action">{{ $box['header'] }}</h4>
                         @endif
                         @if (!empty($box['txt']))
-                        <p class="text-primary mt-1">{{ $box['txt'] }}</p>
+                        <p class="text-action mt-1">{{ $box['txt'] }}</p>
                         @endif
                     </div>
                     @endforeach
