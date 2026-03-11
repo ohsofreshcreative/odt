@@ -15,10 +15,6 @@ $meta_parts = [];
 if ($title !== $amelia_data['employee_name'] && !empty($amelia_data['employee_name'])) {
     $meta_parts[] = esc_html($amelia_data['employee_name']);
 }
-if (!empty($amelia_data['location_name'])) {
-    $meta_parts[] = esc_html($amelia_data['location_name']);
-}
-
 if ($title !== $amelia_data['location_name'] && !empty($amelia_data['location_name'])) {
     $meta_parts[] = esc_html($amelia_data['location_name']);
 }
