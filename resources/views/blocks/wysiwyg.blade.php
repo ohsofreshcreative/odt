@@ -27,7 +27,7 @@ $sectionClass .= $bgClass[$bg ?? ''] ?? '';
 		<h4 data-gsap-element="header" class="">{{ $g_wysiwyg['header'] }}</h4>
 		@endif
 
-		<div data-gsap-element="txt" class="">
+		<div data-gsap-element="txt" class="mt-4">
 			{!! $g_wysiwyg['txt'] !!}
 		</div>
 
