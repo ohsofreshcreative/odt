@@ -770,14 +770,12 @@ h6,
 }
 
 .__menu-btn {
-	height: max-content;
+	height: max-content !important;
 	display: flex;
 	align-items: center;
 	color: #FFF !important;
-
-	a {
 		border-radius: 100px;
-	}
+
 }
 
 .btn-secondary-small {
