@@ -729,13 +729,13 @@ h6,
 	color: #fff;
 }
 
-.btn-primary-small {
+.btn-primary-small, .__menu-btn {
 	background-color: var(--color-primary);
 	border-color: var(--color-primary);
 	padding: 8px 24px;
 }
 
-.btn-primary-small:hover {
+.btn-primary-small:hover, .__menu-btn:hover {
 	background-color: var(--color-primary-hover);
 	border-color: var(--color-primary-hover);
 	color: #fff;
