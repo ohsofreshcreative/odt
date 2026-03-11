@@ -637,7 +637,15 @@ h6,
 .btn,
 #add_payment_method .wc-proceed-to-checkout a.checkout-button,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
-.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button, .woocommerce .woocommerce-error .button, .woocommerce .woocommerce-info .button, .woocommerce .woocommerce-message .button, .woocommerce-page .woocommerce-error .button, .woocommerce-page .woocommerce-info .button, .woocommerce-page .woocommerce-message .button, .woocommerce #payment #place_order, .woocommerce-page #payment #place_order:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
+.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button,
+.woocommerce .woocommerce-error .button,
+.woocommerce .woocommerce-info .button,
+.woocommerce .woocommerce-message .button,
+.woocommerce-page .woocommerce-error .button,
+.woocommerce-page .woocommerce-info .button,
+.woocommerce-page .woocommerce-message .button,
+.woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
 	font-weight: 400;
@@ -657,14 +665,23 @@ h6,
 	transition: all 0.2s ease-out;
 }
 
-:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button  {
-    padding: .618em 1em;
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
+	padding: .618em 1em;
 }
 
 .btn-primary,
 #add_payment_method .wc-proceed-to-checkout a.checkout-button,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
-.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button, .woocommerce .woocommerce-error .button, .woocommerce .woocommerce-info .button, .woocommerce .woocommerce-message .button, .woocommerce-page .woocommerce-error .button, .woocommerce-page .woocommerce-info .button, .woocommerce-page .woocommerce-message .button, .woocommerce #payment #place_order, .woocommerce-page #payment #place_order, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
+.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button,
+.woocommerce .woocommerce-error .button,
+.woocommerce .woocommerce-info .button,
+.woocommerce .woocommerce-message .button,
+.woocommerce-page .woocommerce-error .button,
+.woocommerce-page .woocommerce-info .button,
+.woocommerce-page .woocommerce-message .button,
+.woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
 	background-color: var(--color-primary);
 	border-color: var(--color-primary);
 	color: #fff;
@@ -673,7 +690,16 @@ h6,
 .btn-primary:hover,
 #add_payment_method .wc-proceed-to-checkout a.checkout-button:hover,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
-.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce .woocommerce-error .button:hover, .woocommerce .woocommerce-info .button:hover, .woocommerce .woocommerce-message .button:hover, .woocommerce-page .woocommerce-error .button:hover, .woocommerce-page .woocommerce-info .button:hover, .woocommerce-page .woocommerce-message .button:hover, .woocommerce #payment #place_order:hover, .woocommerce-page #payment #place_order:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
+.woocommerce-checkout .wc-proceed-to-checkout a.checkout-button:hover,
+.woocommerce .woocommerce-error .button:hover,
+.woocommerce .woocommerce-info .button:hover,
+.woocommerce .woocommerce-message .button:hover,
+.woocommerce-page .woocommerce-error .button:hover,
+.woocommerce-page .woocommerce-info .button:hover,
+.woocommerce-page .woocommerce-message .button:hover,
+.woocommerce #payment #place_order:hover,
+.woocommerce-page #payment #place_order:hover,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button {
 	background-color: var(--color-primary-hover);
 	border-color: var(--color-primary-hover);
 	color: #fff;
@@ -729,16 +755,28 @@ h6,
 	color: #fff;
 }
 
-.btn-primary-small, .__menu-btn {
+.btn-primary-small,
+.__menu-btn a {
 	background-color: var(--color-primary);
 	border-color: var(--color-primary);
 	padding: 8px 24px;
 }
 
-.btn-primary-small:hover, .__menu-btn:hover {
+.btn-primary-small:hover,
+.__menu-btn a:hover {
 	background-color: var(--color-primary-hover);
 	border-color: var(--color-primary-hover);
 	color: #fff;
+}
+
+.__menu-btn {
+	display: flex;
+	align-items: center;
+	color: #FFF !important;
+
+	a {
+		border-radius: 100px;
+	}
 }
 
 .btn-secondary-small {
@@ -1044,6 +1082,7 @@ h6,
 	font-size: 14px;
 	white-space: nowrap;
 }
+
 .fixed-top.scrollUp {
 	transform: translateY(-112px);
 	transition: all 0.3s !important;
