@@ -755,22 +755,19 @@ h6,
 	color: #fff;
 }
 
-.btn-primary-small,
-.__menu-btn {
+.btn-primary-small {
 	background-color: var(--color-primary);
 	border-color: var(--color-primary);
 	padding: 8px 24px;
 }
 
-.btn-primary-small:hover,
-.__menu-btn {
+.btn-primary-small:hover {
 	background-color: var(--color-primary-hover);
 	border-color: var(--color-primary-hover);
 	color: #fff;
 }
 
-.__menu-btn {
-	height: max-content !important;
+.__menu-btn a {
 	display: flex;
 	align-items: center;
 	color: #FFF !important;
