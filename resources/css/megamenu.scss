@@ -325,8 +325,9 @@
 }
 
 .nav-primary .__menu-btn {
-  display: flex;
+  display: flex !important;
   align-items: center;
+    color: #FFF !important;
 
   > a {
     height: auto !important; 
