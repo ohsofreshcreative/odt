@@ -29,14 +29,16 @@ $sectionClass .= ' ' . $background;
 			@if($offer)
 			@foreach ($offer as $sector)
 			<a href="{{ get_permalink($sector->ID) }}" class="">
-				<div data-gsap-element="item" class="__card bg-white radius p-6">
-					@if (has_post_thumbnail($sector->ID))
-					<img class="w-20 object-cover aspect-square radius" src="{{ get_the_post_thumbnail_url($sector->ID, 'large') }}" alt="{{ $sector->post_title }}">
-					@endif
-					<h6 class="!text-primary text-h7 mt-4">{{ $sector->post_title }}</h6>
-					<p class="!text-body text-sm mt-2">{{ $sector->post_excerpt }}</p>
+				<div data-gsap-element="item" class="__card grid bg-white radius h-full p-6">
+					<div>
+						@if (has_post_thumbnail($sector->ID))
+						<img class="w-20 object-cover aspect-square radius" src="{{ get_the_post_thumbnail_url($sector->ID, 'large') }}" alt="{{ $sector->post_title }}">
+						@endif
+						<h6 class="!text-primary text-h7 mt-4">{{ $sector->post_title }}</h6>
+						<p class="!text-body text-sm mt-2">{{ $sector->post_excerpt }}</p>
+					</div>
 
-					<p class="underline-btn mt-4">
+					<p class="underline-btn pt-4 mt-auto">
 						Dowiedz się więcej
 					</p>
 				</div>
