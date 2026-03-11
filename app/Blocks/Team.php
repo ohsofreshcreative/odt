@@ -55,17 +55,17 @@ class Team extends Block
 			])
 			->endGroup()
 
-			->addTaxonomy('team_categories', [
-				'label'        => 'Filtruj zespół po kategoriach',
-				'taxonomy'     => 'category',
-				'field_type'   => 'checkbox',
-				'return_format' => 'id',
-				'multiple'     => 1,
-				'add_term'     => 0,
-				'load_terms'   => 0, // wyłączamy na początek
-				'save_terms'   => 0, // jawnie wyłączone
-				'allow_null'   => 1,
-			])
+			 ->addTaxonomy('team_categories', [
+                'label'        => 'Filtruj zespół po kategoriach',
+                'taxonomy'     => 'team_category', // Zmieniono z 'category'
+                'field_type'   => 'checkbox',
+                'return_format' => 'id',
+                'multiple'     => 1,
+                'add_term'     => 0,
+                'load_terms'   => 0, // wyłączamy na początek
+                'save_terms'   => 0, // jawnie wyłączone
+                'allow_null'   => 1,
+            ])
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -167,15 +167,15 @@ class Team extends Block
 				'post_status'    => 'publish',
 			];
 
-			if (!empty($selected_categories)) {
-				$args['tax_query'] = [
-					[
-						'taxonomy' => 'category',
-						'field'    => 'term_id',
-						'terms'    => $selected_categories,
-					],
-				];
-			}
+			 if (!empty($selected_categories)) {
+                $args['tax_query'] = [
+                    [
+                        'taxonomy' => 'team_category', // Zmieniono z 'category'
+                        'field'    => 'term_id',
+                        'terms'    => $selected_categories,
+                    ],
+                ];
+            }
 
 			return get_posts($args);
 		}
