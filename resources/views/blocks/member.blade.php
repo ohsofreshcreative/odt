@@ -52,6 +52,7 @@ $sectionClass .= ' ' . $background;
 					{!! $g_member['txt'] !!}
 				</div>
 
+				@if (!empty($r_member))
 				<div data-gsap-element="accordion" class="accordion-wrapper grid mt-10">
 					@foreach ($r_member as $item)
 					<div class="accordion rounded-2xl bg-white border border-secondary">
@@ -69,6 +70,7 @@ $sectionClass .= ' ' . $background;
 					</div>
 					@endforeach
 				</div>
+				@endif
 
 			</div>
 
