@@ -107,12 +107,6 @@ class MegaMenuWalker extends \Walker_Nav_Menu
             $this->is_megamenu = true;
         }
 
-        // Jeśli nie jesteśmy w mega menu, użyj domyślnego zachowania
-        if (!$this->is_megamenu) {
-            parent::start_el($output, $item, $depth, $args, $id);
-            return;
-        }
-
         // --- Logika dla Mega Menu ---
 
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
