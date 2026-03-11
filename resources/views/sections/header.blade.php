@@ -26,7 +26,7 @@ use App\Walkers\MegaMenuWalker;
     ]) !!}
 </nav>
 		@endif
-		<a class="__menu-btn bg-primary !text-white font-normal text-sm rounded-full whitespace-nowrap py-2 px-2 lg:px-4 ml-2" href="/kontakt">Skontaktuj się z nami</a>
+	<!-- 	<a class="__menu-btn bg-primary !text-white font-normal text-sm rounded-full whitespace-nowrap py-2 px-2 lg:px-4 ml-2" href="/kontakt">Skontaktuj się z nami</a> -->
 	</div>
 
 	<!-- Mobile Header Bar -->
@@ -92,11 +92,11 @@ use App\Walkers\MegaMenuWalker;
 			</nav>
 			@endif
 
-			<div class="mt-8">
+			<!-- <div class="mt-8">
 				<a href="/kontakt" class="block w-full white-btn">
 				Skontaktuj się z nami
 				</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </header>
