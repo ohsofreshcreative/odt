@@ -22,7 +22,7 @@ $sectionClass .= $bgClass[$bg ?? ''] ?? '';
 
 <section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="wysiwyg relative pt-10 {{ $sectionClass }} {{ $section_class }}">
 
-	<div class="__wrapper c-main relative">
+	<div class="__wrapper c-main relative __txt">
 		@if (!empty($g_wysiwyg['header']))
 		<h2 data-gsap-element="header" class="">{{ $g_wysiwyg['header'] }}</h2>
 		@endif
