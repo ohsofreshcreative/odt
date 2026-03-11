@@ -756,20 +756,21 @@ h6,
 }
 
 .btn-primary-small,
-.__menu-btn a {
+.__menu-btn {
 	background-color: var(--color-primary);
 	border-color: var(--color-primary);
 	padding: 8px 24px;
 }
 
 .btn-primary-small:hover,
-.__menu-btn a:hover {
+.__menu-btn {
 	background-color: var(--color-primary-hover);
 	border-color: var(--color-primary-hover);
 	color: #fff;
 }
 
 .__menu-btn {
+	height: max-content;
 	display: flex;
 	align-items: center;
 	color: #FFF !important;
