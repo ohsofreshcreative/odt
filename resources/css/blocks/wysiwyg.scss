@@ -21,12 +21,11 @@
       li {
         position: relative;
         margin-bottom: 0.5em;
-        display: flex;
         gap: 8px;
         align-items: center;
 
         &::before {
-          content: url('/wp-content/uploads/2026/01/double-arrow.svg');
+          content: '•';
 		  position: relative;
           left: 0;
           top: -3px;
