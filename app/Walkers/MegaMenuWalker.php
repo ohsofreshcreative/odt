@@ -99,6 +99,10 @@ class MegaMenuWalker extends \Walker_Nav_Menu
     public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
     {
         // Sprawdzamy, czy element nadrzędny ma klasę 'has-megamenu'
+       if ($depth === 0) {
+            $this->is_megamenu = false;
+        }
+		// Sprawdzamy, czy element nadrzędny ma klasę 'has-megamenu'
         if ($depth === 0 && in_array('has-megamenu', $item->classes)) {
             $this->is_megamenu = true;
         }
