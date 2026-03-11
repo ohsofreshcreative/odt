@@ -4,7 +4,7 @@
 @endphp
 
 
-<div class="c-main -smt pt-10">
+<div class="c-main pt-10 pb-20">
 	<h3>Koszyk</h3>
 	<div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-6">
 	  <div class="">

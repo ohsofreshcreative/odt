@@ -146,6 +146,7 @@
 @import '../css/blocks/slider.scss';
 @import '../css/blocks/block-clone.scss';
 @import '../css/blocks/speakers.scss';
+@import '../css/blocks/triple.scss';
 
 /*-- NOT USED --*/
 @import '../css/blocks/complex.scss';

@@ -1,4 +1,6 @@
 /*--- !WOOCOMMERCE ---*/
+
+
 .woocommerce-checkout .woocommerce {
 	padding-top: 128px !important;
 	padding-bottom: 128px !important;
@@ -371,6 +373,13 @@
 
 
 /*--- !CART ---*/
+
+.woocommerce-cart .woocommerce {
+	padding-top: 144px;
+	.woocommerce-notices-wrapper {
+		display: none !important;
+	}
+}
 
 .woocommerce .cart-collaterals .cart_totals,
 .woocommerce-page .cart-collaterals .cart_totals {
