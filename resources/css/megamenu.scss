@@ -246,3 +246,49 @@
 [x-cloak] {
   display: none !important;
 }
+
+/* --- Style dla klasycznego, jednopoziomowego dropdownu --- */
+
+// Ustawiamy pozycję względną dla rodzica, aby podmenu pozycjonowało się względem niego.
+.nav-item.menu-item-has-children {
+  position: relative;
+}
+
+// Domyślnie ukrywamy podmenu.
+.nav-item .sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%; // Pojawia się tuż pod elementem nadrzędnym.
+  left: 0;
+  background-color: white;
+  min-width: 220px; // Minimalna szerokość, aby linki się nie łamały.
+  z-index: 1000; // Musi być nad innymi elementami.
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  list-style: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0f0f0;
+  margin-top: 0.5rem; // Mały odstęp od góry.
+
+  // Styl dla pojedynczego elementu w podmenu.
+  .menu-item {
+    a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      color: #333;
+      font-size: 0.875rem;
+      white-space: nowrap; // Zapobiega łamaniu tekstu linku.
+      transition: background-color 0.2s, color 0.2s;
+
+      &:hover {
+        background-color: #f5f5f5;
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+// Pokazujemy podmenu, gdy najedziemy myszką na jego rodzica.
+.nav-item.menu-item-has-children:hover > .sub-menu {
+  display: block;
+}
