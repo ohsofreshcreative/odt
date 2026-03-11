@@ -19,6 +19,11 @@ if (!empty($amelia_data['location_name'])) {
     $meta_parts[] = esc_html($amelia_data['location_name']);
 }
 
+if ($title !== $amelia_data['location_name'] && !empty($amelia_data['location_name'])) {
+    $meta_parts[] = esc_html($amelia_data['location_name']);
+}
+
+
 // Budowanie atrybutów dla shortcode'u [ameliabooking]
 $booking_attrs = '';
 if ($service_id) $booking_attrs .= ' service="' . $service_id . '"';
