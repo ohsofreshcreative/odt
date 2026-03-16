@@ -69,8 +69,11 @@ class Tabs extends Block
 				'label' => 'Nagłówek',
 				'required' => 1,
 			])
-			->addTextarea('text', [
-				'label' => 'Opis',
+			->addWysiwyg('text', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
 			])
 			->endRepeater()
 
