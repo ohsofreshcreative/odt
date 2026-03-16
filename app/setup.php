@@ -705,3 +705,7 @@ add_action('wp_enqueue_scripts', function () {
     acf_enqueue_scripts();
   }
 }, 20);
+
+/*--- DISABLE RELATED ---*/
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );

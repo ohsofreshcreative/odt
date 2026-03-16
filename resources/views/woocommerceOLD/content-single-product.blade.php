@@ -19,8 +19,8 @@ global $product;
 <!--- shop --->
 @include('partials.product-shop')
 
-<!--- related products --->
-@include('partials.related-products')
+<!--- related products 
+@include('partials.related-products')--->
 
 <!--- contact--->
 @include('partials.product-contact') 
