@@ -30,8 +30,14 @@ if ($location_id) $booking_attrs .= ' location="' . $location_id . '"';
 <!--- amelia-booking-header --->
 
 <section
+	data-gsap-anim="section"
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
-	class="b-amelia-booking relative -smt {{ $sectionClass }}">
+	@class([ 'b-amelia-booking relative -smt' ,
+	$sectionClass=> filled($sectionClass),
+	$section_class => filled($section_class),
+	$background => filled($background) && $background !== 'none',
+	])>
+
 	<div class="__wrapper c-main relative">
 
 		@if(!empty($title) || !empty($amelia_data['employee_name']))

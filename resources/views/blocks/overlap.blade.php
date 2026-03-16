@@ -30,8 +30,7 @@
 							<x-button
 								:href="$item['button']['url']"
 								variant="secondary-small"
-								class="mt-6"
-								data-gsap-element="btn">
+								class="mt-6">
 								{{ $item['button']['title'] }}
 							</x-button>
 							@endif
