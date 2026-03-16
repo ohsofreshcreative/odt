@@ -78,6 +78,7 @@ class Triple extends Block
                 'return_format' => 'object',
                 'ui' => true,
             ])
+            ->addText('btn', ['label' => 'Tekst przycisku'])
             ->addWysiwyg('when', [
                 'label' => 'Kiedy warto',
                 'tabs' => 'all', // 'visual', 'text', 'all'
@@ -103,6 +104,7 @@ class Triple extends Block
                 'return_format' => 'object',
                 'ui' => true,
             ])
+            ->addText('btn', ['label' => 'Tekst przycisku'])
             ->addWysiwyg('when', [
                 'label' => 'Kiedy warto',
                 'tabs' => 'all', // 'visual', 'text', 'all'
