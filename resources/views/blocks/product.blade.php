@@ -15,7 +15,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 	])>
 
 	<div class="__wrapper c-main">
-	
+
 		<div class="__item bg-white p-8 radius">
 			@if(!empty($g_product['image']['url']))
 			<img class="m-img" src="{{ $g_product['image']['url'] }}" alt="{{ $g_product['image']['alt'] ?? '' }}">
@@ -30,13 +30,22 @@ $sectionClass .= $flip ? ' order-flip' : '';
 			<h3 class="__price text-secondary font-header mt-4">{!! $g_product['product_data']['price_html'] !!}</h3>
 			@endif
 
-			@if (!empty($g_product['product_data']['add_to_cart_url']) && !empty($g_product['product']->ID))
+			@if (!empty($g_product['product']->ID))
+			@if ($g_product['button_type'] === 'product_link' && !empty($g_product['product_data']['permalink']))
+			<x-button
+				:href="$g_product['product_data']['permalink']"
+				variant="primary"
+				class="mt-2">
+				{{ $g_product['btn'] ?: 'Zobacz produkt' }}
+			</x-button>
+			@elseif ($g_product['button_type'] === 'add_to_cart' && !empty($g_product['product_data']['add_to_cart_url']))
 			<x-button
 				:href="wc_get_cart_url() . '?add-to-cart=' . $g_product['product']->ID"
 				variant="primary"
 				class="mt-2 add_to_cart_button">
-				Kup teraz
+				{{ $g_product['btn'] ?: 'Dodaj do koszyka' }}
 			</x-button>
+			@endif
 			@endif
 
 			@if(!empty($g_product['product_data']['description']))
