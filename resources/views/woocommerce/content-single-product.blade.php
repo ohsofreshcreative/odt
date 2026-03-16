@@ -18,7 +18,7 @@ return;
 @endphp
 @endif
 
-<section data-gsap-anim="section" class="">
+<section data-gsap-anim="section" class="pt-10 pb-20">
 	<div>
 		<div data-gsap-element="header" id="product-{{ get_the_ID() }}" @php wc_product_class('c-main grid grid-cols-1 md:grid-cols-2 gap-10', $product) @endphp>
 			<div>

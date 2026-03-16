@@ -1,6 +1,16 @@
 /*--- !WOOCOMMERCE ---*/
 
 
+.woocommerce.single-product {
+	.__price bdi,
+	.__price span, .woocommerce-Price-currencySymbol {
+		font-family: var(--header);
+	}
+	.product_meta {
+		display: none !important;
+	}
+}
+
 .woocommerce-checkout .woocommerce {
 	padding-top: 128px !important;
 	padding-bottom: 128px !important;
@@ -376,6 +386,7 @@
 
 .woocommerce-cart .woocommerce {
 	padding-top: 144px;
+
 	.woocommerce-notices-wrapper {
 		display: none !important;
 	}

@@ -669,17 +669,17 @@ add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id) {
 
 add_filter('woocommerce_checkout_fields', function ($fields) {
 
-  // Usuń pole kraju z sekcji billing
-  if (isset($fields['billing']['billing_country'])) {
-    unset($fields['billing']['billing_country']);
-  }
+	// Usuń pole kraju z sekcji billing
+	if (isset($fields['billing']['billing_country'])) {
+		unset($fields['billing']['billing_country']);
+	}
 
-  // Jeśli masz osobne pola wysyłki i też chcesz ukryć:
-  if (isset($fields['shipping']['shipping_country'])) {
-    unset($fields['shipping']['shipping_country']);
-  }
+	// Jeśli masz osobne pola wysyłki i też chcesz ukryć:
+	if (isset($fields['shipping']['shipping_country'])) {
+		unset($fields['shipping']['shipping_country']);
+	}
 
-  return $fields;
+	return $fields;
 }, 20);
 
 // Ustaw domyślny kraj na PL (billing + shipping)
@@ -688,24 +688,37 @@ add_filter('default_checkout_shipping_country', fn() => 'PL');
 
 // Dla pewności – nawet jeśli ktoś spróbuje przesłać inne dane:
 add_action('woocommerce_checkout_process', function () {
-  $_POST['billing_country']  = 'PL';
-  $_POST['shipping_country'] = 'PL';
+	$_POST['billing_country']  = 'PL';
+	$_POST['shipping_country'] = 'PL';
 });
 
 add_action('wp_footer', function () {
-  if (!is_cart()) return;
-  echo '<pre style="background:#fff;padding:10px;max-width:1200px;overflow:auto;">';
-  print_r(WC()->cart->get_cart());
-  echo '</pre>';
+	if (!is_cart()) return;
+	echo '<pre style="background:#fff;padding:10px;max-width:1200px;overflow:auto;">';
+	print_r(WC()->cart->get_cart());
+	echo '</pre>';
 });
 
 
 add_action('wp_enqueue_scripts', function () {
-  if (function_exists('acf_enqueue_scripts')) {
-    acf_enqueue_scripts();
-  }
+	if (function_exists('acf_enqueue_scripts')) {
+		acf_enqueue_scripts();
+	}
 }, 20);
 
 /*--- DISABLE RELATED ---*/
 
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+
+
+
+/*--- PRICE ABOVE ADD TO CART  ---*/
+
+add_action('woocommerce_single_product_summary', function () {
+	// Usuń cenę z jej domyślnej lokalizacji
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+
+	// Dodaj cenę ponownie, ale po krótkim opisie (który ma priorytet 20)
+	// a przed przyciskiem "Dodaj do koszyka" (który ma priorytet 30)
+	add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 25);
+}, 1);

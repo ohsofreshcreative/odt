@@ -32,13 +32,22 @@ $sectionClass .= $flip ? ' order-flip' : '';
 			<h3 class="__price text-secondary font-header mt-4">{!! $col['product_data']['price_html'] !!}</h3>
 			@endif
 
-			@if (!empty($col['product_data']['add_to_cart_url']) && !empty($col['product']->ID))
+			@if (!empty($col['product']->ID))
+			@if ($col['button_type'] === 'product_link' && !empty($col['product_data']['permalink']))
+			<x-button
+				:href="$col['product_data']['permalink']"
+				variant="primary"
+				class="mt-2">
+				{{ $col['btn'] }}
+			</x-button>
+			@elseif (!empty($col['product_data']['add_to_cart_url']))
 			<x-button
 				:href="wc_get_cart_url() . '?add-to-cart=' . $col['product']->ID"
 				variant="primary"
 				class="mt-2 add_to_cart_button">
 				{{ $col['btn'] }}
 			</x-button>
+			@endif
 			@endif
 
 			@if(!empty($col['product_data']['description']))
@@ -49,7 +58,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 				<p class="text-gray-300">Kiedy warto?</p>
 				<div class="__content mt-2 @if($nolist) nolist @endif">{!! $col['when'] !!}</div>
 			</div>
-		@endif
+			@endif
 		</div>
 		@endif
 		@endforeach
