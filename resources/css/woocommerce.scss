@@ -2,12 +2,15 @@
 
 
 .woocommerce.single-product {
+	.woocommerce-Price-amount.amount {
+		
 	.__price bdi,
 	.__price span, .woocommerce-Price-currencySymbol {
 		font-family: var(--header);
 	}
 	.product_meta {
 		display: none !important;
+	}
 	}
 }
 

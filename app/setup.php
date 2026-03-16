@@ -743,8 +743,8 @@ add_action( 'woocommerce_single_product_summary', function() {
           >';
 
     echo '<div class="cliftonstrengths-field-wrapper" style="margin-bottom: 10px;">';
-    echo '<label for="cliftonstrengths_persons_count" style="font-weight: bold; display: block; margin-bottom: 5px;">Liczba osób do testu CliftonStrengths</label>';
-    echo '<input type="number" id="cliftonstrengths_persons_count" name="cliftonstrengths_persons_count" min="0" value="0" placeholder="Wpisz liczbę osób..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">';
+    echo '<label for="cliftonstrengths_persons_count" style="font-weight: bold; display: block; margin-top:24px; margin-bottom: 5px;">Liczba osób do testu CliftonStrengths</label>';
+    echo '<input type="number" id="cliftonstrengths_persons_count" name="cliftonstrengths_persons_count" min="0" value="0" placeholder="Wpisz liczbę osób..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background:#FFF;">';
     echo '<p style="font-size: 0.9em; color: #666; margin-top: 5px;">Koszt dodatkowy: ' . wc_price($addon_price) . ' za osobę.</p>';
     echo '</div>';
 
