@@ -47,10 +47,11 @@ class HeroOffer extends Block
 				'label' => 'Nagłówek',
 				'required' => 1,
 			])
-			->addTextarea('txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
 			])
 			->addLink('button1', [
 				'label' => 'Przycisk #1',
