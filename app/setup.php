@@ -722,3 +722,84 @@ add_action('woocommerce_single_product_summary', function () {
 	// a przed przyciskiem "Dodaj do koszyka" (który ma priorytet 30)
 	add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 25);
 }, 1);
+
+/*--- WOOCOMMERCE RELATED PRODUCTS CUSTOMIZATION ---*/
+
+// 1. Wyświetlanie niestandardowego pola na stronie produktu
+add_action( 'woocommerce_before_add_to_cart_button', function() {
+    // ID produktu, dla którego ma się pojawić pole
+    $product_id = 1141; 
+
+    // Sprawdź, czy jesteśmy na stronie właściwego produktu
+    if ( get_the_ID() == $product_id ) {
+        echo '<div class="cliftonstrengths-field-wrapper" style="margin-bottom: 20px;">';
+        echo '<label for="cliftonstrengths_persons_count" style="font-weight: bold; display: block; margin-bottom: 5px;">Liczba osób do testu CliftonStrengths</label>';
+        echo '<input type="number" id="cliftonstrengths_persons_count" name="cliftonstrengths_persons_count" min="0" placeholder="Wpisz liczbę osób..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">';
+        echo '<p style="font-size: 0.9em; color: #666; margin-top: 5px;">Koszt dodatkowy: 145 zł za osobę.</p>';
+        echo '</div>';
+    }
+}, 9 );
+
+// 2. Zapisanie wartości pola do danych koszyka
+add_filter( 'woocommerce_add_cart_item_data', function( $cart_item_data, $product_id, $variation_id ) {
+    if ( isset( $_POST['cliftonstrengths_persons_count'] ) && $product_id == 1141 ) {
+        $persons_count = intval( sanitize_text_field( $_POST['cliftonstrengths_persons_count'] ) );
+        if ( $persons_count > 0 ) {
+            $cart_item_data['cliftonstrengths_persons_count'] = $persons_count;
+            // Dodajemy unikalny klucz, aby ten sam produkt z różną liczbą osób był traktowany jako osobna pozycja
+            $cart_item_data['unique_key'] = md5( $product_id . $persons_count );
+        }
+    }
+    return $cart_item_data;
+}, 10, 3 );
+
+// 3. Dynamiczna zmiana ceny w koszyku
+add_action( 'woocommerce_before_calculate_totals', function( $cart ) {
+    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+        return;
+    }
+
+    foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+        if ( isset( $cart_item['cliftonstrengths_persons_count'] ) ) {
+            $persons_count = $cart_item['cliftonstrengths_persons_count'];
+            $additional_cost_per_person = 145;
+            $base_price = $cart_item['data']->get_price('edit');
+            
+            $new_price = $base_price + ( $persons_count * $additional_cost_per_person );
+            $cart_item['data']->set_price( $new_price );
+        }
+    }
+}, 10, 1 );
+
+// 4. Wyświetlanie informacji w koszyku i przy zamówieniu
+add_filter( 'woocommerce_get_item_data', function( $item_data, $cart_item ) {
+    if ( isset( $cart_item['cliftonstrengths_persons_count'] ) ) {
+        $persons_count = $cart_item['cliftonstrengths_persons_count'];
+        $additional_cost_per_person = 145;
+        $total_additional_cost = $persons_count * $additional_cost_per_person;
+
+        $item_data[] = array(
+            'key'     => 'Liczba osób (test)',
+            'value'   => $persons_count,
+            'display' => '',
+        );
+        $item_data[] = array(
+            'key'     => 'Dodatkowy koszt',
+            'value'   => wc_price( $total_additional_cost ),
+            'display' => '',
+        );
+    }
+    return $item_data;
+}, 10, 2 );
+
+// 5. Zapisanie danych do meta zamówienia
+add_action( 'woocommerce_checkout_create_order_line_item', function( $item, $cart_item_key, $values, $order ) {
+    if ( isset( $values['cliftonstrengths_persons_count'] ) ) {
+        $persons_count = $values['cliftonstrengths_persons_count'];
+        $additional_cost_per_person = 145;
+        $total_additional_cost = $persons_count * $additional_cost_per_person;
+
+        $item->add_meta_data( 'Liczba osób (test)', $persons_count );
+        $item->add_meta_data( 'Dodatkowy koszt (test)', wc_price( $total_additional_cost ) );
+    }
+}, 10, 4 );
