@@ -36,7 +36,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 		<div data-gsap-element="img" class="__img inset-y-0 h-full">
 
 			<img class="__bg absolute w-full lg:hidden top-0 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg-top.svg" />
-			<img class="__bg absolute max-lg:hidden top-1/2 -translate-y-1/2 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg.svg" />
+			<img class="__bg absolute h-full max-lg:hidden top-1/2 -translate-y-1/2 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg.svg" />
 			<img src="{{ $bottom['image']['url'] }}" alt="{{ $bottom['image']['alt'] }}" class="w-full h-full object-cover object-center" />
 		</div>
 
