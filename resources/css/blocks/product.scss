@@ -1,0 +1,60 @@
+.b-product {
+	.__price bdi,
+	.__price span {
+		font-family: var(--header);
+	}
+
+	.__desc {
+
+		>ul {
+			margin-top: 8px;
+			margin-bottom: 24px;
+			list-style: none;
+			padding-left: 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			>li {
+				position: relative;
+				margin-bottom: 0.5em;
+				display: flex;
+				column-gap: 16px;
+				row-gap:4px;
+				align-items: flex-start;
+				flex-wrap: wrap;
+
+				&::before {
+					content: url('/wp-content/uploads/2026/03/check.svg');
+					position: relative;
+					left: 0;
+					top: 0px;
+					width: 14px;
+					height: 14px;
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center;
+					flex-shrink: 0;
+				}
+
+				ul {
+					list-style-type: decimal;
+					padding-left: 45px;
+					margin-top: 0px;
+					margin-bottom: 8px;
+					width: 100%;
+
+					li {
+						display: list-item;
+						align-items: initial;
+
+						&::before {
+							content: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

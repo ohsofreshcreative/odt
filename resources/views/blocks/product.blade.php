@@ -3,18 +3,18 @@ $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
 @endphp
 
-<!--- triple --->
+<!--- product --->
 
 <section
 	data-gsap-anim="section"
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
-	@class([ 'b-triple relative -smt' ,
+	@class([ 'b-product relative -smt' ,
 	$sectionClass=> filled($sectionClass),
 	$section_class => filled($section_class),
 	$background => filled($background) && $background !== 'none',
 	])>
 
-	<div class="__wrapper c-main grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-8">
+	<div class="__wrapper c-main">
 	
 		<div class="__item bg-white p-8 radius">
 			@if(!empty($g_product['image']['url']))
