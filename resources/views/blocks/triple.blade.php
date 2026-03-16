@@ -37,7 +37,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 				:href="wc_get_cart_url() . '?add-to-cart=' . $col['product']->ID"
 				variant="primary"
 				class="mt-2 add_to_cart_button">
-				Zamów pakiet
+				{{ $col['btn'] }}
 			</x-button>
 			@endif
 
