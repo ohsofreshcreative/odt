@@ -44,10 +44,12 @@ $sectionClass .= $flip ? ' order-flip' : '';
 			@if(!empty($col['product_data']['description']))
 			<div class="__desc mt-6">{!! $col['product_data']['description'] !!}</div>
 			@endif
+			@if(!empty($col['when']))
 			<div class="__when mt-10">
 				<p class="text-gray-300">Kiedy warto?</p>
 				<div class="__content mt-2 @if($nolist) nolist @endif">{!! $col['when'] !!}</div>
 			</div>
+		@endif
 		</div>
 		@endif
 		@endforeach
