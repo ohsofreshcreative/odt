@@ -725,81 +725,130 @@ add_action('woocommerce_single_product_summary', function () {
 
 /*--- WOOCOMMERCE RELATED PRODUCTS CUSTOMIZATION ---*/
 
-// 1. Wyświetlanie niestandardowego pola na stronie produktu
-add_action( 'woocommerce_before_add_to_cart_button', function() {
-    // ID produktu, dla którego ma się pojawić pole
-    $product_id = 1141; 
+// 1. Wyświetlanie niestandardowego pola i przygotowanie danych dla JS
+add_action( 'woocommerce_single_product_summary', function() {
+    $product_id = 1141;
+    if ( get_the_ID() != $product_id ) return;
 
-    // Sprawdź, czy jesteśmy na stronie właściwego produktu
-    if ( get_the_ID() == $product_id ) {
-        echo '<div class="cliftonstrengths-field-wrapper" style="margin-bottom: 20px;">';
-        echo '<label for="cliftonstrengths_persons_count" style="font-weight: bold; display: block; margin-bottom: 5px;">Liczba osób do testu CliftonStrengths</label>';
-        echo '<input type="number" id="cliftonstrengths_persons_count" name="cliftonstrengths_persons_count" min="0" placeholder="Wpisz liczbę osób..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">';
-        echo '<p style="font-size: 0.9em; color: #666; margin-top: 5px;">Koszt dodatkowy: 145 zł za osobę.</p>';
-        echo '</div>';
-    }
-}, 9 );
+    global $product;
+    $base_price = $product->get_price();
+    $addon_price = 145;
 
-// 2. Zapisanie wartości pola do danych koszyka
+    // Dodajemy wrapper z atrybutami data-* dla naszego skryptu JS
+    echo '<div 
+            id="cliftonstrengths-dynamic-price-wrapper" 
+            data-product-id="' . esc_attr( $product_id ) . '" 
+            data-base-price="' . esc_attr( $base_price ) . '" 
+            data-addon-price="' . esc_attr( $addon_price ) . '"
+          >';
+
+    echo '<div class="cliftonstrengths-field-wrapper" style="margin-bottom: 10px;">';
+    echo '<label for="cliftonstrengths_persons_count" style="font-weight: bold; display: block; margin-bottom: 5px;">Liczba osób do testu CliftonStrengths</label>';
+    echo '<input type="number" id="cliftonstrengths_persons_count" name="cliftonstrengths_persons_count" min="0" value="0" placeholder="Wpisz liczbę osób..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">';
+    echo '<p style="font-size: 0.9em; color: #666; margin-top: 5px;">Koszt dodatkowy: ' . wc_price($addon_price) . ' za osobę.</p>';
+    echo '</div>';
+
+    // Zamykamy wrapper po cenie, aby objąć nią działanie skryptu
+    add_action('woocommerce_single_product_summary', function() { echo '</div>'; }, 26);
+
+}, 24); // Wyświetlamy pole tuż przed ceną (która jest na priorytecie 25)
+
+// 2. Zapisanie wartości pola do danych koszyka (bez zmian)
 add_filter( 'woocommerce_add_cart_item_data', function( $cart_item_data, $product_id, $variation_id ) {
     if ( isset( $_POST['cliftonstrengths_persons_count'] ) && $product_id == 1141 ) {
         $persons_count = intval( sanitize_text_field( $_POST['cliftonstrengths_persons_count'] ) );
         if ( $persons_count > 0 ) {
             $cart_item_data['cliftonstrengths_persons_count'] = $persons_count;
-            // Dodajemy unikalny klucz, aby ten sam produkt z różną liczbą osób był traktowany jako osobna pozycja
             $cart_item_data['unique_key'] = md5( $product_id . $persons_count );
         }
     }
     return $cart_item_data;
 }, 10, 3 );
 
-// 3. Dynamiczna zmiana ceny w koszyku
+// 3. Dynamiczna zmiana ceny w koszyku (bez zmian)
 add_action( 'woocommerce_before_calculate_totals', function( $cart ) {
-    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-        return;
-    }
+    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) return;
 
-    foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+    foreach ( $cart->get_cart() as $cart_item ) {
         if ( isset( $cart_item['cliftonstrengths_persons_count'] ) ) {
             $persons_count = $cart_item['cliftonstrengths_persons_count'];
             $additional_cost_per_person = 145;
-            $base_price = $cart_item['data']->get_price('edit');
+            // Pobieramy cenę bazową z produktu, a nie z koszyka, aby uniknąć wielokrotnego naliczania
+            $_product = wc_get_product($cart_item['product_id']);
+            $base_price = $_product->get_price();
             
             $new_price = $base_price + ( $persons_count * $additional_cost_per_person );
             $cart_item['data']->set_price( $new_price );
         }
     }
-}, 10, 1 );
+}, 20, 1 );
 
-// 4. Wyświetlanie informacji w koszyku i przy zamówieniu
+// 4. Wyświetlanie informacji w koszyku i przy zamówieniu (bez zmian)
 add_filter( 'woocommerce_get_item_data', function( $item_data, $cart_item ) {
     if ( isset( $cart_item['cliftonstrengths_persons_count'] ) ) {
         $persons_count = $cart_item['cliftonstrengths_persons_count'];
-        $additional_cost_per_person = 145;
-        $total_additional_cost = $persons_count * $additional_cost_per_person;
+        $total_additional_cost = $persons_count * 145;
 
-        $item_data[] = array(
-            'key'     => 'Liczba osób (test)',
-            'value'   => $persons_count,
-            'display' => '',
-        );
-        $item_data[] = array(
-            'key'     => 'Dodatkowy koszt',
-            'value'   => wc_price( $total_additional_cost ),
-            'display' => '',
-        );
+        $item_data[] = ['key' => 'Liczba osób (test)', 'value' => $persons_count];
+        $item_data[] = ['key' => 'Dodatkowy koszt', 'value' => wc_price( $total_additional_cost )];
     }
     return $item_data;
 }, 10, 2 );
 
-// 5. Zapisanie danych do meta zamówienia
+// 5. Zapisanie danych do meta zamówienia (bez zmian)
 add_action( 'woocommerce_checkout_create_order_line_item', function( $item, $cart_item_key, $values, $order ) {
     if ( isset( $values['cliftonstrengths_persons_count'] ) ) {
         $persons_count = $values['cliftonstrengths_persons_count'];
-        $additional_cost_per_person = 145;
-        $total_additional_cost = $persons_count * $additional_cost_per_person;
+        $total_additional_cost = $persons_count * 145;
 
         $item->add_meta_data( 'Liczba osób (test)', $persons_count );
         $item->add_meta_data( 'Dodatkowy koszt (test)', wc_price( $total_additional_cost ) );
     }
 }, 10, 4 );
+
+// 6. Dodanie skryptu JS do dynamicznej aktualizacji ceny
+add_action('wp_footer', function() {
+    // Upewnij się, że jesteśmy na stronie produktu
+    if ( !is_product() ) return;
+
+    // Sprawdź, czy nasz wrapper istnieje na stronie
+    if ( get_the_ID() != 1141 ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const wrapper = document.getElementById('cliftonstrengths-dynamic-price-wrapper');
+        if (!wrapper) return;
+
+        const input = document.getElementById('cliftonstrengths_persons_count');
+        const priceElement = wrapper.querySelector('.price');
+        
+        if (!input || !priceElement) return;
+
+        const basePrice = parseFloat(wrapper.dataset.basePrice);
+        const addonPrice = parseFloat(wrapper.dataset.addonPrice);
+        const currencySymbol = '<?php echo get_woocommerce_currency_symbol(); ?>';
+        const currencyFormat = '<?php echo esc_js( get_woocommerce_price_format() ); ?>';
+
+        function formatPrice(price) {
+            let formattedPrice = price.toFixed(2).replace('.', ',');
+            return currencyFormat.replace('%1$s', '').replace('%2$s', formattedPrice + ' ' + currencySymbol).trim();
+        }
+
+        function updatePrice() {
+            const persons = parseInt(input.value) || 0;
+            const totalAddonCost = persons * addonPrice;
+            const newTotal = basePrice + totalAddonCost;
+            
+            // Aktualizujemy HTML wewnątrz elementu ceny
+            priceElement.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi>' + formatPrice(newTotal) + '</bdi></span>';
+        }
+
+        input.addEventListener('input', updatePrice);
+        input.addEventListener('change', updatePrice);
+        
+        // Ustaw cenę początkową
+        updatePrice();
+    });
+    </script>
+    <?php
+});
