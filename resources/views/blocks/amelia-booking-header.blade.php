@@ -53,6 +53,7 @@ if ($location_id) $booking_attrs .= ' location="' . $location_id . '"';
 
 				@endif
 				<div class="amelia-booking-header__text">
+				<h6 class="text-primary mb-4">Umów wizytę</h6>
 					@if (!empty($title))
 					<h3 class="amelia-booking-header__title text-2xl font-bold">{{ esc_html($title) }}</h3>
 					@endif
