@@ -1,4 +1,11 @@
 .b-hero-offer {
+	p {
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0 !important;
+    }
   .__mask {
     -webkit-mask-image: url('/wp-content/uploads/2026/01/offer-mask.svg');
     mask-image: url('/wp-content/uploads/2026/01/offer-mask.svg');
