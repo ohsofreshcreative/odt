@@ -31,7 +31,7 @@ $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
 if ( ! empty( $product_tabs ) ) : ?>
 
 	<div class="woocommerce-tabs wc-tabs-wrapper c-main">
-		<ul class="tabs wc-tabs bg-primary-lighter rounded-3xl flex gap-2 p-4" role="tablist">
+		<ul class="tabs wc-tabs bg-primary-lighter rounded-3xl flex gap-2 p-4 hidden" role="tablist">
 			<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
 				<li role="presentation" class="<?php echo esc_attr( $key ); ?>_tab transition-all rounded-2xl" id="tab-title-<?php echo esc_attr( $key ); ?>">
 					<a href="#tab-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>" class="font-header text-lg block px-10 py-4">
