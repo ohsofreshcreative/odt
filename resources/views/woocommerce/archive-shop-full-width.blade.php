@@ -14,7 +14,7 @@
       setup_postdata($shop_page);
     @endphp
 
-    <div class="max-w-none">
+    <div class="max-w-none c-main pt-20">
       {!! apply_filters('the_content', $shop_page->post_content) !!}
     </div>
 

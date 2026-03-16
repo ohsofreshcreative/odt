@@ -860,12 +860,25 @@ add_action('template_redirect', function () {
     // Sprawdzamy, czy jesteśmy na stronie produktu i czy ma ona ustawione pole "coming_soon".
     if (is_product() && get_post_meta(get_the_ID(), 'coming_soon', true)) {
         
-        // Zamiast wstrzykiwać HTML, renderujemy nasz dedykowany widok Blade.
-        // Funkcja \Roots\view() jest kluczowa w Sage.
-        echo \Roots\view('coming-soon');
+        // Pobierz zarejestrowany wzorzec blokowy o slug 'woocommerce/coming-soon'
+        $block_pattern = \WP_Block_Patterns_Registry::get_instance()->get_registered('woocommerce/coming-soon');
+
+        if ($block_pattern) {
+            // Wyświetl nagłówek strony
+            get_header();
+            
+            // Przetwórz i wyświetl zawartość wzorca
+            echo do_blocks($block_pattern['content']);
+
+            // Wyświetl stopkę strony
+            get_footer();
+
+        } else {
+            // Coś poszło nie tak - wzorzec nie został znaleziony
+            echo "Błąd: Wzorzec 'coming-soon' nie został znaleziony.";
+        }
         
-        // Zatrzymujemy dalsze wykonywanie skryptu, aby WordPress/WooCommerce
-        // nie próbował załadować standardowego szablonu produktu.
+        // Zatrzymujemy dalsze wykonywanie skryptu
         exit;
     }
 });

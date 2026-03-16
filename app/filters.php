@@ -34,3 +34,18 @@ add_filter( 'woocommerce_breadcrumb_defaults', function ( $defaults ) {
     $defaults['delimiter'] = '<span class="__separator">•</span>';
     return $defaults;
 } );
+
+
+
+/**
+ * Override WooCommerce Coming Soon template
+ */
+add_filter('woocommerce_coming_soon_template', function ($template) {
+    $custom_template = get_theme_file_path('resources/views/patterns/coming-soon.php');
+    
+    if (file_exists($custom_template)) {
+        return $custom_template;
+    }
+    
+    return $template;
+});
