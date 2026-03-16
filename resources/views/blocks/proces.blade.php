@@ -37,7 +37,7 @@
 					<div class="text-h2 font-header text-secondary-dark">{{ $loop->iteration }}</div>
 
 					<h6 class=" text-secondary-dark mt-4">{{ $item['title'] }}</h6>
-					<p class="mt-2">{{ $item['txt'] }}</p>
+					<p class="mt-2">{!! $item['txt'] !!}</p>
 				</div>
 
 				<img class="absolute -bottom-6 -right-6 z-10" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />

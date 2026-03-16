@@ -67,7 +67,7 @@
 							<h6 class="text-body mb-4">{{ $item['header'] }}</h6>
 							@endif
 							@if (!empty($item['text']))
-							<div class="text-sm">{{ $item['text'] }}</div>
+							<div class="text-sm">{!! $item['text'] !!}</div>
 							@endif
 							<a href="#" class="main-btn mt-4">
 								Dowiedz się więcej

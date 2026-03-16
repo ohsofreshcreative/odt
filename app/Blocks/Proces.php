@@ -69,8 +69,11 @@ class Proces extends Block
 			->addText('title', [
 				'label' => 'Krok',
 			])
-			->addTextarea('txt', [
-				'label' => 'Opis',
+				->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
 			])
 			->endRepeater()
 
