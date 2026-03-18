@@ -7,7 +7,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 
 <section data-gsap-anim="section" class="b-hero-about relative z-10 -spt {{ $sectionClass }} {{ $section_class }}">
 	<div class="__wrapper c-main relative z-20">
-		<div class="__content text-center w-full md:w-3/5 mx-auto mt-18">
+		<div class="__content text-center w-full md:w-3/5 mx-auto mt-18 relative z-40">
 			<h1 data-gsap-element="header" class="text-white m-header">{{ $g_heroabout['header'] }}</h1>
 			<div data-gsap-element="txt" class="text-white">{!! $g_heroabout['txt'] !!}</div>
 		</div>
