@@ -27,7 +27,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 							<div class="relative z-10 flex flex-col gap-4 mt-6">
 								@if(!empty($card['txt']))
-								<div class="__txt">{{ $card['txt'] }}</div>
+								<div class="__txt">{!! $card['txt'] !!}</div>
 								@endif
 								<img class="max-w-1/2" src="/wp-content/uploads/2026/01/stars.svg" />
 								<b class="font-header text-xl">{{ $card['name'] }}</b>
