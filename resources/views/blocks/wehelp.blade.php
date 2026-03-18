@@ -46,7 +46,7 @@
 	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full" src="/wp-content/uploads/2026/01/help-hero-bg.svg" />
 </section>
 
-<section data-gsap-anim="section" class="mt-0 md:-mt-16">
+<section data-gsap-anim="section" class="relative z-20 mt-0 md:-mt-16">
 	<div class="__list c-main grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 section-gap">
 		@if($support)
 		@foreach ($support as $sector)
