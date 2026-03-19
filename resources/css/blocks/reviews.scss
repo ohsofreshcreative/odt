@@ -14,4 +14,21 @@
     right: 0;
     top: -80px;
   }
+  .text-clamp-9 {
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Styl dla przycisku, jeśli chcesz go dostosować */
+.btn-more {
+  cursor: pointer;
+}
+
+/* Ukrywa przycisk, jeśli nie jest potrzebny */
+.hidden {
+    display: none;
+}
 }

@@ -26,9 +26,12 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 						<div class="__card relative bg-white radius px-10 py-14">
 
 							<div class="relative z-10 flex flex-col gap-4 mt-6">
+
 								@if(!empty($card['txt']))
-								<div class="__txt">{!! $card['txt'] !!}</div>
+								<div class="__txt text-clamp-9">{!! $card['txt'] !!}</div>
+								<button class="btn-more hidden underline text-primary font-bold mt-2">Zobacz całość</button>
 								@endif
+
 								<img class="max-w-1/2" src="/wp-content/uploads/2026/01/stars.svg" />
 								<b class="font-header text-xl">{{ $card['name'] }}</b>
 								<div class="flex items-center gap-4">
@@ -64,5 +67,12 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			</div> -->
 		</div>
 	</div>
-
+ <div id="review-popup" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full relative">
+            <button id="review-popup-close" class="absolute top-4 right-4 text-3xl font-bold">&times;</button>
+            <div id="review-popup-content" class="prose max-w-none">
+                {{-- Treść opinii zostanie wstawiona tutaj przez JS --}}
+            </div>
+        </div>
+    </div>
 </section>
