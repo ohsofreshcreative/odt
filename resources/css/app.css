@@ -149,6 +149,7 @@
 @import '../css/blocks/triple.scss';
 @import '../css/blocks/boxes.scss';
 @import '../css/blocks/product.scss';
+@import '../css/blocks/voucher.scss';
 
 /*-- NOT USED --*/
 @import '../css/blocks/complex.scss';
