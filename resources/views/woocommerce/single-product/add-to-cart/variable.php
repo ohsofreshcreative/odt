@@ -47,6 +47,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
         <div class="single_variation_wrap">
             <?php do_action( 'woocommerce_before_single_variation' ); ?>
             <?php do_action( 'woocommerce_single_variation' ); ?>
+            <?php do_action( 'woocommerce_after_single_variation' ); ?>
         </div>
 
         <?php /* 2. CENA */ ?>

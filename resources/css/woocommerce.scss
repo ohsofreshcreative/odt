@@ -371,7 +371,9 @@
 		display: none;
 	}
 
-
+#product-1585 > div.summary.entry-summary > form > div.single_variation_wrap {
+	display: none !important;
+}
 
 	/*--- !CART ---*/
 
