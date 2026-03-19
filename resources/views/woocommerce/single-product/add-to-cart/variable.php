@@ -49,14 +49,10 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
             <?php do_action( 'woocommerce_single_variation' ); ?>
             <?php do_action( 'woocommerce_after_single_variation' ); ?>
         </div>
-
-        <?php /* 2. CENA */ ?>
-      <?php woocommerce_template_single_price(); ?>
-
-        <?php /* 3. QUANTITY + PRZYCISK */ ?>
        
     <?php endif; ?>
 
+    <?php do_action( 'woocommerce_after_variations_form' ); ?>
 </form>
 
 <?php do_action( 'woocommerce_after_add_to_cart_form' );
