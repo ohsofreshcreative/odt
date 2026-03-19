@@ -29,14 +29,11 @@
     display: none;
   }
 
-  // NOWE STYLE DLA POPUPA
-  // Możesz je zostawić tutaj lub przenieść do globalnego pliku ze stylami dla popupów
   .review-popup {
-    // Klasy z Tailwind CSS (fixed, inset-0, itd.) już to stylują.
-    // Możemy dodać animację dla płynniejszego pojawiania się.
+
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none; // Zapobiega interakcji, gdy jest ukryty
+    pointer-events: none; 
 
     &.is-visible {
       opacity: 1;
