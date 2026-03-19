@@ -72,5 +72,20 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			</div> -->
 		</div>
 	</div>
-
+<div id="review-popup" class="review-popup fixed inset-0 bg-black bg-opacity-70 z-[999] flex items-center justify-center p-4 hidden">
+    <div class="review-popup__content bg-white rounded-lg shadow-xl p-8 md:p-12 max-w-3xl w-full relative">
+        <button class="review-popup__close absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div id="review-popup-text" class="prose max-w-none mb-4">
+            {{-- Treść opinii zostanie wstawiona tutaj --}}
+        </div>
+        <div class="flex items-center gap-4">
+            <img src="/wp-content/uploads/2026/01/stars.svg" class="h-5" />
+            <b id="review-popup-author" class="font-header text-xl">
+                {{-- Nazwa autora zostanie wstawiona tutaj --}}
+            </b>
+        </div>
+    </div>
+</div>
 </section>

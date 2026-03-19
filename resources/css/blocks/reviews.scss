@@ -16,21 +16,39 @@
   }
 }
 
- .review-content-wrapper {
-    .line-clamp-6 {
-      display: -webkit-box;
-      -webkit-line-clamp: 6;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* Klasa dodawana po kliknięciu, aby pokazać cały tekst */
-    &.is-expanded .line-clamp-6 {
-      -webkit-line-clamp: unset; /* Usuwa ograniczenie linii */
-      display: block;
-    }
+.line-clamp-6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
+
+  // Usuwamy style dla .is-expanded, bo nie będą już potrzebne
 
   .hidden {
     display: none;
+  }
+
+  // NOWE STYLE DLA POPUPA
+  // Możesz je zostawić tutaj lub przenieść do globalnego pliku ze stylami dla popupów
+  .review-popup {
+    // Klasy z Tailwind CSS (fixed, inset-0, itd.) już to stylują.
+    // Możemy dodać animację dla płynniejszego pojawiania się.
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; // Zapobiega interakcji, gdy jest ukryty
+
+    &.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .review-popup__content {
+      transform: scale(0.95);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &.is-visible .review-popup__content {
+      transform: scale(1);
+    }
   }

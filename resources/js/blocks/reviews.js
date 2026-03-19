@@ -6,96 +6,110 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 /**
- * Funkcja do obsługi rozwijania tekstu recenzji.
- * @param {HTMLElement} scope - Element nadrzędny, w którym szukamy recenzji (domyślnie cały dokument).
+ * Logika dla przycisków "Zobacz całość" i obsługi popupa z recenzją.
+ * @param {HTMLElement} scope - Element, w którym szukamy recenzji.
  */
-const initReviewMoreButton = (scope = document) => {
-  const reviewWrappers = scope.querySelectorAll('.review-content-wrapper');
+const initReviewPopup = (scope = document) => {
+  const reviewCards = scope.querySelectorAll('.swiper-slide .__card');
+  const popup = document.getElementById('review-popup');
+  const popupText = document.getElementById('review-popup-text');
+  const popupAuthor = document.getElementById('review-popup-author');
+  const closeButton = popup?.querySelector('.review-popup__close');
 
-  reviewWrappers.forEach(wrapper => {
-    const textElement = wrapper.querySelector('.__txt');
-    const moreButton = wrapper.querySelector('.btn-more');
+  if (!popup || !reviewCards.length) return;
 
-    if (!textElement || !moreButton) return;
+  reviewCards.forEach(card => {
+    const textElement = card.querySelector('.__txt');
+    const moreButton = card.querySelector('.btn-more');
+    const authorElement = card.querySelector('.font-header');
 
-    // Używamy setTimeout, aby dać przeglądarce czas na renderowanie,
-    // co jest ważne przy dynamicznym ładowaniu i karuzelach.
+    if (!textElement || !moreButton || !authorElement) return;
+
+    // Pokaż przycisk "Zobacz całość", jeśli tekst jest obcięty
+    // Używamy setTimeout, aby dać czas na renderowanie
     setTimeout(() => {
-      // Sprawdzamy, czy tekst jest obcięty (czy jego pełna wysokość jest większa niż widoczna)
       if (textElement.scrollHeight > textElement.clientHeight) {
         moreButton.classList.remove('hidden');
       }
-    }, 100); // Niewielkie opóźnienie
+    }, 150);
 
+    // Po kliknięciu "Zobacz całość"
     moreButton.addEventListener('click', () => {
-      wrapper.classList.add('is-expanded');
-      moreButton.classList.add('hidden');
+      // Wypełnij popup danymi z klikniętej karty
+      popupText.innerHTML = textElement.innerHTML;
+      popupAuthor.textContent = authorElement.textContent;
+      // Pokaż popup
+      popup.classList.remove('hidden');
+      setTimeout(() => popup.classList.add('is-visible'), 10); // Opóźnienie dla animacji
+      document.body.style.overflow = 'hidden'; // Zablokuj scrollowanie tła
     });
+  });
+
+  // Funkcja zamykająca popup
+  const closePopup = () => {
+    popup.classList.remove('is-visible');
+    document.body.style.overflow = ''; // Odblokuj scrollowanie
+    // Ukryj popup po zakończeniu animacji
+    setTimeout(() => popup.classList.add('hidden'), 300);
+  };
+
+  // Zamykanie popupa
+  closeButton?.addEventListener('click', closePopup);
+  // Zamykanie po kliknięciu w tło
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      closePopup();
+    }
+  });
+  // Zamykanie klawiszem Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.classList.contains('is-visible')) {
+      closePopup();
+    }
   });
 };
 
-
+/**
+ * Inicjalizacja karuzeli Swiper.
+ * @param {HTMLElement} scope - Element, w którym szukamy karuzeli.
+ */
 const initReviewsSwiper = (scope = document) => {
-  const swiperElements = scope.querySelectorAll(
-    '.reviews-swiper:not(.swiper-initialized)'
-  );
-
+  const swiperElements = scope.querySelectorAll('.reviews-swiper:not(.swiper-initialized)');
   if (!swiperElements.length) return;
 
   swiperElements.forEach((swiperEl) => {
-    const nextEl = swiperEl.querySelector('.__next');
-    const prevEl = swiperEl.querySelector('.__prev');
-    const paginationEl = swiperEl.querySelector('.swiper-pagination');
-
+    // ... (reszta kodu Swipera pozostaje bez zmian)
     new Swiper(swiperEl, {
       modules: [Navigation, Pagination],
       slidesPerView: 1.2,
       spaceBetween: 24,
       loop: true,
-      pagination: {
-        el: paginationEl,
-        clickable: true,
-      },
-      navigation: {
-        nextEl,
-        prevEl,
-      },
+      pagination: { el: swiperEl.querySelector('.swiper-pagination'), clickable: true },
+      navigation: { nextEl: swiperEl.querySelector('.__next'), prevEl: swiperEl.querySelector('.__prev') },
       breakpoints: {
-        768: {
-          slidesPerView: 2.5,
-          spaceBetween: 24,
-        },
-        1024: {
-          slidesPerView: 3.8,
-          spaceBetween: 24,
-        },
+        768: { slidesPerView: 2.5, spaceBetween: 24 },
+        1024: { slidesPerView: 3.8, spaceBetween: 24 },
       },
-      // Dodajemy listener, aby uruchomić logikę przycisku po inicjalizacji Swipera
       on: {
-        init: function () {
-          initReviewMoreButton(this.el);
-        },
-        // I po każdej zmianie slajdu (na wypadek pętli)
-        slideChange: function () {
-            initReviewMoreButton(this.el);
-        }
-      }
+        // Uruchom logikę popupa po załadowaniu i zmianie slajdu
+        init: () => initReviewPopup(swiperEl),
+        slideChange: () => initReviewPopup(swiperEl),
+      },
     });
   });
 };
 
-// Inicjalizujemy obie funkcje
+// Inicjalizacja na starcie
 initReviewsSwiper();
-initReviewMoreButton();
+initReviewPopup();
 
-
-// Wsparcie dla podglądu / renderowania bloku w edytorze ACF
+// Wsparcie dla edytora ACF
 if (window.acf) {
   window.acf.addAction('render_block', (el) => {
     const node = el?.[0] ?? el;
     if (node) {
-        initReviewsSwiper(node);
-        initReviewMoreButton(node);
+      initReviewsSwiper(node);
+      initReviewPopup(node);
     }
   });
 }
