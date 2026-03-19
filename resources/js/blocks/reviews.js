@@ -62,3 +62,64 @@ if (window.acf) {
 }
 
 export default initReviewsSwiper;
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // 1. Logika pokazywania przycisku "Zobacz całość"
+  const reviewCards = document.querySelectorAll('.b-reviews .swiper-slide');
+
+  reviewCards.forEach(card => {
+    const reviewText = card.querySelector('.__txt');
+    const moreButton = card.querySelector('.btn-more');
+
+    if (reviewText && moreButton) {
+      // Sprawdzamy, czy tekst faktycznie się nie mieści (jest ucięty)
+      if (reviewText.scrollHeight > reviewText.clientHeight) {
+        moreButton.classList.remove('hidden');
+      }
+    }
+  });
+
+  // 2. Logika obsługi popupu
+  const popup = document.getElementById('review-popup');
+  const popupContent = document.getElementById('review-popup-content');
+  const closeButton = document.getElementById('review-popup-close');
+  const moreButtons = document.querySelectorAll('.btn-more');
+
+  moreButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Znajdź tekst opinii powiązany z klikniętym przyciskiem
+      const reviewText = button.previousElementSibling;
+      if (reviewText) {
+        popupContent.innerHTML = reviewText.innerHTML;
+        popup.style.display = 'flex'; // Pokaż popup
+      }
+    });
+  });
+
+  // Funkcja zamykania popupu
+  const closePopup = () => {
+    popup.style.display = 'none';
+  };
+
+  // Zamykanie po kliknięciu przycisku 'x'
+  if (closeButton) {
+    closeButton.addEventListener('click', closePopup);
+  }
+
+  // Zamykanie po kliknięciu w tło
+  if (popup) {
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+  }
+
+  // Zamykanie po naciśnięciu klawisza Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.style.display === 'flex') {
+      closePopup();
+    }
+  });
+});
