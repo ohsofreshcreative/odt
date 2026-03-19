@@ -482,6 +482,9 @@
 		.woocommerce {
 			padding-top: 40px;
 		}
+		bdi {
+			white-space: nowrap;
+		}
 	}
 
 	.woocommerce-checkout-payment button {
