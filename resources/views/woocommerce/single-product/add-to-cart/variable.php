@@ -44,11 +44,28 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
         <?php do_action( 'woocommerce_after_variations_table' ); ?>
 
         <?php /* Wymagane przez WooCommerce JS */ ?>
-        <div class="single_variation_wrap">
-            <?php do_action( 'woocommerce_before_single_variation' ); ?>
-            <?php do_action( 'woocommerce_single_variation' ); ?>
-            <?php do_action( 'woocommerce_after_single_variation' ); ?>
-        </div>
+       <div class="single_variation_wrap">
+    <?php do_action( 'woocommerce_before_single_variation' ); ?>
+
+    <?php
+        /**
+         * Hook: woocommerce_single_variation.
+         *
+         * @hooked woocommerce_single_variation - 10 Empty (overridden in functions.php)
+         * @hooked woocommerce_single_variation_add_to_cart_button - 20 (This is the one we want to disable)
+         */
+        do_action( 'woocommerce_single_variation' );
+    ?>
+    
+    <?php // Dodajemy ten fragment, aby wyświetlić cenę wariantu ?>
+    <div class="woocommerce-variation-price">
+        <?php do_action( 'woocommerce_before_variation_price' ); ?>
+        <?php do_action( 'woocommerce_variation_price' ); ?>
+        <?php do_action( 'woocommerce_after_variation_price' ); ?>
+    </div>
+
+    <?php do_action( 'woocommerce_after_single_variation' ); ?>
+</div>
 
         <?php /* 2. CENA */ ?>
        <!--  <?php woocommerce_template_single_price(); ?> -->
