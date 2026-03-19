@@ -70,13 +70,13 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                 <button type="button" class="quantity-button quantity-plus h-full hover:bg-gray-100 rounded-r-xl transition-all px-3">+</button>
             </div>
 
-            <button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>">
+           <!--  <button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>">
                 <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
             </button>
 
             <input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />
             <input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />
-            <input type="hidden" name="variation_id" class="variation_id" value="0" />
+            <input type="hidden" name="variation_id" class="variation_id" value="0" /> -->
 
         </div>
     <?php endif; ?>
