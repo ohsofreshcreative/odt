@@ -14,20 +14,22 @@
     right: 0;
     top: -80px;
   }
-  .line-clamp-6 {
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+ .review-content-wrapper {
+    .line-clamp-6 {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
-/* Klasa dodawana po kliknięciu, aby pokazać cały tekst */
-.is-expanded .line-clamp-6 {
-  -webkit-line-clamp: unset; /* Usuwa ograniczenie linii */
-  display: block;
-}
+    /* Klasa dodawana po kliknięciu, aby pokazać cały tekst */
+    &.is-expanded .line-clamp-6 {
+      -webkit-line-clamp: unset; /* Usuwa ograniczenie linii */
+      display: block;
+    }
+  }
 
-.hidden {
-  display: none;
-}
+  .hidden {
+    display: none;
+  }
 }

@@ -64,3 +64,27 @@ if (window.acf) {
 export default initReviewsSwiper;
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  // Znajdź wszystkie kontenery z recenzjami
+  const reviewWrappers = document.querySelectorAll('.review-content-wrapper');
+
+  reviewWrappers.forEach(wrapper => {
+    const textElement = wrapper.querySelector('.__txt');
+    const moreButton = wrapper.querySelector('.btn-more');
+
+    // Sprawdź, czy tekst faktycznie się "przelewa" (jest dłuższy niż kontener)
+    // Porównujemy scrollHeight (całkowita wysokość treści) z clientHeight (widoczna wysokość)
+    if (textElement.scrollHeight > textElement.clientHeight) {
+      // Jeśli tekst jest obcięty, pokaż przycisk "Zobacz całość"
+      moreButton.classList.remove('hidden');
+    }
+
+    // Dodaj obsługę kliknięcia na przycisk
+    moreButton.addEventListener('click', () => {
+      // Dodaj klasę 'is-expanded' do kontenera nadrzędnego
+      wrapper.classList.add('is-expanded');
+      // Ukryj przycisk "Zobacz całość" po rozwinięciu
+      moreButton.classList.add('hidden');
+    });
+  });
+});

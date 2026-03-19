@@ -1,6 +1,10 @@
 {
-  "_pagination-Be4em632.js": {
-    "file": "assets/pagination-Be4em632.js",
+  "_pagination-BmgjDa1V.css": {
+    "file": "assets/pagination-BmgjDa1V.css",
+    "src": "_pagination-BmgjDa1V.css"
+  },
+  "_pagination-Un_6X11A.js": {
+    "file": "assets/pagination-Un_6X11A.js",
     "name": "pagination",
     "imports": [
       "resources/js/app.js"
@@ -8,10 +12,6 @@
     "css": [
       "assets/pagination-BmgjDa1V.css"
     ]
-  },
-  "_pagination-BmgjDa1V.css": {
-    "file": "assets/pagination-BmgjDa1V.css",
-    "src": "_pagination-BmgjDa1V.css"
   },
   "_swiper-DHBATib1.css": {
     "file": "assets/swiper-DHBATib1.css",
@@ -22,7 +22,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-C9arj7sy.css",
+    "file": "assets/app-BfG1b8Ai.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -76,7 +76,7 @@
     "src": "resources/images/ring-mask.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-CN3bGGd0.js",
+    "file": "assets/app-CxI55nyU.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -92,13 +92,13 @@
     ]
   },
   "resources/js/blocks/help.js": {
-    "file": "assets/help-BqKzP0_b.js",
+    "file": "assets/help-BVV--qYK.js",
     "name": "help",
     "src": "resources/js/blocks/help.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-Be4em632.js"
+      "_pagination-Un_6X11A.js"
     ],
     "css": [
       "assets/help-BoYVoAWi.css",
@@ -106,7 +106,7 @@
     ]
   },
   "resources/js/blocks/places.js": {
-    "file": "assets/places-mp9_frR0.js",
+    "file": "assets/places-D4evTXHP.js",
     "name": "places",
     "src": "resources/js/blocks/places.js",
     "isDynamicEntry": true,
@@ -115,26 +115,26 @@
     ]
   },
   "resources/js/blocks/reviews.js": {
-    "file": "assets/reviews-DJfywDDd.js",
+    "file": "assets/reviews-DXLCfBOV.js",
     "name": "reviews",
     "src": "resources/js/blocks/reviews.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-Be4em632.js"
+      "_pagination-Un_6X11A.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
     ]
   },
   "resources/js/blocks/slider.js": {
-    "file": "assets/slider-CIbbp8ds.js",
+    "file": "assets/slider-CjTxg5m2.js",
     "name": "slider",
     "src": "resources/js/blocks/slider.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-Be4em632.js"
+      "_pagination-Un_6X11A.js"
     ],
     "css": [
       "assets/slider-tn0RQdqM.css",
@@ -142,33 +142,33 @@
     ]
   },
   "resources/js/blocks/slides.js": {
-    "file": "assets/slides-zRDACut_.js",
+    "file": "assets/slides-CGy5OsY9.js",
     "name": "slides",
     "src": "resources/js/blocks/slides.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-Be4em632.js"
+      "_pagination-Un_6X11A.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
     ]
   },
   "resources/js/blocks/speakers.js": {
-    "file": "assets/speakers-D440spwo.js",
+    "file": "assets/speakers-Bh0iapg3.js",
     "name": "speakers",
     "src": "resources/js/blocks/speakers.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-Be4em632.js"
+      "_pagination-Un_6X11A.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
     ]
   },
   "resources/js/blocks/tabs.js": {
-    "file": "assets/tabs-CdpC0lnS.js",
+    "file": "assets/tabs-DTxizTZV.js",
     "name": "tabs",
     "src": "resources/js/blocks/tabs.js",
     "isDynamicEntry": true,
@@ -181,13 +181,13 @@
     ]
   },
   "resources/js/blocks/team.js": {
-    "file": "assets/team-FadRJHZo.js",
+    "file": "assets/team-Bn1Metwp.js",
     "name": "team",
     "src": "resources/js/blocks/team.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-Be4em632.js"
+      "_pagination-Un_6X11A.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
