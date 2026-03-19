@@ -395,7 +395,13 @@
 		.woocommerce-notices-wrapper {
 			display: none !important;
 		}
+
+		.product-price bdi {
+			white-space: nowrap;
+		}
 	}
+
+	
 
 	.woocommerce .cart-collaterals .cart_totals,
 	.woocommerce-page .cart-collaterals .cart_totals {
