@@ -48,7 +48,7 @@
 			<x-button
 				:href="$g_voucher['product_data']['permalink']"
 				variant="primary"
-				class="mt-2"
+				class="m-btn"
 				 data-gsap-element="btn">
 				{{ $g_voucher['btn'] ?: 'Zobacz produkt' }}
 			</x-button>
@@ -56,7 +56,7 @@
 			<x-button
 				:href="wc_get_cart_url() . '?add-to-cart=' . $g_voucher['product']->ID"
 				variant="primary"
-				class="mt-2 add_to_cart_button"
+				class="m-btn add_to_cart_button"
 				 data-gsap-element="btn">
 				{{ $g_voucher['btn'] ?: 'Dodaj do koszyka' }}
 			</x-button>
