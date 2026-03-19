@@ -71,8 +71,11 @@ class Faq extends Block
 			->addText('title', [
 				'label' => 'Pytanie',
 			])
-			->addTextarea('txt', [
-				'label' => 'Odpowiedź',
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
 			])
 			->endRepeater()
 

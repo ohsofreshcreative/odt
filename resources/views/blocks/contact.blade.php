@@ -38,5 +38,28 @@
 		</div>
 	</div>
 
+	<div class="c-main">
+		<div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-10 z-10">
+			<ul>
+				<li>Wizytę można umówić mailowo, telefonicznie, przez stronę internetową lub portal Znany Lekarz</li>
+				<li>Nie umawiamy wizyt przez portale społecznościowe</li>
+				<li>Rejestracja nie pracuje w dni wolne od pracy oraz weekendy i nie odwołuje i nie przekłada wtedy wizyt</li>
+				<li>Rejestracja oraz specjalista ma prawo zakończyć rozmowę jeśli klient komunikuje się w sposób agresywny, obraźliwie lub wykraczający w inny sposób poza zdroworozsądkowo przyjęte zasady kultury.</li>
+			</ul>
+			<div class="text-white">
+				<b>Dane do przelewu</b>
+				<br><br>
+				Osrodek Dobrej Terapii<br>
+				ul. Kazimierza Jagiellonczyka 8<br>
+				50-240 Wroclaw
+				<br><br>
+				ING 61 1050 1575 1000 0092 9742 3718
+				<br><br>
+				NIP: 6112767709<br>
+				REGON: 365020557
+			</div>
+		</div>
+	</div>
+
 	<img class="absolute top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2" src="{{ $g_contact_1['image']['url'] }}" alt="{{ $g_contact_1['image']['alt'] ?? '' }}">
 </section>
