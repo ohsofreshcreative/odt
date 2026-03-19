@@ -378,6 +378,13 @@
 		border-radius: 16px;
 		padding:13px;
 	}
+	.woocommerce-variation-price {
+		bdi {
+			color:var(--color-primary) !important;
+			    line-height: 2.4rem;
+    font-size: 36px !important;
+		}
+	}
 }
 
 	/*--- !CART ---*/
