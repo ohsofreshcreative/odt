@@ -55,8 +55,8 @@ class Numbers extends Block
 			->addRepeater('r_numbers', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 4,
-				'max' => 4,
+				'min' => 1,
+				'max' => 5,
 				'button_label' => 'Dodaj kafelek'
 			])
 			->addText('title', [
