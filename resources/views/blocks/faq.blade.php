@@ -31,7 +31,7 @@
 					<x-icon.arrow-up class="__arrow text-secondary w-3 h-4" />
 				</label>
 				<div class="accordion-content">
-					<p>{!! $item['txt'] !!}</p>
+					{!! $item['txt'] !!}
 				</div>
 			</div>
 			@endforeach
