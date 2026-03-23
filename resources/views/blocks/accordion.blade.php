@@ -20,7 +20,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
                 <img data-gsap-element="img" class="__img object-cover order1 h-full radius-img" src="{{ $g_accordion['image']['url'] }}" alt="{{ $g_accordion['image']['alt'] ?? '' }}">
                 @endif
                 <div class="__content order2">
-                    <h2 data-gsap-element="header" class="">{{ $g_accordion['title'] }}</h2>
+                    <h4 data-gsap-element="header" class="m-header">{{ $g_accordion['title'] }}</h4>
                     <div data-gsap-element="txt" class="">{!! $g_accordion['txt'] !!}</div>
                     @if (!empty($g_accordion['button']))
                     <a class="main-btn m-btn" href="{{ $g_accordion['button']['url'] }}">{{ $g_accordion['button']['title'] }}</a>
