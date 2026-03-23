@@ -18,10 +18,12 @@ $sectionClass .= ' ' . $background;
 		<h4 data-gsap-element="header" class="w-full md:w-1/2">{{ $g_logos['title'] }}</h4>
 
 		@if (!empty($g_logos['gallery']))
-		<div class="mt-20 flex flex-wrap items-center justify-center gap-8">
+		<div class="mt-6 grid grid-cols-2 md:grid-cols-4 items-center gap-6">
 			
 			@foreach ($g_logos['gallery'] as $image)
-			<img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" class="h-12 w-auto">
+			<div class="bg-white flex items-center justify-center p-4 rounded-lg">
+			<img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" class="max-h-16 w-auto">
+			</div>
 			@endforeach
 		</div>
 		@endif
