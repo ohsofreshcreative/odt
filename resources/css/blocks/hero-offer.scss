@@ -1,27 +1,56 @@
 .b-hero-offer {
-	p {
-      margin-bottom: 16px;
+  position: relative; 
+  
+  p {
+    margin-bottom: 16px;
+  }
+
+  p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  @media (max-width: 1023px) {
+    .__bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%; 
+      z-index: 0;
+
+      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
-    p:last-child {
-      margin-bottom: 0 !important;
+    .__wrapper {
+      position: relative;
+      z-index: 1; 
     }
-  .__mask {
-    -webkit-mask-image: url('/wp-content/uploads/2026/01/offer-mask.svg');
-    mask-image: url('/wp-content/uploads/2026/01/offer-mask.svg');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    
-    /* Zmienione style dla diva */
-    position: absolute;
-    top: -30px;
-    left: 0;
-    width: 120%;
-    height: 120%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  }
+
+  @media (min-width: 1024px) {
+    .__mask {
+      -webkit-mask-image: url('http://odt.local//wp-content/uploads/2026/01/offer-mask.svg');
+      mask-image: url('http://odt.local//wp-content/uploads/2026/01/offer-mask.svg');
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   }
 }
