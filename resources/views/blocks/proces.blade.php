@@ -34,7 +34,7 @@
 			@foreach ($r_proces as $item)
 			<div data-gsap-element="stagger" class="flex flex-col radius bg-secondary-lighter overflow-hidden pt-6 pb-40 px-6">
 				<div class="relative z-20">
-					<div class="text-h2 font-header text-secondary-dark">{{ $loop->iteration }}</div>
+					<div class="text-h2 font-header text-secondary-dark">{{ $item['number'] }}</div>
 
 					<h6 class=" text-secondary-dark mt-4">{{ $item['title'] }}</h6>
 					<p class="mt-2">{!! $item['txt'] !!}</p>

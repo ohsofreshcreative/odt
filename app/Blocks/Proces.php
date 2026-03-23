@@ -61,15 +61,18 @@ class Proces extends Block
 				'max' => 4,
 				'button_label' => 'Dodaj element oferty'
 			])
+			->addText('number', [
+				'label' => 'Krok',
+			])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
 			->addText('title', [
-				'label' => 'Krok',
+				'label' => 'Nagłówek',
 			])
-				->addWysiwyg('txt', [
+			->addWysiwyg('txt', [
 				'label' => 'Treść',
 				'tabs' => 'all',
 				'toolbar' => 'full',
