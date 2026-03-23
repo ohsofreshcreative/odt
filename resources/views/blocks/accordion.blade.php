@@ -12,7 +12,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 <!-- accordion -->
 
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="accordion faq relative overflow-hidden -smt {{ $sectionClass }} {{ $section_class }}">
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-accordion faq relative overflow-hidden -smt {{ $sectionClass }} {{ $section_class }}">
 	<div class="c-wide bg-white py-10 radius-img border-p-light">
 		<div class="__wrapper px-0 md:px-10 py-0 md:py-2 relative z-2">
 			<div class="grid grid-cols-1 lg:grid-cols-[1.3fr_2fr] gap-8 lg:gap-20 my-10">
