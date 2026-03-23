@@ -13,7 +13,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 <!-- accordion -->
 
 <section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-accordion faq relative overflow-hidden -smt {{ $sectionClass }} {{ $section_class }}">
-    <div class="c-wide bg-white py-10 radius-img border-p-light">
+    <div class="c-wide bg-white py-10 radius-img">
         <div class="__wrapper px-0 md:px-10 py-0 md:py-2 relative z-2">
             <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_2fr] gap-8 lg:gap-20 my-10">
                 @if (!empty($g_accordion['image']))
@@ -27,8 +27,8 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
                     @endif
                     <div data-gsap-element="accordion" class="accordion-wrapper grid mt-10">
                         @foreach ($repeater as $item)
-                        <div class="accordion px-6 md:px-8 rounded-2xl border-p-light">
-                            <input class="acc-check" type="checkbox" name="check-{{ $loop->index }}" id="check{{ $loop->index }}" {{ $loop->first ? 'checked' : '' }}>
+            <div class="accordion rounded-2xl bg-white border border-secondary h-max">
+                            <input class="acc-check" type="radio" name="accordion-radio" id="check{{ $loop->index }}" {{ $loop->first ? 'checked' : '' }}>
                             <label class="accordion-label flex items-center justify-between font-semibold text-md md:text-h5 gap-4" for="check{{ $loop->index }}">
                                 {{ $item['title'] }}
                                 <x-icon.arrow-up class="__arrow text-secondary w-3 h-4" />
