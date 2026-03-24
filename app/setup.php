@@ -469,7 +469,7 @@ add_action('init', function () {
 		'public' => true,
 		'has_archive' => true,
 		'rewrite' => [
-			'slug' => 'oferta',
+			'slug' => 'oferty',
 			'with_front' => false,
 		],
 		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
@@ -926,16 +926,3 @@ add_action('template_redirect', function() {
         exit();
     }
 });
-
-/**
- * Ostateczna modyfikacja breadcrumbs Yoast SEO dla CPT 'oferta'.
- * Bezwzględnie usuwa wszystkie terminy taksonomii 'kategoria-oferty'.
- */
-add_filter('wpseo_breadcrumb_links', function ($links) {
-    if (is_singular('oferta') && current_user_can('manage_options')) {
-        echo '<pre style="position: fixed; top: 50px; left: 10px; background: #fff; padding: 20px; border: 2px solid red; z-index: 9999; max-height: 80vh; overflow-y: auto;">';
-        print_r($links);
-        echo '</pre>';
-    }
-    return $links;
-}, 99);
