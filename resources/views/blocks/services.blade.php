@@ -65,7 +65,7 @@ $sectionClass .= ' ' . $background;
 						<div class="__card grid grid-cols-1 lg:grid-cols-2 items-center gap-10 bg-white radius border-p p-6 mt-10">
 							@if (has_post_thumbnail($service_post->ID))
 							<a class="__order1" href="{{ get_permalink($service_post->ID) }}">
-								<img src="{{ get_the_post_thumbnail_url($service_post->ID, 'large') }}" alt="{{ $service_post->post_title }}" class="img-l w-full object-contain rounded-xl">
+								<img src="{{ get_the_post_thumbnail_url($service_post->ID, 'large') }}" alt="{{ $service_post->post_title }}" class="img-l w-full object-cover rounded-xl">
 							</a>
 							@endif
 							<div class="__order2 p-6">
