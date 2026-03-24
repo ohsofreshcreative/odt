@@ -914,3 +914,39 @@ add_action('init', function () {
 	}
 });
 
+/*--- REDIRECT ---*/
+
+add_action('template_redirect', function() {
+    // Sprawdź, czy żądany adres to /zespol/
+    if (strtok($_SERVER['REQUEST_URI'], '?') === '/zespol/') {
+        // Ustaw docelowy URL
+        $target_url = home_url('/poznaj-nasz-zespol/');
+        // Wykonaj przekierowanie 301
+        wp_redirect($target_url, 301);
+        exit();
+    }
+});
+
+add_filter('wpseo_breadcrumb_links', function ($links) {
+    // Sprawdź, czy jesteśmy na stronie pojedynczego wpisu i czy jego typ to 'oferta'
+    // Załóżmy, że slug Twojego CPT to 'oferta'. Jeśli jest inny, zmień go tutaj.
+    if (is_singular('oferta')) {
+        $post_type_archive_link = get_post_type_archive_link('oferta');
+
+        // Jeśli link do archiwum istnieje
+        if ($post_type_archive_link) {
+            // Przejdź przez wszystkie linki w breadcrumbs
+            foreach ($links as $index => &$link) {
+                // Znajdź link, który prowadzi do archiwum taksonomii 'kategoria-oferty'
+                if (strpos($link['url'], '/kategoria-oferty/') !== false) {
+                    // Podmień go na poprawny link i nazwę
+                    $link['url'] = $post_type_archive_link;
+                    $link['text'] = 'Oferta'; // Ustaw poprawną nazwę
+                    break; // Zakończ pętlę po znalezieniu i podmianie
+                }
+            }
+        }
+    }
+
+    return $links;
+});
