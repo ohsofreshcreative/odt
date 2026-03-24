@@ -26,7 +26,7 @@ $unique_id = 'clip_'.uniqid();
 @endphp
 
 <div class="hero category-header relative" @if(!empty($category_image['url'])) style="background-image: url('{{ $category_image['url'] }}'); background-position: center; background-size: cover;" @endif>
-	<div class="absolute inset-0 bg-black opacity-60"></div>
+	<div class="absolute inset-0 bg-primary"></div>
 
 	<div class="__wrapper c-main relative z-10 pt-60 pb-26">
 		<div class="__content w-full md:w-2/3">
@@ -39,28 +39,29 @@ $unique_id = 'clip_'.uniqid();
 			</div>
 			@endif
 		</div>
+		<div id="category-tabs" class="category-tabs z-20 relative rounded-full">
+			<!-- Swiper -->
+			<div class="swiper category-swiper lg:flex lg:justify-center">
+				<div class="swiper-wrapper lg:w-fit">
+					<!-- Slides -->
+					<div class="swiper-slide !w-auto">
+						<a href="/wszystkie-wpisy" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('wszystkie-wpisy') ? 'active' : '' }}">Wszystkie kategorie</a>
+					</div>
+					@foreach($categories as $category)
+					@if($category->name !== 'Wszystkie wpisy')
+					<div class="swiper-slide !w-auto">
+						<a href="{{ get_category_link($category->term_id) }}#category-tabs" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
+					</div>
+					@endif
+					@endforeach
+				</div>
+			</div>
+		</div>
 	</div>
 
 </div>
 
-<div id="category-tabs" class="c-main !-mt-16 category-tabs z-20 relative bg-white rounded-full p-3">
-    <!-- Swiper -->
-    <div class="swiper category-swiper lg:flex lg:justify-center">
-        <div class="swiper-wrapper lg:w-fit">
-            <!-- Slides -->
-            <div class="swiper-slide !w-auto">
-                <a href="/kategorie/wszystkie-kategorie" class="__tab block font-bold rounded-full px-4 py-2 {{ is_category('wszystkie-kategorie') ? 'active' : '' }}">Wszystkie kategorie</a>
-            </div>
-            @foreach($categories as $category)
-                @if($category->name !== 'Wszystkie kategorie')
-                <div class="swiper-slide !w-auto">
-                    <a href="{{ get_category_link($category->term_id) }}#category-tabs" class="__tab block font-bold rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : '' }}">{{ $category->name }}</a>
-                </div>
-                @endif
-            @endforeach
-        </div>
-    </div>
-</div>
+
 
 @if (have_posts())
 <div class="__posts c-main !mt-10 posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -75,7 +76,7 @@ $unique_id = 'clip_'.uniqid();
 <div class="mt-20 mb-20">
 	<div class="c-main">
 		<h3 class="">Brak wpisów w tej kategorii.</h3>
-		<a class="main-btn m-btn" href="/kategorie/wszystkie-wpisy/">Sprawdź wszystkie wpisy</a>
+		<a class="main-btn m-btn" href="/wszystkie-wpisy/">Sprawdź wszystkie wpisy</a>
 	</div>
 </div>
 @endif

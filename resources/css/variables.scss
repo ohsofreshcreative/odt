@@ -1347,7 +1347,8 @@ input[type='checkbox'] {
 	}
 
 	.active {
-		background-color: var(--color-primary);
+		background-color: var(--color-primary-500);
+		color:#FFF;
 	}
 }
 
