@@ -932,44 +932,10 @@ add_action('template_redirect', function() {
  * Bezwzględnie usuwa wszystkie terminy taksonomii 'kategoria-oferty'.
  */
 add_filter('wpseo_breadcrumb_links', function ($links) {
-    // Działaj tylko na stronach pojedynczych wpisów typu 'oferta'
-    if (is_singular('oferta')) {
-        
-        $new_links = [];
-        foreach ($links as $link) {
-            // Sprawdzamy, czy dany "okruszek" jest terminem taksonomii.
-            // Jeśli tak, i jest to 'kategoria-oferty', pomijamy go.
-            if (isset($link['ptarchive']) || (isset($link['term_id']) && get_term($link['term_id'])->taxonomy === 'kategoria-oferty')) {
-                continue;
-            }
-            
-            // Dodatkowe, bardzo szerokie sprawdzenie po URL-u
-            if (isset($link['url']) && strpos($link['url'], '/kategoria-oferty/') !== false) {
-                continue;
-            }
-
-            $new_links[] = $link;
-        }
-        
-        // Ręczne wstawienie linku do archiwum 'oferta', jeśli go brakuje
-        $oferta_archive_link = get_post_type_archive_link('oferta');
-        $oferta_link_exists = false;
-        foreach($new_links as $new_link) {
-            if(isset($new_link['url']) && $new_link['url'] === $oferta_archive_link) {
-                $oferta_link_exists = true;
-                break;
-            }
-        }
-
-        if (!$oferta_link_exists) {
-             array_splice($new_links, 1, 0, [[
-                'url' => $oferta_archive_link,
-                'text' => 'Oferta',
-            ]]);
-        }
-
-        return $new_links;
+    if (is_singular('oferta') && current_user_can('manage_options')) {
+        echo '<pre style="position: fixed; top: 50px; left: 10px; background: #fff; padding: 20px; border: 2px solid red; z-index: 9999; max-height: 80vh; overflow-y: auto;">';
+        print_r($links);
+        echo '</pre>';
     }
-
     return $links;
-}, 99); // Wysoki priorytet, aby odpalić się na końcu
+}, 99);
