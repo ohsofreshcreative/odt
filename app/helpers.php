@@ -63,3 +63,4 @@ function get_pdf_thumbnail_url($pdf_attachment_id)
     }
 }
 
+

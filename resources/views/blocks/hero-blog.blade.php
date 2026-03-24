@@ -20,6 +20,11 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	<div class="__wrapper c-main grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 items-center relative z-10 py-10">
 		<div class="__content relative z-20 pt-20 pb-10 md:py-30">
 
+			<div data-gsap-element="bread" class="__breadcrumb mb-4">
+				@if (function_exists('woocommerce_breadcrumb'))
+				{!! woocommerce_breadcrumb() !!}
+				@endif
+			</div>
 			<h1 data-gsap-element="header" class="text-white bg-bg-brand">
 				{{ $g_hero_blog['header'] }}
 			</h1>

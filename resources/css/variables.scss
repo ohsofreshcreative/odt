@@ -1117,12 +1117,13 @@ h6,
 /*--- !BREADCRUMB ---*/
 
 .woocommerce-breadcrumb {
-	text-align: center;
+	text-align: left;
 	color: var(--color-action);
 	font-size: 14px;
 	display: flex;
 	row-gap: 8px;
-	justify-content: center;
+	justify-content: start;
+	gap:8px;
 
 	a {
 		color: #FFF;
@@ -1330,6 +1331,13 @@ input[type='checkbox'] {
 
 /*--- !BLOG ---*/
 
+.post-template-default.single.single-post {
+	.woocommerce-breadcrumb {
+		text-align: center;
+		justify-content: center;
+	}
+}
+
 .blog-btn {
 	padding: 18px 16px;
 	transition: all 0.3s;
@@ -1405,6 +1413,17 @@ article.post:hover {
 
 .toc ul li.active {
 	border-left-color: var(--color-action);
+}
+
+/*--- !EBOOK ---*/
+
+.post-template-ebook-post {
+	.woocommerce-breadcrumb {
+		gap:8px;
+		a {
+			color: var(--color-primary) !important;
+		}
+	}
 }
 
 /*--- !SINGLE ---*/

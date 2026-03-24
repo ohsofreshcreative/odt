@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! empty( $breadcrumb ) ) {
 
-    echo '<div class="c-main pt-6">';
+    echo '<div class="">';
 	echo $wrap_before;
 
 	foreach ( $breadcrumb as $key => $crumb ) {

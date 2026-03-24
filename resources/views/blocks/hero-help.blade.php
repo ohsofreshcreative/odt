@@ -17,9 +17,15 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
 	class="b-hero-help bg-gradient relative {{ $sectionClass }} {{ $section_class }}">
 
+
+
 	<div class="__wrapper c-wide grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 items-center relative z-20 py-30">
 		<div class="__content relative z-20 pt-0 pb-0 md:py-30 order-2 lg:order-1">
-
+			<div data-gsap-element="bread" class="__breadcrumb mb-4">
+				@if (function_exists('woocommerce_breadcrumb'))
+				{!! woocommerce_breadcrumb() !!}
+				@endif
+			</div>
 			<h1 data-gsap-element="header" class="text-white bg-bg-brand">
 				{{ $g_hero_help['header'] }}
 			</h1>

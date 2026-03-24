@@ -9,7 +9,7 @@
 @while(have_posts()) @php(the_post())
 <div class="-spt">
 	<article @php(post_class('h-entry'))>
-		<div data-gsap-element="bread" class="__breadcrumb">
+		<div data-gsap-element="bread" class="__breadcrumb c-main pt-6">
 			@if (function_exists('woocommerce_breadcrumb'))
 			{!! woocommerce_breadcrumb() !!}
 			@endif
