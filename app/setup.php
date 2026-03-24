@@ -927,24 +927,36 @@ add_action('template_redirect', function() {
     }
 });
 
+/**
+ * Modyfikuje linki w breadcrumbs Yoast SEO.
+ * Wymusza dodanie linku do archiwum CPT 'oferta' na stronach CPT i jego taksonomii.
+ */
 add_filter('wpseo_breadcrumb_links', function ($links) {
-    // Sprawdź, czy jesteśmy na stronie pojedynczego wpisu i czy jego typ to 'oferta'
-    // Załóżmy, że slug Twojego CPT to 'oferta'. Jeśli jest inny, zmień go tutaj.
-    if (is_singular('oferta')) {
-        $post_type_archive_link = get_post_type_archive_link('oferta');
+    // Sprawdź, czy jesteśmy na stronie pojedynczego wpisu 'oferta' LUB na stronie taksonomii 'kategoria-oferty'
+    if (is_singular('oferta') || is_tax('kategoria-oferty')) {
+        
+        $cpt_archive_link = get_post_type_archive_link('oferta');
+        $cpt_archive_title = 'Oferta'; // Nazwa, która ma się wyświetlać
 
-        // Jeśli link do archiwum istnieje
-        if ($post_type_archive_link) {
-            // Przejdź przez wszystkie linki w breadcrumbs
-            foreach ($links as $index => &$link) {
-                // Znajdź link, który prowadzi do archiwum taksonomii 'kategoria-oferty'
-                if (strpos($link['url'], '/kategoria-oferty/') !== false) {
-                    // Podmień go na poprawny link i nazwę
-                    $link['url'] = $post_type_archive_link;
-                    $link['text'] = 'Oferta'; // Ustaw poprawną nazwę
-                    break; // Zakończ pętlę po znalezieniu i podmianie
-                }
+        // Sprawdź, czy link do archiwum CPT już istnieje w breadcrumbs
+        $archive_link_exists = false;
+        foreach ($links as $link) {
+            if (isset($link['url']) && $link['url'] === $cpt_archive_link) {
+                $archive_link_exists = true;
+                break;
             }
+        }
+
+        // Jeśli link do archiwum CPT nie istnieje, dodajmy go
+        if (!$archive_link_exists && $cpt_archive_link) {
+            // Stwórz nowy "okruszek" dla archiwum CPT
+            $cpt_crumb = [
+                'url' => $cpt_archive_link,
+                'text' => $cpt_archive_title,
+            ];
+
+            // Wstaw go zaraz po stronie głównej (na drugiej pozycji)
+            array_splice($links, 1, 0, [$cpt_crumb]);
         }
     }
 
