@@ -458,18 +458,23 @@ add_action('init', function () {
 		'public' => true,
 		'hierarchical' => true,
 		'show_in_rest' => true,
-		'rewrite' => ['slug' => 'oferta-kategoria'],
+		'rewrite' => [
+			'slug' => 'kategoria-oferty',
+			'with_front' => false,
+		],
 	]);
 
-	// 2. Rejestracja CPT i przypisanie nowej taksonomii
 	register_post_type('offer', [
 		'label' => 'Oferta',
 		'public' => true,
 		'has_archive' => false,
-		'rewrite' => ['slug' => 'offer'],
+		'rewrite' => [
+			'slug' => 'oferta',
+			'with_front' => false,
+		],
 		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 		'show_in_rest' => true,
-		'taxonomies' => ['offer_category'], // Używamy nowej taksonomii
+		'taxonomies' => ['offer_category'],
 		'menu_icon' => 'dashicons-list-view',
 	]);
 });
@@ -478,22 +483,27 @@ add_action('init', function () {
 add_action('init', function () {
 	// 1. Rejestracja taksonomii dla "Pomagamy w"
 	register_taxonomy('help_category', ['help'], [
-		'label' => 'Kategorie Pomocy',
+		'label' => 'Kategorie specjalizacji',
 		'public' => true,
 		'hierarchical' => true,
 		'show_in_rest' => true,
-		'rewrite' => ['slug' => 'pomoc-kategoria'],
+		'rewrite' => [
+			'slug' => 'specjalizacje',
+			'with_front' => false,
+		],
 	]);
 
-	// 2. Rejestracja CPT i przypisanie nowej taksonomii
 	register_post_type('help', [
-		'label' => 'Pomagamy w',
+		'label' => 'Specjalizacje',
 		'public' => true,
 		'has_archive' => false,
-		'rewrite' => ['slug' => 'help'],
+		'rewrite' => [
+			'slug' => 'specjalizacja',
+			'with_front' => false,
+		],
 		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 		'show_in_rest' => true,
-		'taxonomies' => ['help_category'], // Używamy nowej taksonomii
+		'taxonomies' => ['help_category'],
 		'menu_icon' => 'dashicons-open-folder',
 	]);
 });
@@ -517,7 +527,7 @@ add_action('init', function () {
 		'rewrite' => ['slug' => 'jobs'],
 		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 		'show_in_rest' => true,
-		'taxonomies' => ['job_category'], // Używamy nowej taksonomii
+		'taxonomies' => ['job_category'],
 		'menu_icon' => 'dashicons-open-folder',
 	]);
 });
@@ -551,15 +561,15 @@ add_action('init', function () {
 
 	// 2. REJESTRUJEMY CUSTOM POST TYPE I PRZYPISUJEMY DO NIEGO NOWĄ TAKSONOMIĘ
 	register_post_type('team', [
-	'label' => 'Zespół',
-	'public' => true,
-	'has_archive' => 'zespol',
-	'rewrite' => ['slug' => 'zespol', 'with_front' => false],
-	'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
-	'show_in_rest' => true,
-	'taxonomies' => ['team_category'],
-	'menu_icon' => 'dashicons-admin-users',
-]);
+		'label' => 'Zespół',
+		'public' => true,
+		'has_archive' => 'zespol',
+		'rewrite' => ['slug' => 'zespol', 'with_front' => false],
+		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+		'show_in_rest' => true,
+		'taxonomies' => ['team_category'],
+		'menu_icon' => 'dashicons-admin-users',
+	]);
 });
 
 
@@ -879,5 +889,27 @@ add_action('template_redirect', function () {
 
 		// Zatrzymujemy dalsze wykonywanie skryptu
 		exit;
+	}
+});
+
+
+/*--- DELETE CATEGORY FROM URL ----*/
+
+add_filter('term_link', function ($url, $term, $taxonomy) {
+	if ($taxonomy === 'category') {
+		return home_url('/' . $term->slug . '/');
+	}
+	return $url;
+}, 10, 3);
+
+add_action('init', function () {
+	$categories = get_categories(['hide_empty' => false]);
+
+	foreach ($categories as $category) {
+		add_rewrite_rule(
+			'^' . $category->slug . '/?$',
+			'index.php?category_name=' . $category->slug,
+			'top'
+		);
 	}
 });
