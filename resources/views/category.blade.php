@@ -50,7 +50,7 @@ $unique_id = 'clip_'.uniqid();
 					@foreach($categories as $category)
 					@if($category->name !== 'Wszystkie wpisy')
 					<div class="swiper-slide !w-auto">
-						<a href="{{ get_category_link($category->term_id) }}#category-tabs" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
+						<a href="{{ get_category_link($category->term_id) }}" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
 					</div>
 					@endif
 					@endforeach
