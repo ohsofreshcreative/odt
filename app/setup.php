@@ -467,7 +467,7 @@ add_action('init', function () {
 	register_post_type('offer', [
 		'label' => 'Oferta',
 		'public' => true,
-		'has_archive' => true,
+		'has_archive' => false,
 		'rewrite' => [
 			'slug' => 'oferta',
 			'with_front' => false,
