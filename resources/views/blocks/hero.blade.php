@@ -13,6 +13,11 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
     <div class="__wrapper c-wide grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 items-end relative z-20 py-30">
         <div class="__content relative z-20 pt-20 pb-10 md:py-30">
 
+			<div data-gsap-element="bread" class="__breadcrumb mb-4">
+				@if (function_exists('yoast_breadcrumb'))
+				{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
+				@endif
+			</div>
             <h1 data-gsap-element="header" class="text-white bg-bg-brand">
                 {{ $g_hero['title'] }}
             </h1>

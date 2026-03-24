@@ -16,6 +16,11 @@ $sectionClass .= ' ' . $background;
 <section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-member relative -spt {{ $sectionClass }} {{ $section_class }}">
 
 	<div class="__wrapper c-main relative z-20">
+			<div data-gsap-element="bread" class="__breadcrumb mb-4">
+				@if (function_exists('yoast_breadcrumb'))
+				{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
+				@endif
+			</div>
 		<div class="__col grid grid-cols-1 lg:grid-cols-[1.5fr_2fr] gap-20 mt-16">
 			<div class="__col">
 				@if (!empty($g_member['image']))
