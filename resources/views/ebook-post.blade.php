@@ -1,3 +1,8 @@
+{{--
+  Template Name: Ebook Post
+  Template Post Type: post
+--}}
+
 @extends('layouts.app')
 
 @section('content')
