@@ -1116,6 +1116,10 @@ h6,
 
 /*--- !BREADCRUMB ---*/
 
+.home #breadcrumbs {
+	display: none !important;
+}
+
 .woocommerce-breadcrumb, #breadcrumbs  {
 	text-align: left;
 	color: var(--color-action);
