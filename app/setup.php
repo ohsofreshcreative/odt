@@ -932,32 +932,59 @@ add_action('template_redirect', function() {
  * Wymusza dodanie linku do archiwum CPT 'oferta' na stronach CPT i jego taksonomii.
  */
 add_filter('wpseo_breadcrumb_links', function ($links) {
-    // Sprawdź, czy jesteśmy na stronie pojedynczego wpisu 'oferta' LUB na stronie taksonomii 'kategoria-oferty'
+    // Sprawdź, czy jesteśmy na stronie CPT 'oferta' lub jego taksonomii 'kategoria-oferty'
     if (is_singular('oferta') || is_tax('kategoria-oferty')) {
         
         $cpt_archive_link = get_post_type_archive_link('oferta');
-        $cpt_archive_title = 'Oferta'; // Nazwa, która ma się wyświetlać
+        $cpt_archive_title = 'Oferta';
 
-        // Sprawdź, czy link do archiwum CPT już istnieje w breadcrumbs
-        $archive_link_exists = false;
-        foreach ($links as $link) {
-            if (isset($link['url']) && $link['url'] === $cpt_archive_link) {
-                $archive_link_exists = true;
-                break;
+        // Jeśli z jakiegoś powodu nie ma linku do archiwum, nie rób nic
+        if (!$cpt_archive_link) {
+            return $links;
+        }
+
+        $new_links = [];
+        $cpt_link_added = false;
+
+        // Przebudujmy linki od nowa, aby mieć pełną kontrolę
+        foreach ($links as $index => $link) {
+            // 1. Zawsze zachowaj stronę główną
+            if ($index === 0) {
+                $new_links[] = $link;
+                continue;
             }
-        }
 
-        // Jeśli link do archiwum CPT nie istnieje, dodajmy go
-        if (!$archive_link_exists && $cpt_archive_link) {
-            // Stwórz nowy "okruszek" dla archiwum CPT
-            $cpt_crumb = [
-                'url' => $cpt_archive_link,
-                'text' => $cpt_archive_title,
-            ];
+            // 2. Ignoruj całkowicie błędny link do taksonomii
+            if (isset($link['url']) && strpos($link['url'], '/kategoria-oferty/') !== false) {
+                // Jeśli link do archiwum CPT nie został jeszcze dodany, zrób to teraz
+                if (!$cpt_link_added) {
+                    $new_links[] = [
+                        'url' => $cpt_archive_link,
+                        'text' => $cpt_archive_title,
+                    ];
+                    $cpt_link_added = true;
+                }
+                // Jeśli to strona taksonomii, dodaj ją po linku do archiwum CPT
+                if (is_tax('kategoria-oferty')) {
+                    $new_links[] = $link;
+                }
+                continue; // Pomiń oryginalny, błędnie umieszczony link
+            }
+            
+            // 3. Jeśli link do archiwum CPT nie został dodany, a jesteśmy po stronie głównej, dodaj go
+            if ($index === 1 && !$cpt_link_added) {
+                 $new_links[] = [
+                    'url' => $cpt_archive_link,
+                    'text' => $cpt_archive_title,
+                ];
+                $cpt_link_added = true;
+            }
 
-            // Wstaw go zaraz po stronie głównej (na drugiej pozycji)
-            array_splice($links, 1, 0, [$cpt_crumb]);
+            // 4. Dodaj pozostałe linki (np. do aktualnej strony)
+            $new_links[] = $link;
         }
+        
+        return $new_links;
     }
 
     return $links;
