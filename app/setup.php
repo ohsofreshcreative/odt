@@ -926,3 +926,36 @@ add_action('template_redirect', function() {
         exit();
     }
 });
+/**
+ * Modyfikuje breadcrumbs Yoast SEO dla CPT 'oferta'.
+ * Usuwa z nich terminy taksonomii 'kategoria-oferty', zostawiając tylko link do archiwum CPT.
+ */
+add_filter('wpseo_breadcrumb_links', function ($links) {
+    // Działaj tylko na stronach pojedynczych wpisów typu 'oferta'
+    if (is_singular('oferta')) {
+        
+        $new_links = [];
+        foreach ($links as $link) {
+            // Sprawdź, czy link nie prowadzi do archiwum taksonomii 'kategoria-oferty'
+            // i czy nie jest to link do samej taksonomii (jeśli Yoast dodałby go bez URL)
+            if (isset($link['term_id'])) {
+                 $term = get_term($link['term_id']);
+                 if ($term && $term->taxonomy === 'kategoria-oferty') {
+                     continue; // Pomiń ten link
+                 }
+            }
+
+            // Dodatkowe zabezpieczenie sprawdzające URL
+            if (isset($link['url']) && strpos($link['url'], '/kategoria-oferty/') !== false) {
+                continue; // Pomiń również ten link
+            }
+
+            // Jeśli link przeszedł testy, dodaj go do nowej tablicy
+            $new_links[] = $link;
+        }
+        
+        return $new_links;
+    }
+
+    return $links;
+});
