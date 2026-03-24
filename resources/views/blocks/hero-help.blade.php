@@ -18,7 +18,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	class="b-hero-help bg-gradient relative {{ $sectionClass }} {{ $section_class }}">
 
 	<div class="__wrapper c-wide grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 items-center relative z-20 py-30">
-		<div class="__content relative z-20 pt-20 pb-10 md:py-30">
+		<div class="__content relative z-20 pt-0 pb-0 md:py-30 order-2 lg:order-1">
 
 			<h1 data-gsap-element="header" class="text-white bg-bg-brand">
 				{{ $g_hero_help['header'] }}
@@ -45,11 +45,11 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		</div>
 
 		@if ($g_hero_help['image'])
-		<div class="">
-			<img data-gsap-element="image" class="max-w-[440px]" src="{{ $g_hero_help['image']['url'] }}" />
+		<div class="order-1 lg:order-2">
+			<img data-gsap-element="image" class="max-w-[200px] md:max-w-[440px]" src="{{ $g_hero_help['image']['url'] }}" />
 		</div>
 		@endif
 	</div>
 
-	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full" src="/wp-content/uploads/2026/01/help-hero-bg.svg" />
+	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full hidden md:block" src="/wp-content/uploads/2026/01/help-hero-bg.svg" />
 </section>

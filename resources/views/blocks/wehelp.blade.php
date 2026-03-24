@@ -37,13 +37,13 @@
 		</div>
 
 		@if ($g_wehelp['image'])
-		<div class="">
+		<div class="opacity-20 md:opacity-100">
 			<img data-gsap-element="image" class="absolute right-20 -bottom-20 max-w-[440px]" src="{{ $g_wehelp['image']['url'] }}" />
 		</div>
 		@endif
 	</div>
 
-	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full" src="/wp-content/uploads/2026/01/help-hero-bg.svg" />
+	<img data-gsap-element="image" class="absolute top-0 -right-20 h-full hidden md:block" src="/wp-content/uploads/2026/01/help-hero-bg.svg" />
 </section>
 
 <section data-gsap-anim="section" class="relative z-20 mt-0 md:-mt-16">

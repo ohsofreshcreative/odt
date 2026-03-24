@@ -69,7 +69,7 @@ use App\Walkers\MegaMenuWalker;
 		aria-label="Menu mobilne">
 		<div class="p-4 relative z-10">
 			<div class="flex items-center justify-between mb-6">
-				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto max-w-[200px] h-12"></a></span>
+				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto max-w-[200px] invert h-12"></a></span>
 				<button
 					@click="mobileOpen = false"
 					class="p-2 text-white rounded-md">
