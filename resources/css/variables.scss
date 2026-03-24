@@ -1116,7 +1116,7 @@ h6,
 
 /*--- !BREADCRUMB ---*/
 
-.woocommerce-breadcrumb {
+.woocommerce-breadcrumb, #breadcrumbs  {
 	text-align: left;
 	color: var(--color-action);
 	font-size: 14px;
@@ -1137,6 +1137,8 @@ h6,
 		color: var(--color-primary-400);
 	}
 }
+
+
 
 /*--- !BLOCKS ---*/
 
