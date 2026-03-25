@@ -164,58 +164,55 @@ document.addEventListener('DOMContentLoaded', () => {
   const megamenuContents = document.querySelectorAll('.megamenu-content');
 
   megamenuContents.forEach(megamenu => {
-    const level2Column = megamenu.querySelector('.level-2-column ul');
-    if (!level2Column) return; // Pomiń, jeśli struktura jest nieprawidłowa
-
     const level2Items = megamenu.querySelectorAll('.level-2-item');
     const level3Lists = megamenu.querySelectorAll('.level-3-list');
     const imageContainer = megamenu.querySelector('.active-level-2-image');
 
-    // Funkcja do obsługi zmiany aktywnego elementu
-    const handleActiveChange = (item) => {
-      if (!item) return;
+    level2Items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        // Usuń klasę 'active' ze wszystkich elementów i list w obrębie TEGO megamenu
+        level2Items.forEach(i => i.classList.remove('active'));
+        level3Lists.forEach(l => l.classList.remove('active'));
 
-      // Usuń klasę 'active' ze wszystkich
-      level2Items.forEach(i => i.classList.remove('active'));
-      level3Lists.forEach(l => l.classList.remove('active'));
+        // Dodaj 'active' do najechanego elementu
+        item.classList.add('active');
 
-      // Dodaj 'active' do docelowego elementu
-      item.classList.add('active');
-
-      // Pokaż odpowiednią listę poziomu 3
-      const parentId = item.id;
-      const targetList = megamenu.querySelector(`.level-3-list[data-parent-id="${parentId}"]`);
-      if (targetList) {
-        targetList.classList.add('active');
-      }
-
-      // Zaktualizuj obrazek
-      const imageUrl = item.dataset.imageSrc;
-      if (imageContainer) {
-        imageContainer.innerHTML = ''; // Wyczyść obrazek
-        if (imageUrl) {
-          const img = document.createElement('img');
-          img.src = imageUrl;
-          img.alt = '';
-          img.className = 'menu-image';
-          imageContainer.appendChild(img);
+        // Znajdź i pokaż odpowiednią listę poziomu 3
+        const parentId = item.id;
+        const targetList = megamenu.querySelector(`.level-3-list[data-parent-id="${parentId}"]`);
+        if (targetList) {
+          targetList.classList.add('active');
         }
-      }
-    };
 
-    // Użyj delegacji zdarzeń
-    level2Column.addEventListener('mouseenter', (event) => {
-      // Sprawdź, czy zdarzenie pochodzi z elementu level-2-item
-      const targetItem = event.target.closest('.level-2-item');
-      if (targetItem && level2Column.contains(targetItem)) {
-        handleActiveChange(targetItem);
-      }
+        // Zaktualizuj obrazek
+        const imageUrl = item.dataset.imageSrc;
+        if (imageUrl && imageContainer) {
+          // Sprawdź, czy obrazek już istnieje, aby uniknąć przeładowywania
+          let img = imageContainer.querySelector('img');
+          if (!img) {
+            img = document.createElement('img');
+            imageContainer.appendChild(img);
+          }
+          img.src = imageUrl;
+          img.alt = ''; // Dodaj pusty alt dla dostępności
+          img.className = 'menu-image'; // Upewnij się, że obrazek ma odpowiednie style
+        } else if (imageContainer) {
+          imageContainer.innerHTML = ''; // Wyczyść, jeśli nie ma obrazka
+        }
+      });
     });
 
-    // Ustaw stan początkowy przy załadowaniu
+    // Ustaw domyślny stan przy pierwszym załadowaniu
     const firstItem = megamenu.querySelector('.level-2-item:first-child');
     if (firstItem) {
-      handleActiveChange(firstItem);
+      // Używamy setTimeout, aby upewnić się, że wszystko jest gotowe
+      setTimeout(() => {
+        firstItem.dispatchEvent(new MouseEvent('mouseenter', {
+          'view': window,
+          'bubbles': true,
+          'cancelable': true
+        }));
+      }, 100);
     }
   });
 });
