@@ -23,7 +23,7 @@
 		<div data-gsap-element="tabs" class="tabs-wrapper flex flex-col mt-4">
 			@foreach ($r_faq as $item)
 			<div class="tabs rounded-2xl bg-white border border-secondary h-max">
-				<input class="acc-check" type="checkbox" name="radio-a" id="check{{ $loop->index }}">
+				<input class="tab-check" type="checkbox" name="radio-a" id="check{{ $loop->index }}">
 				<label class="tabs-label flex items-center justify-between" for="check{{ $loop->index }}">
 					<div class="flex items-center gap-4">
 						<h6 class="!text-lg">{{ $item['title'] }}</h6>
