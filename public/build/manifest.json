@@ -3,8 +3,8 @@
     "file": "assets/pagination-BmgjDa1V.css",
     "src": "_pagination-BmgjDa1V.css"
   },
-  "_pagination-D1dJ3rQC.js": {
-    "file": "assets/pagination-D1dJ3rQC.js",
+  "_pagination-O7P-FYqg.js": {
+    "file": "assets/pagination-O7P-FYqg.js",
     "name": "pagination",
     "imports": [
       "resources/js/app.js"
@@ -76,7 +76,7 @@
     "src": "resources/images/ring-mask.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-mtTA2804.js",
+    "file": "assets/app-Mrz4QI6u.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -92,13 +92,13 @@
     ]
   },
   "resources/js/blocks/help.js": {
-    "file": "assets/help-ObBMlZ3n.js",
+    "file": "assets/help-CitFDc2t.js",
     "name": "help",
     "src": "resources/js/blocks/help.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-D1dJ3rQC.js"
+      "_pagination-O7P-FYqg.js"
     ],
     "css": [
       "assets/help-BoYVoAWi.css",
@@ -106,7 +106,7 @@
     ]
   },
   "resources/js/blocks/places.js": {
-    "file": "assets/places-C9og4YVK.js",
+    "file": "assets/places-DUseMZMM.js",
     "name": "places",
     "src": "resources/js/blocks/places.js",
     "isDynamicEntry": true,
@@ -115,26 +115,26 @@
     ]
   },
   "resources/js/blocks/reviews.js": {
-    "file": "assets/reviews-CannqXzQ.js",
+    "file": "assets/reviews-E8eF-H4o.js",
     "name": "reviews",
     "src": "resources/js/blocks/reviews.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-D1dJ3rQC.js"
+      "_pagination-O7P-FYqg.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
     ]
   },
   "resources/js/blocks/slider.js": {
-    "file": "assets/slider-CDexAzsJ.js",
+    "file": "assets/slider-DwrJt9i2.js",
     "name": "slider",
     "src": "resources/js/blocks/slider.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-D1dJ3rQC.js"
+      "_pagination-O7P-FYqg.js"
     ],
     "css": [
       "assets/slider-tn0RQdqM.css",
@@ -142,33 +142,33 @@
     ]
   },
   "resources/js/blocks/slides.js": {
-    "file": "assets/slides-nYSMFvnp.js",
+    "file": "assets/slides-Nf4CLaFm.js",
     "name": "slides",
     "src": "resources/js/blocks/slides.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-D1dJ3rQC.js"
+      "_pagination-O7P-FYqg.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
     ]
   },
   "resources/js/blocks/speakers.js": {
-    "file": "assets/speakers-DR4S8i3y.js",
+    "file": "assets/speakers-55DVGPVB.js",
     "name": "speakers",
     "src": "resources/js/blocks/speakers.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-D1dJ3rQC.js"
+      "_pagination-O7P-FYqg.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"
     ]
   },
   "resources/js/blocks/tabs.js": {
-    "file": "assets/tabs-Dhs9M3La.js",
+    "file": "assets/tabs-CQUn_7yO.js",
     "name": "tabs",
     "src": "resources/js/blocks/tabs.js",
     "isDynamicEntry": true,
@@ -181,13 +181,13 @@
     ]
   },
   "resources/js/blocks/team.js": {
-    "file": "assets/team-DQkRxPjf.js",
+    "file": "assets/team-Dxtjwwx8.js",
     "name": "team",
     "src": "resources/js/blocks/team.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_pagination-D1dJ3rQC.js"
+      "_pagination-O7P-FYqg.js"
     ],
     "css": [
       "assets/swiper-DHBATib1.css"

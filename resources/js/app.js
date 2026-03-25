@@ -205,14 +205,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ustaw domyślny stan przy pierwszym załadowaniu
     const firstItem = megamenu.querySelector('.level-2-item:first-child');
     if (firstItem) {
-      // Używamy setTimeout, aby upewnić się, że wszystko jest gotowe
-      setTimeout(() => {
-        firstItem.dispatchEvent(new MouseEvent('mouseenter', {
-          'view': window,
-          'bubbles': true,
-          'cancelable': true
-        }));
-      }, 100);
+      // Bezpośrednio ustaw stan aktywny zamiast symulować zdarzenie
+      firstItem.classList.add('active');
+      const parentId = firstItem.id;
+      const firstTargetList = megamenu.querySelector(`.level-3-list[data-parent-id="${parentId}"]`);
+      if (firstTargetList) {
+        firstTargetList.classList.add('active');
+      }
+      const firstImageUrl = firstItem.dataset.imageSrc;
+      if (firstImageUrl && imageContainer) {
+        const img = document.createElement('img');
+        img.src = firstImageUrl;
+        img.alt = '';
+        img.className = 'menu-image';
+        imageContainer.appendChild(img);
+      }
     }
   });
 });
