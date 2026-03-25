@@ -494,7 +494,7 @@ add_action('init', function () {
 	]);
 
 	register_post_type('help', [
-		'label' => 'Specjalizacje',
+		'label' => 'Pomagamy w',
 		'public' => true,
 		'has_archive' => false,
 		'rewrite' => [
