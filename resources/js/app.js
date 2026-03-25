@@ -168,51 +168,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const level3Lists = megamenu.querySelectorAll('.level-3-list');
     const imageContainer = megamenu.querySelector('.active-level-2-image');
 
-    // Funkcja do aktualizacji aktywnego elementu
-    function updateActive(item) {
-      // Usuń klasę 'active' ze wszystkich elementów i list w obrębie TEGO megamenu
-      level2Items.forEach(i => i.classList.remove('active'));
-      level3Lists.forEach(l => l.classList.remove('active'));
+    level2Items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        // Usuń klasę 'active' ze wszystkich elementów i list w obrębie TEGO megamenu
+        level2Items.forEach(i => i.classList.remove('active'));
+        level3Lists.forEach(l => l.classList.remove('active'));
 
-      // Dodaj 'active' do najechanego elementu
-      item.classList.add('active');
+        // Dodaj 'active' do najechanego elementu
+        item.classList.add('active');
 
-      // Znajdź i pokaż odpowiednią listę poziomu 3
-      const parentId = item.id;
-      const targetList = megamenu.querySelector(`.level-3-list[data-parent-id="${parentId}"]`);
-      if (targetList) {
-        targetList.classList.add('active');
-      }
+        // Znajdź i pokaż odpowiednią listę poziomu 3
+        const parentId = item.id;
+        const targetList = megamenu.querySelector(`.level-3-list[data-parent-id="${parentId}"]`);
+        if (targetList) {
+          targetList.classList.add('active');
+        }
 
-      // Zaktualizuj obrazek
-      const imageUrl = item.dataset.imageSrc;
-      if (imageContainer) {
-        const img = imageContainer.querySelector('img') || document.createElement('img');
-        if (imageUrl) {
-          if (!img.parentNode) {
+        // Zaktualizuj obrazek
+        const imageUrl = item.dataset.imageSrc;
+        if (imageUrl && imageContainer) {
+          // Sprawdź, czy obrazek już istnieje, aby uniknąć przeładowywania
+          let img = imageContainer.querySelector('img');
+          if (!img) {
+            img = document.createElement('img');
             imageContainer.appendChild(img);
           }
           img.src = imageUrl;
-          img.alt = '';
-          img.className = 'menu-image';
-        } else {
-          imageContainer.innerHTML = '';
+          img.alt = ''; // Dodaj pusty alt dla dostępności
+          img.className = 'menu-image'; // Upewnij się, że obrazek ma odpowiednie style
+        } else if (imageContainer) {
+          imageContainer.innerHTML = ''; // Wyczyść, jeśli nie ma obrazka
         }
-      }
-    }
-
-    // Dodaj listenery do elementów poziomu 2
-    level2Items.forEach(item => {
-      item.addEventListener('mouseenter', () => updateActive(item));
+      });
     });
 
     // Ustaw domyślny stan przy pierwszym załadowaniu
     const firstItem = megamenu.querySelector('.level-2-item:first-child');
     if (firstItem) {
-      // Używamy requestAnimationFrame, aby upewnić się, że przeglądarka jest gotowa na zmiany
-      requestAnimationFrame(() => {
-        updateActive(firstItem);
-      });
+      // Używamy setTimeout, aby upewnić się, że wszystko jest gotowe
+      setTimeout(() => {
+        firstItem.dispatchEvent(new MouseEvent('mouseenter', {
+          'view': window,
+          'bubbles': true,
+          'cancelable': true
+        }));
+      }, 100);
     }
   });
 });
