@@ -32,13 +32,13 @@
 
                             <h6 class="text-h7 !text-body">{{ $speaker['name'] }}</h6>
 
-                            @if (!empty($speaker['logos']))
+                           <!--  @if (!empty($speaker['logos']))
                             <div class="flex flex-wrap items-center gap-2 mt-4">
                                 @foreach ($speaker['logos'] as $logo)
                                 <img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] }}" class="h-12 rounded w-auto bg-white p-2 object-contain">
                                 @endforeach
                             </div>
-                            @endif
+                            @endif -->
                         </div>
                     </div>
                 </div>
