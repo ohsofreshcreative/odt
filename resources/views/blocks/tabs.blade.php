@@ -54,7 +54,8 @@
 					x-transition:enter-end="opacity-100"
 					x-transition:leave="transition ease-in duration-200"
 					x-transition:leave-start="opacity-100"
-					x-transition:leave-end="opacity-0">
+					x-transition:leave-end="opacity-0"
+					class="absolute w-full">
 					@foreach ($items as $item)
 					<div class="__card bg-white radius grid grid-cols-1 md:grid-cols-2 section-gap items-center p-6 pb-10 md:p-10">
 						@if(!empty($item['image']))
@@ -69,9 +70,9 @@
 							@if (!empty($item['text']))
 							<div class="text-sm">{!! $item['text'] !!}</div>
 							@endif
-						<!-- 	<a href="#" class="main-btn mt-4">
-								Dowiedz się więcej
-							</a> -->
+							<!-- 	<a href="#" class="main-btn mt-4">
+                    Dowiedz się więcej
+                </a> -->
 						</div>
 					</div>
 					@endforeach
