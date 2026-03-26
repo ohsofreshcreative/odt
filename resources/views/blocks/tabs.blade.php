@@ -34,7 +34,7 @@
 							@keydown.enter="activeTab = {{ $loop->index }}"
 							@keydown.space.prevent="activeTab = {{ $loop->index }}"
 							:class="{ 'bg-primary-lighter text-primary border-r border-primary-light': activeTab === {{ $loop->index }}, 'bg-white text-body hover:bg-primary-lighter border-r border-primary-light': activeTab !== {{ $loop->index }} }"
-							class="relative !font-medium whitespace-nowrap p-6 transition-colors duration-200 focus:outline-none select-none cursor-pointer">
+							class="relative !font-medium whitespace-nowrap p-6 transition-colors focus:outline-none select-none cursor-pointer">
 							{{ $name }}
 
 							<div x-show="activeTab === {{ $loop->index }}" x-cloak
@@ -49,10 +49,10 @@
 			<div class="">
 				@foreach ($grouped_tabs as $name => $items)
 				<div x-show="activeTab === {{ $loop->index }}" x-cloak
-					x-transition:enter="transition ease-out duration-300"
+					x-transition:enter="transition ease-out"
 					x-transition:enter-start="opacity-0"
 					x-transition:enter-end="opacity-100"
-					x-transition:leave="transition ease-in duration-200"
+					x-transition:leave="transition ease-in"
 					x-transition:leave-start="opacity-100"
 					x-transition:leave-end="opacity-0">
 					@foreach ($items as $item)
