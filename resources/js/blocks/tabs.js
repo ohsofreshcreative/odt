@@ -4,17 +4,6 @@ import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-window.tabsComponent = function (tabs = []) {
-  return {
-    tabs,
-    activeTab: 0,
-
-    setTab(index) {
-      this.activeTab = index;
-    },
-  };
-};
-
 const initTabsSwiper = (scope = document) => {
   const swiperElements = scope.querySelectorAll(
     '.tabs-swiper:not(.swiper-initialized)'
@@ -27,41 +16,35 @@ const initTabsSwiper = (scope = document) => {
       modules: [FreeMode],
       slidesPerView: 'auto',
       spaceBetween: 0,
-      freeMode: {
-        enabled: true,
-        momentum: true,
-      },
+      freeMode: { enabled: true, momentum: true },
 
+      // drag myszką + swipe
       simulateTouch: true,
       grabCursor: true,
       allowTouchMove: true,
       touchStartPreventDefault: false,
       threshold: 2,
 
+      // desktop: wyłącz swiper (jeśli tego chcesz)
       breakpoints: {
-        768: {
-          enabled: false,
-        },
+        768: { enabled: false },
       },
     });
 
+    // Klik taba -> przewiń do niego (tylko gdy swiper jest włączony)
     swiperEl.addEventListener('click', (e) => {
       const el = e.target.closest('[data-tab-index]');
       if (!el) return;
       if (!swiper.enabled) return;
 
       const index = parseInt(el.dataset.tabIndex, 10);
-      if (!Number.isNaN(index)) {
-        swiper.slideTo(index, 250);
-      }
+      if (!Number.isNaN(index)) swiper.slideTo(index, 250);
     });
   });
 };
 
 // front
-document.addEventListener('DOMContentLoaded', () => {
-  initTabsSwiper();
-});
+initTabsSwiper();
 
 // ACF preview
 if (window.acf) {

@@ -14,24 +14,11 @@
         .swiper-slide:first-child [role='button'] {
           border-top-right-radius: 0;
         }
-
         .swiper-slide:last-child [role='button'] {
           border-top-left-radius: 0;
           border-top-right-radius: 16px;
         }
       }
-    }
-
-    .__content-wrap {
-      min-height: 1px;
-    }
-
-    .__card {
-      will-change: opacity, transform;
-    }
-
-    [x-cloak] {
-      display: none !important;
     }
   }
 }
