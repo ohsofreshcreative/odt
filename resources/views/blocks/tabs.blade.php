@@ -69,9 +69,9 @@
 							@if (!empty($item['text']))
 							<div class="text-sm">{!! $item['text'] !!}</div>
 							@endif
-							<a href="#" class="main-btn mt-4">
+						<!-- 	<a href="#" class="main-btn mt-4">
 								Dowiedz się więcej
-							</a>
+							</a> -->
 						</div>
 					</div>
 					@endforeach
