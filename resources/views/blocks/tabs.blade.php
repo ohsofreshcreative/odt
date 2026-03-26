@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="relative transition-all duration-300" x-ref="tabContainer">
+            <div class="relative transition-all duration-300 overflow-hidden" x-ref="tabContainer">
                 @foreach ($grouped_tabs as $name => $items)
                 <div x-show="activeTab === {{ $loop->index }}"
                      :ref="'tabPanel' + {{ $loop->index }}"
@@ -70,7 +70,7 @@
                      x-transition:leave="transition ease-in duration-200"
                      x-transition:leave-start="opacity-100"
                      x-transition:leave-end="opacity-0"
-                     class="absolute top-0 left-0 w-full">
+                     class="w-full">
                     @foreach ($items as $item)
                     <div class="__card bg-white radius grid grid-cols-1 md:grid-cols-2 section-gap items-center p-6 pb-10 md:p-10">
                         @if(!empty($item['image']))
