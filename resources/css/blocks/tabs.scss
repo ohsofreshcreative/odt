@@ -9,6 +9,16 @@
         border-top-right-radius: 16px;
         border-right: 0 !important;
       }
+
+      @media (max-width: 767px) {
+        .swiper-slide:first-child [role='button'] {
+          border-top-right-radius: 0;
+        }
+        .swiper-slide:last-child [role='button'] {
+          border-top-left-radius: 0;
+          border-top-right-radius: 16px;
+        }
+      }
     }
   }
 }
