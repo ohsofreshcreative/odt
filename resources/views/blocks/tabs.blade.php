@@ -46,38 +46,64 @@
 				</div>
 			</div>
 
-			<div class="">
-				@foreach ($grouped_tabs as $name => $items)
-				<div x-show="activeTab === {{ $loop->index }}" x-cloak
-					x-transition:enter="transition ease-out duration-300"
-					x-transition:enter-start="opacity-0"
-					x-transition:enter-end="opacity-100"
-					x-transition:leave="transition ease-in duration-200"
-					x-transition:leave-start="opacity-100"
-					x-transition:leave-end="opacity-0">
-					@foreach ($items as $item)
+			<div class="relative mt-6">
+	@foreach ($grouped_tabs as $name => $items)
+		@if ($loop->index === 0)
+			<div
+				x-show="activeTab === {{ $loop->index }}"
+				x-transition.opacity.duration.300ms
+				x-cloak
+			>
+				@foreach ($items as $item)
 					<div class="__card bg-white radius grid grid-cols-1 md:grid-cols-2 section-gap items-center p-6 pb-10 md:p-10">
 						@if(!empty($item['image']))
-						<div class="relative overflow-hidden radius">
-							<img class="w-full img-xl object-cover" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
-						</div>
+							<div class="relative overflow-hidden radius">
+								<img class="w-full img-xl object-cover" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+							</div>
 						@endif
-						<div class="__content relative ">
+
+						<div class="__content relative">
 							@if (!empty($item['header']))
-							<h6 class="text-body mb-4">{{ $item['header'] }}</h6>
+								<h6 class="text-body mb-4">{{ $item['header'] }}</h6>
 							@endif
+
 							@if (!empty($item['text']))
-							<div class="text-sm">{!! $item['text'] !!}</div>
+								<div class="text-sm">{!! $item['text'] !!}</div>
 							@endif
-						<!-- 	<a href="#" class="main-btn mt-4">
-								Dowiedz się więcej
-							</a> -->
 						</div>
 					</div>
-					@endforeach
-				</div>
 				@endforeach
 			</div>
+		@else
+			<div
+				x-show="activeTab === {{ $loop->index }}"
+				x-transition.opacity.duration.300ms
+				x-cloak
+				style="display: none;"
+			>
+				@foreach ($items as $item)
+					<div class="__card bg-white radius grid grid-cols-1 md:grid-cols-2 section-gap items-center p-6 pb-10 md:p-10">
+						@if(!empty($item['image']))
+							<div class="relative overflow-hidden radius">
+								<img class="w-full img-xl object-cover" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+							</div>
+						@endif
+
+						<div class="__content relative">
+							@if (!empty($item['header']))
+								<h6 class="text-body mb-4">{{ $item['header'] }}</h6>
+							@endif
+
+							@if (!empty($item['text']))
+								<div class="text-sm">{!! $item['text'] !!}</div>
+							@endif
+						</div>
+					</div>
+				@endforeach
+			</div>
+		@endif
+	@endforeach
+</div>
 
 		</div>
 		@endif
