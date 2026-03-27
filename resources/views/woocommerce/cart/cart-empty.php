@@ -24,14 +24,13 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_cart_is_empty');
 
 if (wc_get_page_id('shop') > 0) : ?>
-	<div class="c-main">
-		<p>Nie masz jeszcze umówionej wizyty.</p>
-		<x-button
-			:href="/umow-wizyte/"
-			variant="primary"
-			class="mt-6"
-			data-gsap-element="btn">
-			Umów wizytę
-		</x-button>
+	<div class="c-main text-center pb-20">
+		<h5>Nie masz jeszcze umówionej wizyty.</h5>
+		 <a
+            href="<?php echo esc_url(site_url('/umow-wizyte/')); ?>"
+            class="btn-primary rounded-full px-6 py-4 inline-block mt-6"
+            data-gsap-element="btn">
+            Umów wizytę
+        </a>
 	</div>
 <?php endif; ?>
