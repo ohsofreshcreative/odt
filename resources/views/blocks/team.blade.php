@@ -30,7 +30,7 @@ $display_terms = array_values(array_filter($terms, function ($term) {
 }));
 				@endphp
 
-				<div class="swiper-slide h-auto">
+				<div class="swiper-slide !h-auto">
 					<a href="{{ get_permalink() }}" class="block h-full">
 						<div data-gsap-element="card" class="__card relative bg-white radius p-6 h-full">
 							@if (has_post_thumbnail())
