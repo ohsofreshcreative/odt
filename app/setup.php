@@ -926,3 +926,14 @@ add_action('template_redirect', function() {
         exit();
     }
 });
+
+add_action('template_redirect', function() {
+    // Sprawdź, czy żądany adres to /shop lub /shop/
+    if (isset($_SERVER['REQUEST_URI']) && in_array(strtok($_SERVER['REQUEST_URI'], '?'), ['/shop', '/shop/'])) {
+        // Ustaw docelowy URL na stronę główną
+        $target_url = home_url('/');
+        // Wykonaj przekierowanie 301
+        wp_redirect($target_url, 301);
+        exit();
+    }
+});
