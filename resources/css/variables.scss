@@ -192,7 +192,7 @@ body {
 	width: 100%;
 }
 
-.c-main, .woocommerce-notices-wrapper {
+.c-main, .woocommerce-notices-wrapper{
 	max-width: 1376px !important;
 	margin: 0 auto;
 	padding-left: 24px !important;
@@ -202,6 +202,10 @@ body {
 
 .woocommerce-notices-wrapper {
 	margin-top:64px;
+}
+
+.wc-empty-cart-message  {
+	display:none !important;
 }
 
 .c-wide,
