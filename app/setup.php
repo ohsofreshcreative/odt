@@ -701,13 +701,13 @@ add_action('woocommerce_checkout_process', function () {
 	$_POST['shipping_country'] = 'PL';
 });
 
-add_action('wp_footer', function () {
+/* add_action('wp_footer', function () {
 	if (!is_cart()) return;
 	echo '<pre style="background:#fff;padding:10px;max-width:1200px;overflow:auto;">';
 	print_r(WC()->cart->get_cart());
 	echo '</pre>';
 });
-
+ */
 
 add_action('wp_enqueue_scripts', function () {
 	if (function_exists('acf_enqueue_scripts')) {
