@@ -1,32 +1,33 @@
 .b-tabs {
-  .__tabs {
-    .tabs-swiper {
-      .swiper-slide:first-child [role='button'] {
-        border-top-left-radius: 16px;
-      }
+	.__tabs {
+		.tabs-swiper {
+			.swiper-slide:first-child [role='button'] {
+				border-top-left-radius: 16px;
+			}
 
-      .swiper-slide:last-child [role='button'] {
-        border-top-right-radius: 16px;
-        border-right: 0 !important;
-      }
+			.swiper-slide:last-child [role='button'] {
+				border-top-right-radius: 16px;
+				border-right: 0 !important;
+			}
 
-      @media (max-width: 767px) {
-        .swiper-slide:first-child [role='button'] {
-          border-top-right-radius: 0;
-        }
-        .swiper-slide:last-child [role='button'] {
-          border-top-left-radius: 0;
-          border-top-right-radius: 16px;
-        }
-      }
-    }
-  }
+			@media (max-width: 767px) {
+				.swiper-slide:first-child [role='button'] {
+					border-top-right-radius: 0;
+				}
+
+				.swiper-slide:last-child [role='button'] {
+					border-top-left-radius: 0;
+					border-top-right-radius: 16px;
+				}
+			}
+		}
+	}
 }
 
 .b-tabs.object-top {
-	._tab {
+	.__tab {
 		.__img {
-	object-position: top;
+			object-position: top;
 		}
 	}
 }
