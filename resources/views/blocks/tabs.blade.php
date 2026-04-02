@@ -46,7 +46,7 @@
 				</div>
 			</div>
 
-			<div class="">
+			<div class="__tab">
 				@foreach ($grouped_tabs as $name => $items)
 				<div x-show="activeTab === {{ $loop->index }}" x-cloak
 					x-transition:enter="transition ease-out duration-300"
@@ -59,7 +59,7 @@
 					<div class="__card bg-white radius grid grid-cols-1 md:grid-cols-2 section-gap items-center p-6 pb-10 md:p-10">
 						@if(!empty($item['image']))
 						<div class="relative overflow-hidden radius">
-							<img class="w-full img-xl object-cover" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+							<img class="__img w-full img-xl object-cover" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
 						</div>
 						@endif
 						<div class="__content relative ">
