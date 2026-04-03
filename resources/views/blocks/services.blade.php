@@ -1,4 +1,3 @@
-<?php
 @php
 $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
