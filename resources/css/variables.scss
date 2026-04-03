@@ -1342,10 +1342,22 @@ input[type='checkbox'] {
 /*--- !BLOG ---*/
 
 .post-template-default.single.single-post {
-	.woocommerce-breadcrumb {
-		text-align: center;
-		justify-content: center;
-	}
+    .woocommerce-breadcrumb {
+        text-align: center;
+        justify-content: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .post-template-default.single.single-post {
+        .woocommerce-breadcrumb {
+            justify-content: flex-start;
+            text-align: left;
+        }
+    }
 }
 
 .blog-btn {
