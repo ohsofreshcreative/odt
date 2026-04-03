@@ -939,10 +939,11 @@ add_action('template_redirect', function() {
 });
 
 add_action('template_redirect', function() {
-    // Check if the request is for the /oferta/ slug and it's NOT the actual page with that slug.
-    // This targets the CPT archive.
-    if (!is_page('oferta') && is_post_type_archive('offer')) {
-        $target_url = home_url('/oferta/');
+    // Sprawdź, czy żądany adres to /zespol/
+    if (strtok($_SERVER['REQUEST_URI'], '?') === '/oferta/') {
+        // Ustaw docelowy URL
+        $target_url = home_url('/nasza-zespol/');
+        // Wykonaj przekierowanie 301
         wp_redirect($target_url, 301);
         exit();
     }
