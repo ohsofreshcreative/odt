@@ -12,13 +12,13 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 			<div data-gsap-element="txt" class="text-white">{!! $g_heroabout['txt'] !!}</div>
 		</div>
 
-		<div class="relative">
-			<div class="__nr1 absolute right-0 top-0 z-20  -translate-y-1/2 translate-x-20 radius border-5 border-solid border-primary bg-primary-lighter px-6 py-4 lg:translate-x-1/2">
-			{!! $g_heroabout_2['txt1'] !!}
-			</div>
-			<div class="__nr2 absolute left-0 top-full z-20 -translate-x-20 -translate-y-1/2 radius border-5 border-solid border-white bg-secondary text-white px-6 py-4 lg:-translate-x-1/2">
-			{!! $g_heroabout_2['txt2'] !!}
-			</div>
+		<div class="relative mt-20 md:mt-0">
+			<div class="__nr1 absolute right-0 top-0 z-20 -translate-y-1/2 translate-x-0 md:translate-x-4 lg:translate-x-8 xl:translate-x-12 2xl:translate-x-16 radius border-5 border-solid border-primary bg-primary-lighter px-6 py-4">
+    {!! $g_heroabout_2['txt1'] !!}
+</div>
+<div class="__nr2 absolute left-0 top-full z-20 -translate-x-0 -translate-y-1/2 md:-translate-x-4 lg:-translate-x-8 xl:-translate-x-12 2xl:-translate-x-16 radius border-5 border-solid border-white bg-secondary text-white px-6 py-4">
+    {!! $g_heroabout_2['txt2'] !!}
+</div>
 			@if ($g_heroabout['image'])
 			<img data-gsap-element="image" class="__img radius w-full img-xl object-cover mt-10" src="{{ $g_heroabout['image']['url'] }}" alt="{{ $g_heroabout['image']['alt'] ?? '' }}">
 			@endif
