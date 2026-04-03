@@ -939,8 +939,9 @@ add_action('template_redirect', function() {
 });
 
 add_action('template_redirect', function() {
-    // Redirect from the CPT 'offer' archive to the '/oferta/' page
-    if (is_post_type_archive('offer')) {
+    // Check if the request is for the /oferta/ slug and it's NOT the actual page with that slug.
+    // This targets the CPT archive.
+    if (!is_page('oferta') && is_post_type_archive('offer')) {
         $target_url = home_url('/oferta/');
         wp_redirect($target_url, 301);
         exit();
