@@ -918,9 +918,9 @@ add_action('init', function () {
 
 add_action('template_redirect', function() {
     // Sprawdź, czy żądany adres to /zespol/
-    if (strtok($_SERVER['REQUEST_URI'], '?') === '/zespol/') {
+    if (strtok($_SERVER['REQUEST_URI'], '?') === '/zespol') {
         // Ustaw docelowy URL
-        $target_url = home_url('/poznaj-nasz-zespol/');
+        $target_url = home_url('/poznaj-nasz-zespol');
         // Wykonaj przekierowanie 301
         wp_redirect($target_url, 301);
         exit();
@@ -940,9 +940,9 @@ add_action('template_redirect', function() {
 
 add_action('template_redirect', function() {
     // Sprawdź, czy żądany adres to /zespol/
-    if (strtok($_SERVER['REQUEST_URI'], '?') === '/oferta/') {
+    if (strtok($_SERVER['REQUEST_URI'], '?') === '/oferta') {
         // Ustaw docelowy URL
-        $target_url = home_url('/nasza-zespol/');
+        $target_url = home_url('/nasza-oferta');
         // Wykonaj przekierowanie 301
         wp_redirect($target_url, 301);
         exit();
