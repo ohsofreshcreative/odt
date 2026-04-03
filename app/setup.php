@@ -939,11 +939,9 @@ add_action('template_redirect', function() {
 });
 
 add_action('template_redirect', function() {
-    // Check if the request is for /oferta or /oferta/
-    if (isset($_SERVER['REQUEST_URI']) && in_array(strtok($_SERVER['REQUEST_URI'], '?'), ['/oferta', '/oferta/'])) {
-        // Set the target URL to the page with the slug 'oferta'
+    // Redirect from the CPT 'offer' archive to the '/oferta/' page
+    if (is_post_type_archive('offer')) {
         $target_url = home_url('/oferta/');
-        // Perform a 301 redirect
         wp_redirect($target_url, 301);
         exit();
     }
