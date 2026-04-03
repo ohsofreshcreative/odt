@@ -1468,7 +1468,8 @@ article.post:hover {
 	}
 
 	.__entry {
-		h2 {
+		h2, h2 span {
+			font-family: var(--header);
 			font-size: 36px !important;
 			line-height: 1.3em;
 			margin-top: 24px;
@@ -1476,13 +1477,15 @@ article.post:hover {
 		}
 
 		h2:first-child {
+			font-family: var(--header);
 			font-size: 36px !important;
 			line-height: 1.3em;
 			margin-top: 0;
 			margin-bottom: 0;
 		}
 
-		h3 {
+		h3, h3 span {
+			font-family: var(--header);
 			color: var(--color-primary);
 			font-size: 36px !important;
 			line-height: 1.3em;
@@ -1490,7 +1493,8 @@ article.post:hover {
 			margin-bottom: 8px;
 		}
 
-		h4 {
+		h4, h4 span {
+			font-family: var(--header);
 			color: var(--color-primary);
 			font-size: 30px !important;
 			line-height: 1.3em;
