@@ -917,33 +917,30 @@ add_action('init', function () {
 /*--- REDIRECT ---*/
 
 add_action('template_redirect', function() {
-    // Sprawdź, czy żądany adres to /zespol/
-    if (strtok($_SERVER['REQUEST_URI'], '?') === '/zespol') {
-        // Ustaw docelowy URL
-        $target_url = home_url('/poznaj-nasz-zespol');
-        // Wykonaj przekierowanie 301
+    // Redirect from /zespol/ to /poznaj-nasz-zespol/
+    if (is_page('zespol') || (isset($_SERVER['REQUEST_URI']) && strtok($_SERVER['REQUEST_URI'], '?') === '/zespol/')) {
+        $target_url = home_url('/poznaj-nasz-zespol/');
         wp_redirect($target_url, 301);
         exit();
     }
-});
 
-add_action('template_redirect', function() {
-    // Sprawdź, czy żądany adres to /shop lub /shop/
-    if (isset($_SERVER['REQUEST_URI']) && in_array(strtok($_SERVER['REQUEST_URI'], '?'), ['/shop', '/shop/'])) {
-        // Ustaw docelowy URL na stronę główną
+    // Redirect from the CPT 'offer' archive to the '/nasza-oferta/' page
+    if (is_post_type_archive('offer')) {
+        $target_url = home_url('/nasza-oferta/');
+        wp_redirect($target_url, 301);
+        exit();
+    }
+    
+    // Redirect from the old /oferta/ page to /nasza-oferta/
+    if (is_page('oferta')) {
+        $target_url = home_url('/nasza-oferta/');
+        wp_redirect($target_url, 301);
+        exit();
+    }
+
+    // Redirect from /shop/ to the homepage
+    if (is_shop()) {
         $target_url = home_url('/');
-        // Wykonaj przekierowanie 301
-        wp_redirect($target_url, 301);
-        exit();
-    }
-});
-
-add_action('template_redirect', function() {
-    // Sprawdź, czy żądany adres to /zespol/
-    if (strtok($_SERVER['REQUEST_URI'], '?') === '/oferta') {
-        // Ustaw docelowy URL
-        $target_url = home_url('/nasza-oferta');
-        // Wykonaj przekierowanie 301
         wp_redirect($target_url, 301);
         exit();
     }
