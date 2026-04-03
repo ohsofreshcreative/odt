@@ -44,5 +44,5 @@
 		</div>
 	</div>
 
-	<img data-gsap-element="bg" class="__bg absolute w-[400px] -left-60 top-32 pointer-events-none" src="/wp-content/uploads/2025/12/sign_small.svg" />
+	<img data-gsap-element="bg" class="__bg absolute w-[400px] -left-60 top-32 pointer-events-none" src="/wp-content/uploads/2026/01/quality-plant.svg" />
 </section>
