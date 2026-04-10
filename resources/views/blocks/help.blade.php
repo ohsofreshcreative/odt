@@ -12,6 +12,8 @@ $sectionClass .= ' ' . $background;
 }
 @endphp
 
+<!--- help -->
+
 <section
 	data-gsap-anim="section"
 	@if(!empty(get_field('section_id'))) id="{{ get_field('section_id') }}" @endif
@@ -31,19 +33,20 @@ $sectionClass .= ' ' . $background;
 			<div class="swiper-wrapper">
 				@foreach($help_posts as $post)
 				@php(setup_postdata($GLOBALS['post'] =& $post))
-				<div class="swiper-slide">
+				<div class="swiper-slide !h-auto">
 					<a href="{{ get_permalink() }}">
-						<div class="__card bg-white radius  hover:shadow-lg hover:shadow-secondary-100 transition-all p-8">
-							<div class="__rectangle absolute"></div>
+						<div class="__card flex flex-col gap-4 bg-white radius h-full hover:shadow-lg hover:shadow-secondary-100 transition-all p-8">
+							<!-- <div class="__rectangle absolute"></div> -->
 							@if(has_post_thumbnail())
-							<div class="__img max-w-18">
-								{!! get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'img-fluid']) !!}
+							<div class="">
+								<div class="__img max-w-18">
+									{!! get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'img-fluid']) !!}
+								</div>
+								@endif
+								<h6 class="block text-primary text-h7 mt-6">{{ get_the_title() }}</h6>
 							</div>
-							@endif
 
-							<h6 class="block text-primary text-h7 mt-6">{{ get_the_title() }}</h6>
-
-							<p class="underline-btn mt-2">
+							<p class="underline-btn mt-auto">
 								Dowiedz się więcej
 							</p>
 						</div>
