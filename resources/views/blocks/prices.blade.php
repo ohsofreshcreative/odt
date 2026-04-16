@@ -9,9 +9,9 @@
 	<div class="__wrapper c-main relative z-20">
 
 
-		<div data-gsap-element="bread" class="__breadcrumb text-center mb-4">
+		<div data-gsap-element="bread" class="__breadcrumb mb-4">
 			@if (function_exists('yoast_breadcrumb'))
-			{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
+			{!! yoast_breadcrumb('<p id="breadcrumbs" class=" text-center">','</p>') !!}
 			@endif
 		</div>
 		@if (!empty($g_prices['header']))
