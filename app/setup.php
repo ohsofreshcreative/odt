@@ -893,6 +893,38 @@ add_action('template_redirect', function () {
 });
 
 
+/*--- DELETE CATEGORY FROM URL ----*/
+
+// Filter the category link to remove the /category/ base
+add_filter('term_link', function ($url, $term, $taxonomy) {
+    if ('category' === $taxonomy) {
+        return home_url(trailingslashit($term->slug));
+    }
+    return $url;
+}, 10, 3);
+
+// Add rewrite rules to handle the new URL structure
+add_action('init', function () {
+    add_rewrite_tag('%category_name%', '([^/]+)');
+    
+    // Rule for paginated category archives, e.g., /blog/page/2
+    add_rewrite_rule('^([^/]+)/page/?([0-9]{1,})/?$', 'index.php?category_name=$matches[1]&paged=$matches[2]', 'top');
+    
+    // Rule for the main category archive, e.g., /blog
+    add_rewrite_rule('^([^/]+)/?$', 'index.php?category_name=$matches[1]', 'top');
+});
+
+// Redirect old /category/slug URLs to new /slug URLs
+add_action('template_redirect', function () {
+    if (is_category() && strpos($_SERVER['REQUEST_URI'], '/category/') !== false) {
+        $term = get_queried_object();
+        if ($term instanceof \WP_Term) {
+            $new_url = home_url(trailingslashit($term->slug));
+            wp_safe_redirect($new_url, 301);
+            exit();
+        }
+    }
+});
 
 /*--- REDIRECT ---*/
 
