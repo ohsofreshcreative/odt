@@ -41,21 +41,28 @@ $unique_id = 'clip_'.uniqid();
 		</div>
 		<div id="category-tabs" class="category-tabs z-20 relative rounded-full">
 			<!-- Swiper -->
-			<div class="swiper category-swiper lg:flex lg:justify-center">
-				<div class="swiper-wrapper lg:w-fit">
-					<!-- Slides -->
-					<div class="swiper-slide !w-auto">
-						<a href="/wszystkie-wpisy" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('wszystkie-wpisy') ? 'active' : '' }}">Wszystkie kategorie</a>
-					</div>
-					@foreach($categories as $category)
-					@if($category->name !== 'Wszystkie wpisy')
-					<div class="swiper-slide !w-auto">
-						<a href="{{ get_category_link($category->term_id) }}" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
-					</div>
-					@endif
-					@endforeach
-				</div>
-			</div>
+			
+		 <div id="category-tabs" class="category-tabs z-20 relative rounded-full">
+            <!-- Swiper -->
+            <div class="swiper category-swiper lg:flex lg:justify-center">
+                <div class="swiper-wrapper lg:w-fit">
+                    <!-- Slides -->
+                    <div class="swiper-slide !w-auto">
+                        <a href="/wszystkie-wpisy" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('wszystkie-wpisy') ? 'active' : '' }}">Wszystkie kategorie</a>
+                    </div>
+                    @foreach($categories as $category)
+                    @if($category->name !== 'Wszystkie wpisy')
+                    <div class="swiper-slide !w-auto">
+                        <a href="{{ get_category_link($category->term_id) }}" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
+            {{-- NOWY ELEMENT Z GRADIENTEM --}}
+            <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-primary pointer-events-none z-30"></div>
+        </div>
+    </div>
 		</div>
 	</div>
 

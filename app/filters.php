@@ -49,3 +49,17 @@ add_filter('woocommerce_coming_soon_template', function ($template) {
     
     return $template;
 });
+
+/*--- TRANSLATE STRINGS ---*/
+
+add_filter('gettext', function ($translated, $text, $domain) {
+    if ($text === 'Google Meet Link') {
+        return 'Link do spotkania online';
+    }
+
+    if ($text === 'Join Google Meeting') {
+        return 'Dołącz do spotkania';
+    }
+
+    return $translated;
+}, 10, 3);
