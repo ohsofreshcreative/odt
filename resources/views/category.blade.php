@@ -78,8 +78,7 @@ $unique_id = 'clip_'.uniqid();
 	@endwhile
 </div>
 
-{{-- {!! get_the_posts_navigation() !!} --}}
-{!! the_posts_pagination() !!}
+{!! get_the_posts_navigation() !!}
 @else
 <div class="mt-20 mb-20">
 	<div class="c-main">

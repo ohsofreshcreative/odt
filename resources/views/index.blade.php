@@ -15,8 +15,7 @@
     @includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
   @endwhile
 
-{{-- {!! get_the_posts_navigation() !!} --}}
-{!! the_posts_pagination() !!}
+  {!! get_the_posts_navigation() !!}
 @endsection
 
 @section('sidebar')
