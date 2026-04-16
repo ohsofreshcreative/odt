@@ -893,7 +893,7 @@ add_action('template_redirect', function () {
 });
 
 
-/*--- DELETE CATEGORY FROM URL ----*/
+/*--- DELETE CATEGORY FROM URL 
 
 // Filter the category link to remove the /category/ base
 add_filter('term_link', function ($url, $term, $taxonomy) {
@@ -924,7 +924,7 @@ add_action('template_redirect', function () {
             exit();
         }
     }
-});
+});----*/
 
 /*--- REDIRECT ---*/
 
