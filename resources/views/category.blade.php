@@ -48,7 +48,7 @@ $unique_id = 'clip_'.uniqid();
                 <div class="swiper-wrapper lg:w-fit">
                     <!-- Slides -->
                     <div class="swiper-slide !w-auto">
-                        <a href="/blog" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('blog') ? 'active' : '' }}">Blog</a>
+                        <a href="/category/blog" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('blog') ? 'active' : '' }}">Blog</a>
                     </div>
                     @foreach($categories as $category)
                     @if($category->name !== 'Blog')
