@@ -8,7 +8,6 @@
 	])>
 	<div class="__wrapper c-main relative z-20">
 
-
 		<div data-gsap-element="bread" class="__breadcrumb mb-4">
 			@if (function_exists('yoast_breadcrumb'))
 			{!! yoast_breadcrumb('<p id="breadcrumbs" class="!text-center flex flex-col">','</p>') !!}

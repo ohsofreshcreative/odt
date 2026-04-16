@@ -27,7 +27,11 @@ $unique_id = 'clip_'.uniqid();
 
 <div class="hero category-header relative" @if(!empty($category_image['url'])) style="background-image: url('{{ $category_image['url'] }}'); background-position: center; background-size: cover;" @endif>
 	<div class="absolute inset-0 bg-primary"></div>
-
+<div data-gsap-element="bread" class="__breadcrumb mb-4">
+			@if (function_exists('yoast_breadcrumb'))
+			{!! yoast_breadcrumb('<p id="breadcrumbs" class="!text-center flex flex-col">','</p>') !!}
+			@endif
+		</div>
 	<div class="__wrapper c-main relative z-10 pt-60 pb-26">
 		<div class="__content w-full md:w-2/3">
 			<h2 class="text-white m-header">
