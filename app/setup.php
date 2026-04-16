@@ -949,3 +949,27 @@ add_action('template_redirect', function() {
 
 /*--- PAGINATION ---*/
 
+namespace App;
+
+add_filter('the_posts_pagination_args', function ($args) {
+    $args['prev_text'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>';
+    $args['next_text'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    $args['screen_reader_text'] = __('Nawigacja po wpisach', 'sage');
+    return $args;
+});
+
+add_filter('navigation_markup_template', function ($template, $class) {
+    return '
+    <nav class="navigation %1$s mt-10 mb-10" aria-label="%4$s">
+        <h2 class="screen-reader-text">%2$s</h2>
+        <div class="nav-links flex items-center justify-center gap-4">%3$s</div>
+    </nav>';
+}, 10, 2);
+
+add_filter('paginate_links_output', function ($output) {
+    $output = str_replace('page-numbers', 'page-numbers inline-flex items-center justify-center w-10 h-10 rounded-full', $output);
+    $output = str_replace('current', 'current bg-primary text-white', $output);
+    $output = str_replace('prev', 'prev', $output);
+    $output = str_replace('next', 'next', $output);
+    return $output;
+});
