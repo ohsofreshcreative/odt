@@ -213,3 +213,13 @@ add_action('wp_enqueue_scripts', function () {
     acf_enqueue_scripts();
   }
 }, 20); 
+
+/*--- CRON AMELIA ---*/
+
+add_action('my_amelia_cron', function() {
+    wp_remote_get('https://osrodekdobrejterapii.pl/wp-admin/admin-ajax.php?action=wpamelia_api&call=/notifications/scheduled/send');
+});
+
+if (!wp_next_scheduled('my_amelia_cron')) {
+    wp_schedule_event(time(), 'hourly', 'my_amelia_cron');
+}
