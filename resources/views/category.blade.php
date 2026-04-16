@@ -48,10 +48,10 @@ $unique_id = 'clip_'.uniqid();
                 <div class="swiper-wrapper lg:w-fit">
                     <!-- Slides -->
                     <div class="swiper-slide !w-auto">
-                        <a href="/wszystkie-wpisy" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('wszystkie-wpisy') ? 'active' : '' }}">Wszystkie kategorie</a>
+                        <a href="/blog" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('blog') ? 'active' : '' }}">Blog</a>
                     </div>
                     @foreach($categories as $category)
-                    @if($category->name !== 'Wszystkie wpisy')
+                    @if($category->name !== 'Blog')
                     <div class="swiper-slide !w-auto">
                         <a href="{{ get_category_link($category->term_id) }}" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
                     </div>
