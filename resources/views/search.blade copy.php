@@ -15,5 +15,6 @@
     @include('partials.content-search')
   @endwhile
 
-  {!! get_the_posts_navigation() !!}
+{{-- {!! get_the_posts_navigation() !!} --}}
+{!! the_posts_pagination() !!}
 @endsection
