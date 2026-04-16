@@ -896,22 +896,31 @@ add_action('template_redirect', function () {
 /*--- DELETE CATEGORY FROM URL ----*/
 
 add_filter('term_link', function ($url, $term, $taxonomy) {
-	if ($taxonomy === 'category') {
-		return home_url('/' . $term->slug . '/');
-	}
-	return $url;
+    // Only modify the URL for the 'category' taxonomy
+    if ($taxonomy === 'category') {
+        // Return a URL like /my-category/ instead of /category/my-category/
+        return home_url(user_trailingslashit($term->slug));
+    }
+    return $url;
 }, 10, 3);
 
 add_action('init', function () {
-	$categories = get_categories(['hide_empty' => false]);
+    $categories = get_categories(['hide_empty' => false]);
 
-	foreach ($categories as $category) {
-		add_rewrite_rule(
-			'^' . $category->slug . '/?$',
-			'index.php?category_name=' . $category->slug,
-			'top'
-		);
-	}
+    foreach ($categories as $category) {
+        // Rule for the main category page (e.g., /blog/)
+        add_rewrite_rule(
+            '^' . $category->slug . '/?$',
+            'index.php?category_name=' . $category->slug,
+            'top'
+        );
+        // Rule for paginated category pages (e.g., /blog/page/2/)
+        add_rewrite_rule(
+            '^' . $category->slug . '/page/([0-9]+)/?$',
+            'index.php?category_name=' . $category->slug . '&paged=$matches[1]',
+            'top'
+        );
+    }
 });
 
 /*--- REDIRECT ---*/
