@@ -7,6 +7,13 @@
 	$section_class => !empty($section_class),
 	])>
 	<div class="__wrapper c-main relative z-20">
+
+
+		<div data-gsap-element="bread" class="__breadcrumb mb-4">
+			@if (function_exists('yoast_breadcrumb'))
+			{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
+			@endif
+		</div>
 		@if (!empty($g_prices['header']))
 		<div class="text-center mt-10 mb-10">
 			<h2 data-gsap-element="header" class="text-white">{{ $g_prices['header'] }}</h2>
