@@ -988,10 +988,19 @@ add_filter('paginate_links_output', function ($output) {
 
 
 /*--- CHECKOUT SHIPPING ---*/
-/* 
-add_action('woocommerce_before_checkout_form', function () {
+add_action('woocommerce_check_cart_items', function () {
+    if (is_admin() || (defined('DOING_AJAX') && DOING_AJAX)) {
+        return; // nie ruszamy podczas AJAX update_checkout
+    }
+    if (! WC()->session) {
+        return;
+    }
+    if (WC()->session->get('shipping_reset_done')) {
+        return;
+    }
     WC()->session->set('chosen_shipping_methods', []);
-}, 5); */
+    WC()->session->set('shipping_reset_done', true);
+});
 
 /*--- CATEGORY URL ---*/
 
