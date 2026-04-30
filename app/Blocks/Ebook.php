@@ -53,6 +53,8 @@ class Ebook extends Block
 				'toolbar' => 'full',
 				'media_upload' => true,
 			])
+
+			->addText('code', ['label' => 'Kod ebooka'])
 			->addLink('button', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',

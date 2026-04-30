@@ -24,6 +24,10 @@
 					{!! $g_ebook['txt'] !!}
 				</div>
 
+				<div data-gsap-element="code" class="__code mt-4">
+					{!! $g_ebook['code'] !!}
+				</div>
+
 				@if (!empty($g_ebook['hint']))
 				<div data-gsap-element="box" class="__hint flex items-center radius bg-primary-lighter border border-dashed border-primary p-6 gap-4 mt-6">
 					@if (!empty($g_ebook['image_hint']['url']))
