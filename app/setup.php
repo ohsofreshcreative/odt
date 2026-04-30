@@ -987,6 +987,21 @@ add_filter('paginate_links_output', function ($output) {
 });
 
 
+/*--- CHECKOUT SHIPPING ---*/
+
 add_action('woocommerce_before_checkout_form', function () {
     WC()->session->set('chosen_shipping_methods', []);
 }, 5);
+
+/*--- CATEGORY URL ---*/
+
+add_filter('category_rewrite_rules', function($rules) {
+    $new_rules = [];
+    $categories = get_categories(['hide_empty' => false]);
+
+    foreach ($categories as $category) {
+        $new_rules[$category->slug . '/?$'] = 'index.php?category_name=' . $category->slug;
+    }
+
+    return $new_rules;
+});
