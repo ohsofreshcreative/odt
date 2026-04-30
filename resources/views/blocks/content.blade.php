@@ -18,7 +18,11 @@
 			@endif
 
 			<div class="__content order2 lg:py-10">
+<<<<<<< HEAD
 				<h2 data-gsap-element="header" class="text-h4">{{ $g_content['header'] }}</h2>
+=======
+				<h4 data-gsap-element="header" class="border-b border-dashed border-secondary">{{ $g_content['header'] }}</h4>
+>>>>>>> 20fd2ba (Push)
 
 				<div data-gsap-element="txt" class="__txt mt-4">
 					{!! $g_content['txt'] !!}

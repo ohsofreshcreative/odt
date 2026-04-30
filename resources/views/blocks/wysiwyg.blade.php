@@ -24,7 +24,7 @@ $sectionClass .= $bgClass[$bg ?? ''] ?? '';
 
 	<div class="__wrapper c-main relative __txt">
 		@if (!empty($g_wysiwyg['header']))
-		<h4 data-gsap-element="header" class="">{{ $g_wysiwyg['header'] }}</h4>
+		<h2 data-gsap-element="header" class="text-h2">{{ $g_wysiwyg['header'] }}</h2>
 		@endif
 
 		<div data-gsap-element="txt" class="mt-4">
