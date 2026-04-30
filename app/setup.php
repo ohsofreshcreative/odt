@@ -1014,3 +1014,4 @@ add_filter('category_rewrite_rules', function($rules) {
 
     return $new_rules;
 });
+
