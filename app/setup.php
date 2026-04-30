@@ -1015,3 +1015,70 @@ add_filter('category_rewrite_rules', function($rules) {
     return $new_rules;
 });
 
+/*--- LOYALTY MAIL: 5. ZAMÓWIENIE KLIENTA ---*/
+
+add_action('woocommerce_order_status_processing', __NAMESPACE__ . '\\maybe_send_fifth_order_email', 20, 2);
+add_action('woocommerce_order_status_completed',  __NAMESPACE__ . '\\maybe_send_fifth_order_email', 20, 2);
+
+function maybe_send_fifth_order_email($order_id, $order = null)
+{
+    if (! $order instanceof \WC_Order) {
+        $order = wc_get_order($order_id);
+    }
+    if (! $order) {
+        return;
+    }
+
+    $customer_id = $order->get_customer_id();
+    $email       = $order->get_billing_email();
+
+    // Tylko zalogowani klienci – inaczej nie da się rzetelnie policzyć historii
+    if (! $customer_id || ! is_email($email)) {
+        return;
+    }
+
+    // Idempotencja – wyślij tylko raz
+    if (get_user_meta($customer_id, '_loyalty_5_orders_sent', true)) {
+        return;
+    }
+
+    // Liczymy „realne” zamówienia tego klienta
+    $orders = wc_get_orders([
+        'customer_id' => $customer_id,
+        'status'      => ['processing', 'completed', 'on-hold'],
+        'limit'       => -1,
+        'return'      => 'ids',
+    ]);
+    $count = is_array($orders) ? count($orders) : 0;
+
+    if ($count < 5) {
+        return;
+    }
+
+   $subject = 'Kontynuacja współpracy – prosimy o wypełnienie formularza';
+    $heading = 'Kontynuacja współpracy';
+
+    $form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSe1b7iCjmuZUwalYq8wrmw7Zfu9H5DiFdDFb_27RZFnCRuRlQ/viewform?usp=dialog';
+
+    $body  = '<p>Dzień dobry,</p>';
+    $body .= '<p>dziękujemy za dotychczasowe spotkania i zaufanie, jakim nas Państwo obdarzają.</p>';
+    $body .= '<p>W związku z kontynuacją współpracy, prosimy o wypełnienie krótkiego formularza. Zawiera on:</p>';
+    $body .= '<ul>'
+           . '<li>potwierdzenie zapoznania się i akceptacji kontraktu,</li>'
+           . '<li>potwierdzenie zapoznania się z zasadami RODO oraz wyrażenie zgody.</li>'
+           . '</ul>';
+    $body .= '<p><a href="' . esc_url($form_url) . '" target="_blank" rel="noopener noreferrer">Link do formularza</a></p>';
+    $body .= '<p>Wypełnienie formularza zajmuje tylko chwilę i pozwala nam zadbać o przejrzyste oraz bezpieczne zasady dalszej pracy.</p>';
+    $body .= '<p>Dziękujemy!</p>';
+
+    // Owijamy w standardowy szablon WooCommerce (header/footer/branding)
+    $mailer  = WC()->mailer();
+    $wrapped = $mailer->wrap_message($heading, $body);
+
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
+
+    if (wp_mail($email, $subject, $wrapped, $headers)) {
+        update_user_meta($customer_id, '_loyalty_5_orders_sent', current_time('mysql'));
+        $order->add_order_note('Wysłano mail lojalnościowy za 5. zamówienie.');
+    }
+}
