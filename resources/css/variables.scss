@@ -1591,8 +1591,9 @@ article.post:hover {
 /*--- !SINGLE PRODUCT ---*/
 .single-product {
 	.woocommerce-breadcrumb {
-		opacity:0;
+		opacity: 0;
 	}
+
 	.shop-btn {
 		font-family: var(--btns-font);
 		font-size: var(--btns-fontsize);
@@ -1683,23 +1684,26 @@ article.post:hover {
 .woocommerce-cart #payment div.payment_box::before,
 .woocommerce-checkout #payment div.payment_box::before {
 	border: 1em solid var(--color-secondary-100);
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-top-color: transparent;
 }
 
 .pbl-container .payu-list-banks li label.active {
 	background: var(--color-secondary-500);
-  border-color:  var(--color-secondary-900);
-	
+	border-color: var(--color-secondary-900);
+
 }
 
 .pbl-container .payu-list-banks li:not(.payu-inactive) label:hover {
-  background:  var(--color-secondary-500);
-  border-color:  var(--color-secondary-600);
+	background: var(--color-secondary-500);
+	border-color: var(--color-secondary-600);
 }
 
-li.wc_payment_method > label {
+li.wc_payment_method>label {
 	display: inline-flex;
 	align-items: center;
-	gap:16px;
+	gap: 16px;
 }
 
 /*--- !FOOTER ---*/
