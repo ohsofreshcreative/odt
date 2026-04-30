@@ -14,7 +14,7 @@
 		{{-- Kolumna 1 --}}
 		<div data-gsap-element="card" class="__col relative z-20 bg-secondary-lighter radius p-10">
 
-			<h4 data-gsap-element="header" class="m-header">{{ $g_places1['title'] }}</h4>
+			<p data-gsap-element="header" class="font-header text-h4 m-header">{{ $g_places1['title'] }}</p>
 			<div data-gsap-element="txt" class="__txt w-full md:w-2/3 mt-2">{!! $g_places1['txt'] !!}</div>
 			@if (!empty($g_places1['button']))
 			<a data-gsap-element="btn" class="second-btn m-btn" href="{{ $g_places1['button']['url'] }}">{{ $g_places1['button']['title'] }}</a>

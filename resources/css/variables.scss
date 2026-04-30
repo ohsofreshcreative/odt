@@ -192,7 +192,8 @@ body {
 	width: 100%;
 }
 
-.c-main, .woocommerce-notices-wrapper{
+.c-main,
+.woocommerce-notices-wrapper {
 	max-width: 1376px !important;
 	margin: 0 auto;
 	padding-left: 24px !important;
@@ -201,11 +202,11 @@ body {
 }
 
 .woocommerce-notices-wrapper {
-	margin-top:64px;
+	margin-top: 64px;
 }
 
-.wc-empty-cart-message  {
-	display:none !important;
+.wc-empty-cart-message {
+	display: none !important;
 }
 
 .c-wide,
@@ -606,7 +607,7 @@ h6,
 /*--- !COLORS ---*/
 
 .text-action {
-	color:var(--color-action) !important;
+	color: var(--color-action) !important;
 }
 
 .bg-background {
@@ -1124,14 +1125,15 @@ h6,
 	display: none !important;
 }
 
-.woocommerce-breadcrumb, #breadcrumbs  {
+.woocommerce-breadcrumb,
+#breadcrumbs {
 	text-align: left;
 	color: var(--color-primary-500);
 	font-size: 14px;
 	display: flex;
 	row-gap: 8px;
 	justify-content: start;
-	gap:8px;
+	gap: 8px;
 
 	a {
 		color: #FFF;
@@ -1142,7 +1144,7 @@ h6,
 	}
 
 	.__separator {
-	color: var(--color-action);
+		color: var(--color-action);
 	}
 }
 
@@ -1342,22 +1344,22 @@ input[type='checkbox'] {
 /*--- !BLOG ---*/
 
 .post-template-default.single.single-post {
-    .woocommerce-breadcrumb {
-        text-align: center;
-        justify-content: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+	.woocommerce-breadcrumb {
+		text-align: center;
+		justify-content: center;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-    .post-template-default.single.single-post {
-        .woocommerce-breadcrumb {
-            justify-content: flex-start;
-            text-align: left;
-        }
-    }
+	.post-template-default.single.single-post {
+		.woocommerce-breadcrumb {
+			justify-content: flex-start;
+			text-align: left;
+		}
+	}
 }
 
 .blog-btn {
@@ -1378,7 +1380,7 @@ input[type='checkbox'] {
 
 	.active {
 		background-color: var(--color-primary-500);
-		color:#FFF;
+		color: #FFF;
 	}
 }
 
@@ -1441,7 +1443,8 @@ article.post:hover {
 
 .post-template-ebook-post {
 	.woocommerce-breadcrumb {
-		gap:8px;
+		gap: 8px;
+
 		a {
 			color: var(--color-primary) !important;
 		}
@@ -1480,7 +1483,9 @@ article.post:hover {
 	}
 
 	.__entry {
-		h2, h2 span {
+
+		h2,
+		h2 span {
 			font-family: var(--header);
 			color: var(--color-primary);
 			font-size: 36px !important;
@@ -1497,7 +1502,8 @@ article.post:hover {
 			margin-bottom: 0;
 		}
 
-		h3, h3 span {
+		h3,
+		h3 span {
 			font-family: var(--header);
 			color: var(--color-primary);
 			font-size: 36px !important;
@@ -1506,7 +1512,8 @@ article.post:hover {
 			margin-bottom: 8px;
 		}
 
-		h4, h4 span {
+		h4,
+		h4 span {
 			font-family: var(--header);
 			color: var(--color-primary);
 			font-size: 30px !important;
@@ -1583,6 +1590,9 @@ article.post:hover {
 
 /*--- !SINGLE PRODUCT ---*/
 .single-product {
+	.woocommerce-breadcrumb {
+		opacity:0;
+	}
 	.shop-btn {
 		font-family: var(--btns-font);
 		font-size: var(--btns-fontsize);
@@ -1659,8 +1669,37 @@ article.post:hover {
 #ship-to-different-address {
 	span {
 		font-family: var(--header);
-		font-size:24px;
+		font-size: 24px;
 	}
+}
+
+#add_payment_method #payment div.payment_box,
+.woocommerce-cart #payment div.payment_box,
+.woocommerce-checkout #payment div.payment_box {
+	background-color: var(--color-secondary-100);
+}
+
+#add_payment_method #payment div.payment_box::before,
+.woocommerce-cart #payment div.payment_box::before,
+.woocommerce-checkout #payment div.payment_box::before {
+	background-color: var(--color-secondary-100);
+}
+
+.pbl-container .payu-list-banks li label.active {
+	background: var(--color-secondary-500);
+  border-color:  var(--color-secondary-900);
+	
+}
+
+.pbl-container .payu-list-banks li:not(.payu-inactive) label:hover {
+  background:  var(--color-secondary-500);
+  border-color:  var(--color-secondary-600);
+}
+
+li.wc_payment_method > label {
+	display: inline-flex;
+	align-items: center;
+	gap:16px;
 }
 
 /*--- !FOOTER ---*/

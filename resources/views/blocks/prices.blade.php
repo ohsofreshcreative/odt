@@ -64,7 +64,7 @@
 					<div class="__card relative overflow-hidden bg-white radius grid grid-cols-1 md:grid-cols-[2fr_1fr] section-gap items-center p-6 pb-10 md:p-10">
 						<div class="__content relative z-10">
 							@if (!empty($item['header']))
-							<h6 class="text-body mb-4">{{ $item['header'] }}</h6>
+							<p class="font-header text-h6 text-body mb-4">{{ $item['header'] }}</p>
 							@endif
 							@if (!empty($item['price_rows']))
 							<div class="mt-6 overflow-x-auto">

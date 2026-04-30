@@ -29,9 +29,9 @@ $sectionClass .= ' ' . $background;
 				</a>
 				@endif
 				<div class="__content relative bg-white border border-secondary radius px-10 py-6 flex items-center justify-between gap-6">
-					<h6 class="">
+					<p class="font-header text-h6">
 						<a href="{{ get_permalink($sector->ID) }}">{{ $sector->post_title }}</a>
-					</h6>
+					</p>
 					@php
 					$location = get_field('job_location', $sector->ID);
 					$time_dimension = get_field('job_time_dimension', $sector->ID);

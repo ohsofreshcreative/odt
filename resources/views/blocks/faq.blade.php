@@ -26,7 +26,7 @@
 				<input class="tab-check" type="checkbox" name="radio-a" id="check{{ $loop->index }}">
 				<label class="tabs-label flex items-center justify-between" for="check{{ $loop->index }}">
 					<div class="flex items-center gap-4">
-						<h6 class="!text-lg">{{ $item['title'] }}</h6>
+						<p class="!text-lg font-header">{{ $item['title'] }}</p>
 					</div>
 					<x-icon.arrow-up class="__arrow text-secondary w-3 h-4" />
 				</label>

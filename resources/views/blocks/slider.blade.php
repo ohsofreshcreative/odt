@@ -32,7 +32,7 @@ $sectionClass .= ' ' . $background;
                         </div>
                     @endif
                      @if(!empty($slide['header']))
-                        <h6 class="__header text-white">{{ $slide['header'] }}</h6>
+                        <p class="__header font-header text-h6 text-white">{{ $slide['header'] }}</p>
                     @endif
                      @if(!empty($slide['opis']))
                         <div class="__txt text-white text-[15px] mt-2">{{ $slide['opis'] }}</div>

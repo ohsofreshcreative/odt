@@ -20,7 +20,7 @@ $sectionClass .= ' ' . $background;
 		<div class="__inside grid grid-cols-1 md:grid-cols-[2fr_1fr] items-center gap-6 px-12">
 			<div class="__content">
 				@if ($cta_bg['header'])
-				<h5 data-gsap-element="header" class="text-white">{{ $cta_bg['header'] }}</h5>
+				<p data-gsap-element="header" class="text-h5 text-white">{{ $cta_bg['header'] }}</p>
 				@endif
 				@if ($cta_bg['txt'])
 				<div data-gsap-element="txt" class="text-secondary text-xl mt-1">{!! $cta_bg['txt'] !!}</div>

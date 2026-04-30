@@ -60,7 +60,7 @@
 				@if (has_post_thumbnail($sector->ID))
 				<img class="w-20 aspect-square radius" src="{{ get_the_post_thumbnail_url($sector->ID, 'large') }}" alt="{{ $sector->post_title }}">
 				@endif
-				<h6 class="!text-primary text-h7 mt-4">{{ $sector->post_title }}</h6>
+				<p class="!text-primary font-header text-h7 mt-4">{{ $sector->post_title }}</p>
 				<p class="!text-body text-sm mt-2">{{ $sector->post_excerpt }}</p>
 
 				<p class="underline-btn mt-4">

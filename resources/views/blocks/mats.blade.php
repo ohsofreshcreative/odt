@@ -28,7 +28,7 @@ $posts_query = new WP_Query($args);
 	<div class="__wrapper relative bg-white radius p-8">
 		<div class="flex justify-between items-center">
 			@if(!empty($g_mats['header']))
-			<h4 data-gsap-element="header" class="">{{ $g_mats['header'] }}</h4>
+			<p data-gsap-element="header" class="font-header text-h4">{{ $g_mats['header'] }}</p>
 			@endif
 
 			@if ($category_id)

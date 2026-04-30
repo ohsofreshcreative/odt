@@ -43,7 +43,7 @@ $sectionClass .= ' ' . $background;
 									{!! get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'img-fluid']) !!}
 								</div>
 								@endif
-								<h6 class="block text-primary text-h7 mt-6">{{ get_the_title() }}</h6>
+								<p class="block text-h6 text-primary text-h7 mt-6">{{ get_the_title() }}</p>
 							</div>
 
 							<p class="underline-btn mt-auto">

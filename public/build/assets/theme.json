@@ -1344,6 +1344,11 @@
           "color": "rgb(var(--s-700))"
         },
         {
+          "name": "Secondary (900)",
+          "slug": "secondary-900",
+          "color": "rgb(var(--s-900))"
+        },
+        {
           "name": "Secondary (Dark)",
           "slug": "secondary-dark",
           "color": "rgb(var(--s-dark))"

@@ -56,7 +56,7 @@ $sectionClass .= ' ' . $background;
 						<img class="max-w-18 radius-img" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}">
 						@endif
 						<div>
-							<h6 class="text-h7">{{ $item['header'] }}</h6>
+							<p class="font-header text-h7">{{ $item['header'] }}</p>
 							<p class="text-white mt-2">{!! $item['txt'] !!}</p>
 						</div>
 					</div>

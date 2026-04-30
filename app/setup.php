@@ -157,8 +157,8 @@ add_action('widgets_init', function () {
 		'id'            => 'sidebar-shop',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h5 class="widget-title font-bold mb-4">',
-		'after_title'   => '</h5>',
+		'before_title'  => '<p class="font-header text-h5 widget-title font-bold mb-4">',
+		'after_title'   => '</p>',
 	]);
 });
 
@@ -171,8 +171,8 @@ add_action('widgets_init', function () {
 	$defaultConfig = [
 		'before_widget' => '<section class="footer_widget widget %1$s %2$s">',
 		'after_widget' => '</section>',
-		'before_title' => '<h5 class="widget-title text-h5 primary mb-4 flex">',
-		'after_title' => '</h5>',
+		'before_title' => '<p class="font-header text-h5 widget-title primary mb-4 flex">',
+		'after_title' => '</p>',
 	];
 
 	register_sidebar([
@@ -524,7 +524,7 @@ add_action('init', function () {
 		'label' => 'Oferty pracy',
 		'public' => true,
 		'has_archive' => false,
-		'rewrite' => ['slug' => 'jobs'],
+		'rewrite' => ['slug' => 'praca'],
 		'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 		'show_in_rest' => true,
 		'taxonomies' => ['job_category'],
@@ -986,7 +986,4 @@ add_filter('paginate_links_output', function ($output) {
     return $output;
 });
 
-
-add_action('woocommerce_before_checkout_form', function () {
-    WC()->session->set('chosen_shipping_methods', []);
-}, 5);
+c

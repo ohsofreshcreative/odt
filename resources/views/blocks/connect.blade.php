@@ -12,7 +12,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 			<div data-gsap-element="txt" class="text-secondary">
 				{!! $bottom['txt'] !!}
 			</div>
-			<h4 data-gsap-element="header" class="text-white mt-2">{{ $bottom['header'] }}</h4>
+			<p data-gsap-element="header" class="text-white font-header text-h4 mt-2">{{ $bottom['header'] }}</p>
 
 			@if (!empty($bottom['button']))
 			<div class="inline-buttons m-btn">

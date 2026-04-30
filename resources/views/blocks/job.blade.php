@@ -25,7 +25,7 @@ $sectionClass .= ' ' . $background;
 			@endif
 
 			<div data-gsap-element="form" id="aplikuj" class="__form bg-white radius p-8 md:p-10 lg:p-14 mt-10">
-				<h5 class="relative text-primary mb-6 z-10">{{ $g_job_2['title'] }}</h5>
+				<p class="relative font-header text-h5 text-primary !mb-6 z-10">{{ $g_job_2['title'] }}</p>
 				<div class="relative z-10">{!! do_shortcode($g_job_2['shortcode']) !!}</div>
 			</div>
 		</div>
@@ -41,7 +41,7 @@ $sectionClass .= ' ' . $background;
 			@if ($location || $time_dimension)
 			<div class="job-details bg-white p-6 rounded-xl">
 				<p class="text-action">Aplikuj na stanowisko</p>
-				<h3 class="text-primary text-h5 mb-3">{{ $job_title }}</h3>
+				<p class="text-primary font-header text-h5 mb-3">{{ $job_title }}</p>
 				<ul class="flex flex-col md:flex-row gap-4">
 					@if ($location)
 					<li class="flex items-center gap-3">

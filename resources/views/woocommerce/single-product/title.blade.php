@@ -21,10 +21,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
-// Wyświetlenie SKU nad tytułem
+/* // Wyświetlenie SKU nad tytułem
 if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) {
     $sku = $product->get_sku() ? $product->get_sku() : esc_html__( 'N/A', 'woocommerce' );
     echo '<div class="product-sku">Kod produktu: <span>' . esc_html( $sku ) . '</span></div>';
-}
+} */
 
 the_title( '<h4 class="product_title entry-title text-primary block-inline !py-2">', '</h4>' );

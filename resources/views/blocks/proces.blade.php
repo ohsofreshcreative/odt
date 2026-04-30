@@ -36,7 +36,7 @@
 				<div class="relative z-20">
 					<div class="text-h2 font-header text-secondary-dark">{{ $item['number'] }}</div>
 
-					<h6 class=" text-secondary-dark mt-4">{{ $item['title'] }}</h6>
+					<p class="font-header text-h6 text-secondary-dark mt-4">{{ $item['title'] }}</p>
 					<p class="mt-2">{!! $item['txt'] !!}</p>
 				</div>
 

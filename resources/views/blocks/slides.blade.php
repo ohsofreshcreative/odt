@@ -28,7 +28,7 @@ $sectionClass .= ' ' . $background;
 				<div class="__card grid grid-cols-1 md:grid-cols-[1.5fr_1fr] items-center gap-6">
 					<div class="__content">
 						@if(!empty($card['txt']))
-						<h5 class="font-normal">{{ $card['txt'] }}</h5>
+						<p class="font-header text-h5 font-normal">{{ $card['txt'] }}</p>
 						@endif
 
 						<div class="__person flex items-center gap-4 mt-4">
@@ -38,7 +38,7 @@ $sectionClass .= ' ' . $background;
 							</div>
 							@endif
 							@if(!empty($card['person']))
-							<h6 class="">{{ $card['person'] }}</h6>
+							<p class="font-header text-h6">{{ $card['person'] }}</p>
 							@endif
 						</div>
 					</div>

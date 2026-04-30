@@ -28,7 +28,7 @@ if ($itemCount > 1) {
         <div class="">
             <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-8">
                 @if (!empty($g_numbers['header']))
-                <h4 data-gsap-element="header" class="">{{ strip_tags($g_numbers['header']) }}</h4>
+                <p data-gsap-element="header" class="font-header text-h4">{{ strip_tags($g_numbers['header']) }}</p>
                 @endif
                 @if (!empty($g_numbers['txt']))
                 <div data-gsap-element="txt" class="mt-2">

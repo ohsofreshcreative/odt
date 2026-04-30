@@ -24,7 +24,7 @@
 				<div class="gsap__cards __cards sticky top-20 mt-4">
 					<div data-gsap-element="card" class="gsap__card __card b-border p-8 rounded-4xl" style="background-image:url({{ $item['r_image']['url'] }}); background-size: cover; background-position: center;">
 						<div class="__box bg-white rounded-3xl w-full md:w-1/2 p-6 md:p-10 mt-80 mb-0 md:mb-10 mx-0 md:mx-20">
-							<h5 class="secondary !text-[20px] md:text-h5">{{ $item['r_header'] }}</h5>
+							<p class="secondary font-header !text-[20px] md:text-h5">{{ $item['r_header'] }}</p>
 							<div class="">{!! $item['r_txt'] !!}</div>
 							@if (!empty($item['button']))
 							<x-button

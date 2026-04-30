@@ -16,7 +16,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 
 			<div class="relative w-full z-10 md:w-1/2 mx-auto">
 				@if ($what['header'])
-				<h4 data-gsap-element="header" class="text-white m-header">{{ $what['header'] }}</h4>
+				<h2 data-gsap-element="header" class="text-white text-h4 m-header">{{ $what['header'] }}</h2>
 				@endif
 				@if ($what['txt'])
 				<div data-gsap-element="txt" class="text-white">{!! $what['txt'] !!}</div>

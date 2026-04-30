@@ -39,7 +39,7 @@ $display_terms = array_values(array_filter($terms, function ($term) {
 							</div>
 							@endif
 
-							<h6 class="text-h7 !text-body">{{ get_the_title() }}</h6>
+							<p class="text-h7 !text-body font-header">{{ get_the_title() }}</p>
 
 							@if (!empty($display_terms))
 							<p class="!text-body text-sm mt-2"> @foreach ($display_terms as $i => $term){{ $term->name }} @if ($i + 1 < count($display_terms)), @endif @endforeach

@@ -19,7 +19,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	<div class="__wrapper c-main relative z-10">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 gap-10">
 			<div class="__first flex flex-col justify-between gap-8">
-				<h6 data-gsap-element="title" class="text-primary">{{ $g_who['title'] }}</h6>
+				<p data-gsap-element="title" class="font-header text-h6 text-primary">{{ $g_who['title'] }}</p>
 				@if (!empty($g_who['image1']))
 				<div data-gsap-element="image" class="__img">
 					<img class="object-cover w-full __img h-auto radius-img" src="{{ $g_who['image1']['url'] }}" alt="{{ $g_who['image1']['alt'] ?? '' }}">
@@ -28,7 +28,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			</div>
 
 			<div>
-				<div data-gsap-element="header" class="__header m-header">{!! $g_who['header'] !!}</div>
+				<div data-gsap-element="header" class="__header font-header text-h5 m-header">{!! $g_who['header'] !!}</div>
 				<div data-gsap-element="txt" class="">
 					{!! $g_who['txt'] !!}
 				</div>
@@ -48,7 +48,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 					<img class="__img radius-img" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}">
 				</div>
 				@endif
-				<h6 class="text-h7 text-primary mt-4">{{ $item['header'] }}</h6>
+				<p class="font-header text-h7 text-primary mt-4">{{ $item['header'] }}</p>
 				<p class="mt-2">{{ $item['txt'] }}</p>
 
 			</div>

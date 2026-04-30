@@ -1,5 +1,8 @@
 .b-who {
-	.__header h5 strong {
+	.__header p {
+		font-family: var(--header) !important;
+	}
+	.__header strong {
 		color:var(--color-secondary) !important;
 	}
 }
