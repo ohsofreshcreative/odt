@@ -988,10 +988,10 @@ add_filter('paginate_links_output', function ($output) {
 
 
 /*--- CHECKOUT SHIPPING ---*/
-
+/* 
 add_action('woocommerce_before_checkout_form', function () {
     WC()->session->set('chosen_shipping_methods', []);
-}, 5);
+}, 5); */
 
 /*--- CATEGORY URL ---*/
 
