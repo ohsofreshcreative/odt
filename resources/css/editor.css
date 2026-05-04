@@ -44,7 +44,7 @@
 }
 
 .ackc-canceled-appointment {
-    background: #ffe8e6 !important;
+    background: red !important;
 }
 
 .amelia-app-booking .ackc-canceled-appointment .fc-time,
