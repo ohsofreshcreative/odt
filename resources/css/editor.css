@@ -38,13 +38,13 @@
 
 .amelia-app-booking .fc-event.ackc-canceled-appointment,
 .amelia-app-booking .ackc-canceled-appointment {
-    background: #ffe8e6 !important;
+    background: yellow !important;
     border-color: #dc2626 !important;
     color: #991b1b !important;
 }
 
 .ackc-canceled-appointment {
-    background: red !important;
+    background: green !important;
 }
 
 .amelia-app-booking .ackc-canceled-appointment .fc-time,
