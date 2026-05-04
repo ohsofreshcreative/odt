@@ -47,8 +47,8 @@
     background: green !important;
 }
 
-.amelia-app-booking .ackc-canceled-appointment .fc-time,
-.amelia-app-booking .ackc-canceled-appointment .fc-title {
+.ackc-canceled-appointment .fc-time,
+.ackc-canceled-appointment .fc-title {
     display: none !important;
 }
 
