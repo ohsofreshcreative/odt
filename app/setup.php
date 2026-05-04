@@ -1015,49 +1015,69 @@ add_filter('category_rewrite_rules', function($rules) {
     return $new_rules;
 });
 
-/*--- LOYALTY MAIL: 5. ZAMÓWIENIE KLIENTA ---*/
+/*--- LOYALTY MAIL: 5. REZERWACJA AMELIA ---*/
 
-add_action('woocommerce_order_status_processing', __NAMESPACE__ . '\\maybe_send_fifth_order_email', 20, 2);
-add_action('woocommerce_order_status_completed',  __NAMESPACE__ . '\\maybe_send_fifth_order_email', 20, 2);
+add_action('amelia_booking_status_updated', __NAMESPACE__ . '\\maybe_send_fifth_amelia_email', 20, 1);
+add_action('amelia_after_booking_added',    __NAMESPACE__ . '\\maybe_send_fifth_amelia_email', 20, 1);
 
-function maybe_send_fifth_order_email($order_id, $order = null)
+function maybe_send_fifth_amelia_email($booking)
 {
-    if (! $order instanceof \WC_Order) {
-        $order = wc_get_order($order_id);
-    }
-    if (! $order) {
+    // Hooki Amelii przekazują tablicę z danymi rezerwacji
+    if (! is_array($booking)) {
         return;
     }
 
-    $customer_id = $order->get_customer_id();
-    $email       = $order->get_billing_email();
+    // Status rezerwacji – bierzemy pod uwagę tylko „realne”
+    $status = $booking['status'] ?? '';
+    if (! in_array($status, ['approved', 'pending'], true)) {
+        return;
+    }
 
-    // Tylko zalogowani klienci – inaczej nie da się rzetelnie policzyć historii
+    $customer_id = (int) ($booking['customerId'] ?? 0);
+    $email       = $booking['info']['email'] ?? '';
+
+    // Fallback: e-mail z customera, jeżeli „info” jest pustym JSON-em
+    if (! is_email($email) && $customer_id) {
+        global $wpdb;
+        $users_table = \get_amelia_table_name('users');
+        if ($users_table) {
+            $email = $wpdb->get_var($wpdb->prepare(
+                "SELECT email FROM {$users_table} WHERE id = %d",
+                $customer_id
+            ));
+        }
+    }
+
     if (! $customer_id || ! is_email($email)) {
         return;
     }
 
-    // Idempotencja – wyślij tylko raz
-    if (get_user_meta($customer_id, '_loyalty_5_orders_sent', true)) {
+    // Idempotencja – flaga per klient Amelii
+    $flag_key = '_loyalty_5_amelia_sent_' . $customer_id;
+    if (get_option($flag_key)) {
         return;
     }
 
-    // Liczymy „realne” zamówienia tego klienta
-    $orders = wc_get_orders([
-        'customer_id' => $customer_id,
-        'status'      => ['processing', 'completed', 'on-hold'],
-        'limit'       => -1,
-        'return'      => 'ids',
-    ]);
-    $count = is_array($orders) ? count($orders) : 0;
+    // Liczymy zatwierdzone/oczekujące rezerwacje tego klienta
+    global $wpdb;
+    $bookings_table = \get_amelia_table_name('customer_bookings');
+    if (! $bookings_table) {
+        return;
+    }
+
+    $count = (int) $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM {$bookings_table}
+         WHERE customerId = %d
+         AND status IN ('approved','pending')",
+        $customer_id
+    ));
 
     if ($count < 5) {
         return;
     }
 
-   $subject = 'Kontynuacja współpracy – prosimy o wypełnienie formularza';
-    $heading = 'Kontynuacja współpracy';
-
+    $subject  = 'Kontynuacja współpracy – prosimy o wypełnienie formularza';
+    $heading  = 'Kontynuacja współpracy';
     $form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSe1b7iCjmuZUwalYq8wrmw7Zfu9H5DiFdDFb_27RZFnCRuRlQ/viewform?usp=dialog';
 
     $body  = '<p>Dzień dobry,</p>';
@@ -1071,14 +1091,40 @@ function maybe_send_fifth_order_email($order_id, $order = null)
     $body .= '<p>Wypełnienie formularza zajmuje tylko chwilę i pozwala nam zadbać o przejrzyste oraz bezpieczne zasady dalszej pracy.</p>';
     $body .= '<p>Dziękujemy!</p>';
 
-    // Owijamy w standardowy szablon WooCommerce (header/footer/branding)
-    $mailer  = WC()->mailer();
-    $wrapped = $mailer->wrap_message($heading, $body);
+    // Owijamy w szablon WooCommerce (jeśli WC aktywne) lub wysyłamy „goły” HTML
+    if (function_exists('WC') && WC()->mailer()) {
+        $wrapped = WC()->mailer()->wrap_message($heading, $body);
+    } else {
+        $wrapped = '<h2>' . esc_html($heading) . '</h2>' . $body;
+    }
 
     $headers = ['Content-Type: text/html; charset=UTF-8'];
 
     if (wp_mail($email, $subject, $wrapped, $headers)) {
-        update_user_meta($customer_id, '_loyalty_5_orders_sent', current_time('mysql'));
-        $order->add_order_note('Wysłano mail lojalnościowy za 5. zamówienie.');
+        update_option($flag_key, current_time('mysql'), false);
     }
 }
+
+/*--- KONTRAKT PDF DLA PRODUKTU 509 ---*/
+add_filter('woocommerce_email_attachments', function ($attachments, $email_id, $order) {
+    if ($email_id !== 'customer_completed_order' || ! $order instanceof \WC_Order) {
+        return $attachments;
+    }
+
+    $has_509 = false;
+    foreach ($order->get_items() as $item) {
+        if ((int) $item->get_product_id() === 509 || (int) $item->get_variation_id() === 509) {
+            $has_509 = true;
+            break;
+        }
+    }
+
+    if ($has_509) {
+        $file = get_theme_file_path('https://osrodekdobrejterapii.pl/wp-content/uploads/2026/05/Kontrakt-terapeutyczny-2026.pdf');
+        if (file_exists($file)) {
+            $attachments[] = $file;
+        }
+    }
+
+    return $attachments;
+}, 10, 3);
