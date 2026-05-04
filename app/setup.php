@@ -1120,8 +1120,10 @@ add_filter('woocommerce_email_attachments', function ($attachments, $email_id, $
     }
 
     if ($has_509) {
-        $file = get_theme_file_path('https://osrodekdobrejterapii.pl/wp-content/uploads/2026/05/Kontrakt-terapeutyczny-2026.pdf');
-        if (file_exists($file)) {
+        $upload_dir = wp_get_upload_dir();
+        $file = trailingslashit($upload_dir['basedir']) . '2026/05/Kontrakt-terapeutyczny-2026.pdf';
+
+        if (file_exists($file) && is_readable($file)) {
             $attachments[] = $file;
         }
     }
