@@ -1105,7 +1105,7 @@ function maybe_send_fifth_amelia_email($booking)
     }
 }
 
-/*--- KONTRAKT PDF DLA PRODUKTU 509 
+/*--- KONTRAKT PDF DLA PRODUKTU 509 ---*/
 add_filter('woocommerce_email_attachments', function ($attachments, $email_id, $order) {
     if ($email_id !== 'customer_completed_order' || ! $order instanceof \WC_Order) {
         return $attachments;
@@ -1129,4 +1129,4 @@ add_filter('woocommerce_email_attachments', function ($attachments, $email_id, $
     }
 
     return $attachments;
-}, 10, 3);---*/
+}, 10, 3);
