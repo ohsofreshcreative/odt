@@ -1164,23 +1164,6 @@ function get_fifth_amelia_customer_email($customer_id)
     ));
 }
 
-add_action('admin_init', __NAMESPACE__ . '\\manual_test_fifth_amelia_email');
-
-function manual_test_fifth_amelia_email()
-{
-    if (! current_user_can('manage_options')) {
-        return;
-    }
-
-    if (! isset($_GET['test_amelia_5_mail'])) {
-        return;
-    }
-
-    send_due_fifth_amelia_emails();
-
-    wp_die('Sprawdzenie maila po 5. wizycie zostało uruchomione.');
-}
-
 
 /*--- KONTRAKT PDF DLA PRODUKTU 509 ---*/
 add_filter('woocommerce_email_attachments', function ($attachments, $email_id, $order) {
