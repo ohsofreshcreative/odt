@@ -1014,65 +1014,109 @@ add_filter('category_rewrite_rules', function($rules) {
 
     return $new_rules;
 });
+/*--- LOYALTY MAIL: PO 5. WIZYCIE AMELIA ---*/
 
-/*--- LOYALTY MAIL: 5. REZERWACJA AMELIA ---*/
+add_action('init', __NAMESPACE__ . '\\schedule_fifth_amelia_email_check');
+add_action('loyalty_check_fifth_amelia_email', __NAMESPACE__ . '\\send_due_fifth_amelia_emails');
 
 add_action('amelia_booking_status_updated', __NAMESPACE__ . '\\maybe_send_fifth_amelia_email', 20, 1);
 add_action('amelia_after_booking_added',    __NAMESPACE__ . '\\maybe_send_fifth_amelia_email', 20, 1);
 
+function schedule_fifth_amelia_email_check()
+{
+    if (! wp_next_scheduled('loyalty_check_fifth_amelia_email')) {
+        wp_schedule_event(time() + 3600, 'hourly', 'loyalty_check_fifth_amelia_email');
+    }
+}
+
 function maybe_send_fifth_amelia_email($booking)
 {
-    // Hooki Amelii przekazują tablicę z danymi rezerwacji
     if (! is_array($booking)) {
         return;
     }
 
-    // Status rezerwacji – bierzemy pod uwagę tylko „realne”
-    $status = $booking['status'] ?? '';
-    if (! in_array($status, ['approved', 'pending'], true)) {
-        return;
-    }
-
     $customer_id = (int) ($booking['customerId'] ?? 0);
-    $email       = $booking['info']['email'] ?? '';
 
-    // Fallback: e-mail z customera, jeżeli „info” jest pustym JSON-em
-    if (! is_email($email) && $customer_id) {
-        global $wpdb;
-        $users_table = \get_amelia_table_name('users');
-        if ($users_table) {
-            $email = $wpdb->get_var($wpdb->prepare(
-                "SELECT email FROM {$users_table} WHERE id = %d",
-                $customer_id
-            ));
-        }
-    }
-
-    if (! $customer_id || ! is_email($email)) {
+    if (! $customer_id) {
         return;
     }
 
-    // Idempotencja – flaga per klient Amelii
+    maybe_send_fifth_amelia_email_for_customer($customer_id);
+}
+
+function send_due_fifth_amelia_emails()
+{
+    global $wpdb;
+
+    $bookings_table     = \get_amelia_table_name('customer_bookings');
+    $appointments_table = \get_amelia_table_name('appointments');
+
+    if (! $bookings_table || ! $appointments_table) {
+        return;
+    }
+
+    $now = current_time('mysql');
+
+    $customer_ids = $wpdb->get_col($wpdb->prepare(
+        "SELECT cb.customerId
+         FROM {$bookings_table} cb
+         INNER JOIN {$appointments_table} a ON a.id = cb.appointmentId
+         WHERE cb.customerId > 0
+         AND cb.status IN ('approved','pending')
+         AND a.bookingEnd <= %s
+         GROUP BY cb.customerId
+         HAVING COUNT(*) >= 5",
+        $now
+    ));
+
+    foreach ($customer_ids as $customer_id) {
+        maybe_send_fifth_amelia_email_for_customer((int) $customer_id);
+    }
+}
+
+function maybe_send_fifth_amelia_email_for_customer($customer_id)
+{
+    global $wpdb;
+
+    $customer_id = (int) $customer_id;
+
+    if (! $customer_id) {
+        return;
+    }
+
     $flag_key = '_loyalty_5_amelia_sent_' . $customer_id;
+
     if (get_option($flag_key)) {
         return;
     }
 
-    // Liczymy zatwierdzone/oczekujące rezerwacje tego klienta
-    global $wpdb;
-    $bookings_table = \get_amelia_table_name('customer_bookings');
-    if (! $bookings_table) {
+    $bookings_table     = \get_amelia_table_name('customer_bookings');
+    $appointments_table = \get_amelia_table_name('appointments');
+
+    if (! $bookings_table || ! $appointments_table) {
         return;
     }
 
+    $now = current_time('mysql');
+
     $count = (int) $wpdb->get_var($wpdb->prepare(
-        "SELECT COUNT(*) FROM {$bookings_table}
-         WHERE customerId = %d
-         AND status IN ('approved','pending')",
-        $customer_id
+        "SELECT COUNT(*)
+         FROM {$bookings_table} cb
+         INNER JOIN {$appointments_table} a ON a.id = cb.appointmentId
+         WHERE cb.customerId = %d
+         AND cb.status IN ('approved','pending')
+         AND a.bookingEnd <= %s",
+        $customer_id,
+        $now
     ));
 
     if ($count < 5) {
+        return;
+    }
+
+    $email = get_fifth_amelia_customer_email($customer_id);
+
+    if (! is_email($email)) {
         return;
     }
 
@@ -1091,7 +1135,6 @@ function maybe_send_fifth_amelia_email($booking)
     $body .= '<p>Wypełnienie formularza zajmuje tylko chwilę i pozwala nam zadbać o przejrzyste oraz bezpieczne zasady dalszej pracy.</p>';
     $body .= '<p>Dziękujemy!</p>';
 
-    // Owijamy w szablon WooCommerce (jeśli WC aktywne) lub wysyłamy „goły” HTML
     if (function_exists('WC') && WC()->mailer()) {
         $wrapped = WC()->mailer()->wrap_message($heading, $body);
     } else {
@@ -1104,6 +1147,40 @@ function maybe_send_fifth_amelia_email($booking)
         update_option($flag_key, current_time('mysql'), false);
     }
 }
+
+function get_fifth_amelia_customer_email($customer_id)
+{
+    global $wpdb;
+
+    $users_table = \get_amelia_table_name('users');
+
+    if (! $users_table) {
+        return '';
+    }
+
+    return (string) $wpdb->get_var($wpdb->prepare(
+        "SELECT email FROM {$users_table} WHERE id = %d",
+        $customer_id
+    ));
+}
+
+add_action('admin_init', __NAMESPACE__ . '\\manual_test_fifth_amelia_email');
+
+function manual_test_fifth_amelia_email()
+{
+    if (! current_user_can('manage_options')) {
+        return;
+    }
+
+    if (! isset($_GET['test_amelia_5_mail'])) {
+        return;
+    }
+
+    send_due_fifth_amelia_emails();
+
+    wp_die('Sprawdzenie maila po 5. wizycie zostało uruchomione.');
+}
+
 
 /*--- KONTRAKT PDF DLA PRODUKTU 509 ---*/
 add_filter('woocommerce_email_attachments', function ($attachments, $email_id, $order) {
