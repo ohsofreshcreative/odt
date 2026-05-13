@@ -1048,6 +1048,10 @@ function send_due_fifth_amelia_emails()
 {
     global $wpdb;
 
+    if (! function_exists('get_amelia_table_name')) {
+        return;
+    }
+
     $bookings_table     = \get_amelia_table_name('customer_bookings');
     $appointments_table = \get_amelia_table_name('appointments');
 
@@ -1055,7 +1059,8 @@ function send_due_fifth_amelia_emails()
         return;
     }
 
-    $now = current_time('mysql');
+    // Amelia najczęściej trzyma bookingEnd w UTC, więc porównujemy z aktualnym czasem UTC.
+    $now = current_time('mysql', true);
 
     $customer_ids = $wpdb->get_col($wpdb->prepare(
         "SELECT cb.customerId
@@ -1080,7 +1085,7 @@ function maybe_send_fifth_amelia_email_for_customer($customer_id)
 
     $customer_id = (int) $customer_id;
 
-    if (! $customer_id) {
+    if (! $customer_id || ! function_exists('get_amelia_table_name')) {
         return;
     }
 
@@ -1097,7 +1102,8 @@ function maybe_send_fifth_amelia_email_for_customer($customer_id)
         return;
     }
 
-    $now = current_time('mysql');
+    // Amelia najczęściej trzyma bookingEnd w UTC, więc porównujemy z aktualnym czasem UTC.
+    $now = current_time('mysql', true);
 
     $count = (int) $wpdb->get_var($wpdb->prepare(
         "SELECT COUNT(*)
@@ -1127,10 +1133,10 @@ function maybe_send_fifth_amelia_email_for_customer($customer_id)
     $body  = '<p>Dzień dobry,</p>';
     $body .= '<p>dziękujemy za dotychczasowe spotkania i zaufanie, jakim nas Państwo obdarzają.</p>';
     $body .= '<p>W związku z kontynuacją współpracy, prosimy o wypełnienie krótkiego formularza. Zawiera on:</p>';
-    $body .= '<ul>'
-           . '<li>potwierdzenie zapoznania się i akceptacji kontraktu,</li>'
-           . '<li>potwierdzenie zapoznania się z zasadami RODO oraz wyrażenie zgody.</li>'
-           . '</ul>';
+    $body .= '<ul>';
+    $body .= '<li>potwierdzenie zapoznania się i akceptacji kontraktu,</li>';
+    $body .= '<li>potwierdzenie zapoznania się z zasadami RODO oraz wyrażenie zgody.</li>';
+    $body .= '</ul>';
     $body .= '<p><a href="' . esc_url($form_url) . '" target="_blank" rel="noopener noreferrer">Link do formularza</a></p>';
     $body .= '<p>Wypełnienie formularza zajmuje tylko chwilę i pozwala nam zadbać o przejrzyste oraz bezpieczne zasady dalszej pracy.</p>';
     $body .= '<p>Dziękujemy!</p>';
@@ -1152,6 +1158,10 @@ function get_fifth_amelia_customer_email($customer_id)
 {
     global $wpdb;
 
+    if (! function_exists('get_amelia_table_name')) {
+        return '';
+    }
+
     $users_table = \get_amelia_table_name('users');
 
     if (! $users_table) {
@@ -1160,9 +1170,10 @@ function get_fifth_amelia_customer_email($customer_id)
 
     return (string) $wpdb->get_var($wpdb->prepare(
         "SELECT email FROM {$users_table} WHERE id = %d",
-        $customer_id
+        (int) $customer_id
     ));
 }
+
 
 
 /*--- KONTRAKT PDF DLA PRODUKTU 509 ---*/
